@@ -6,7 +6,7 @@
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
  */
-
+//gasdtgdasgdagdagagagda
 namespace {
     exit("This file should not be included, only analyzed by your IDE");
 
