@@ -13,11 +13,15 @@
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-
+    <link href="//bootswatch.com/cyborg/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset("sass/app.css")}}" rel="stylesheet">
     <style>
         body {
-            font-family: 'Lato';
+
+        }
+
+        body {
+
         }
 
         .fa-btn {
@@ -38,10 +42,10 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
-                </a>
+                {{--<!-- Branding Image -->--}}
+                {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
+                    {{--Laravel--}}
+                {{--</a>--}}
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">

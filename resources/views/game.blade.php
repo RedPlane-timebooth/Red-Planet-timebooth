@@ -16,38 +16,25 @@
 
                 <div class="panel panel-default text-center">
 
-                    <a class="" href="{{ URL::to('/game') }}">
+                    <a class="" href="{{ URL::to('/game/start') }}">
                         <div class="panel-heading text-muted">
-                            Start Game
+                            Start new game
                         </div>
                     </a>
 
-                    <a class="" href="{{ URL::to('/profile') }}">
+                    <a class="" href="{{ URL::to('/game/options') }}">
                         <div class="panel-heading text-muted">
-                            Profile
+                            Game Options
                         </div>
                     </a>
 
-                    <a class="" href="{{ URL::to('/shop') }}">
+                    <a class="" href="{{ URL::to('/home') }}">
                         <div class="panel-heading text-muted">
-                            Shop
-                        </div>
-                    </a>
-
-                    <a id=exit class="" href="{{ '#' }}">
-                        <div class="panel-heading text-muted">
-                            Exit
+                            Exit Game
                         </div>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        setTimeout(function(){
-            $('#exit').on("click", function() {
-                close();return false;
-            })
-        }, 0);
-    </script>
 @endsection
