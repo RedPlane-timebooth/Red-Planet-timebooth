@@ -6,7 +6,7 @@ body {
   -o-background-size: cover;
   background-size: cover; }
   body #heading {
-    margin: auto; }
+    margin: 20px; }
   body svg {
     width: 90%;
     height: 100%;

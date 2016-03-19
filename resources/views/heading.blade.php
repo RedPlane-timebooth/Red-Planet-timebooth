@@ -1,4 +1,5 @@
-<div id="heading" class="panel-heading text-center">
+{{--ref http://www.hongkiat.com/blog/css-text-effects/--}}
+<div id="heading">
     <svg version="1.1" id="glitch" xmlns="http://www.w3.org/2000/svg"
          xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>

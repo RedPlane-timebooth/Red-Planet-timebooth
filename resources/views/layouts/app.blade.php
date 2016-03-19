@@ -15,19 +15,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="//bootswatch.com/cyborg/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset("sass/app.css")}}" rel="stylesheet">
-    <style>
-        body {
 
-        }
-
-        body {
-
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    {{--audio--}}
+    @include('audio')
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
