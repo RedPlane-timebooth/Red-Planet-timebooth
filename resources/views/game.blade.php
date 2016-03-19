@@ -18,6 +18,12 @@
                         </div>
                     </a>
 
+                    <a class="" href="{{ URL::to('/game/start') }}">
+                        <div class="panel-heading text-muted">
+                            Join game
+                        </div>
+                    </a>
+
                     <a class="" href="{{ URL::to('/game/options') }}">
                         <div class="panel-heading text-muted">
                             Game Options
