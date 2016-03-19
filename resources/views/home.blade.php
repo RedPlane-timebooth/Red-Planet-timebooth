@@ -8,11 +8,7 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-2">
 
-                <div class="well text-center ">
-                    <h3 id=heading class=text-danger>
-                        Red Planet: timebooth
-                    </h3>
-                </div>
+                @include('heading')
 
                 <div class="panel panel-default text-center">
 
@@ -44,9 +40,10 @@
         </div>
     </div>
     <script>
-        setTimeout(function(){
-            $('#exit').on("click", function() {
-                close();return false;
+        setTimeout(function () {
+            $('#exit').on("click", function () {
+                close();
+                return false;
             })
         }, 0);
     </script>

@@ -1,5 +1,7 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+@import url(http://fonts.googleapis.com/css?family=Share+Tech+Mono);
+
 body{
   background: url('../images/background/background3.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -8,6 +10,25 @@ body{
   background-size: cover;
 
   #heading{
-    font-size: 1.5em;
+    margin: auto;
+  }
+
+
+  svg{
+    width: 90%;
+    height: 100%;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    background: black;
+    text {
+      filter: url(#filter);
+      fill: white;
+      font-family: 'Share Tech Mono', sans-serif;
+      font-size: 1.8em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
   }
 }
