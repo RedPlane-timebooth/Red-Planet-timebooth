@@ -4,7 +4,8 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-color: black; }
   body #heading {
     margin: 20px; }
   body svg {
