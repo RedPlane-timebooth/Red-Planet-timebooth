@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="container">
-        <div class="col-md-offset-2">
-            @include('heading')
+        <div class="row">
+            <div class="col-md-offset-2">
+                @include('heading')
+            </div>
         </div>
 
         <div class="row">
