@@ -11,7 +11,7 @@ body {
   background-color: black;
 
   #heading{
-    margin: 20px;
+    margin: 5px;
   }
 
 
@@ -23,7 +23,7 @@ body {
     overflow: hidden;
     margin: 0 auto;
     text {
-      filter: url(#filter);
+      filter: url('#filter');
       fill: white;
       font-family: 'Share Tech Mono', sans-serif;
       font-size: 3em;

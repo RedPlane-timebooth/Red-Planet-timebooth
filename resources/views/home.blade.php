@@ -2,11 +2,6 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-offset-2">
-                @include('heading')
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-md-4 col-md-offset-3">
@@ -28,20 +23,12 @@
                         </a>
                     </li>
                     <li class="panel-heading list-group-item">
-                        <a id=exit class="panel-heading text-muted" href="{{ '#' }}">
-                            Exit
+                        <a id=exit class="panel-heading text-muted" href="{{ '/logout' }}">
+                            Logout
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <script>
-        setTimeout(function () {
-            $('#exit').on("click", function () {
-                close();
-                return false;
-            })
-        }, 0);
-    </script>
 @endsection
