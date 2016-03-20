@@ -6,36 +6,32 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-4">
 
                 @include('heading')
 
-                <div class="panel panel-default text-center">
-
-                    <a class="" href="{{ URL::to('/game/start') }}">
-                        <div class="panel-heading text-muted">
+                <ul class="list-group panel panel-default text-center">
+                    <li class="panel-heading list-group-item">
+                        <a class="panel-heading text-muted" href="{{ URL::to('/game/start') }}">
                             Start new game
-                        </div>
-                    </a>
-
-                    <a class="" href="{{ URL::to('/game/start') }}">
-                        <div class="panel-heading text-muted">
+                        </a>
+                    </li>
+                    <li class="panel-heading list-group-item">
+                        <a class="panel-heading text-muted" href="{{ URL::to('/game/start') }}">
                             Join game
-                        </div>
-                    </a>
-
-                    <a class="" href="{{ URL::to('/game/options') }}">
-                        <div class="panel-heading text-muted">
+                        </a>
+                    </li>
+                    <li class="panel-heading list-group-item">
+                        <a class="panel-heading text-muted" href="{{ URL::to('/game/options') }}">
                             Game Options
-                        </div>
-                    </a>
-
-                    <a class="" href="{{ URL::to('/home') }}">
-                        <div class="panel-heading text-muted">
+                        </a>
+                    </li>
+                    <li class="panel-heading list-group-item">
+                        <a class="panel-heading text-muted" href="{{ URL::to('/home') }}">
                             Exit Game
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
