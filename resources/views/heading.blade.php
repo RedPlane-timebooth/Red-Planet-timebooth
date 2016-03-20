@@ -1,13 +1,12 @@
 {{--ref http://www.hongkiat.com/blog/css-text-effects/--}}
 <div id="heading">
-    <svg version="1.1" id="glitch" xmlns="http://www.w3.org/2000/svg"
-         xmlns:xlink="http://www.w3.org/1999/xlink">
+    <svg version="1.1" id="glitch">
         <defs>
 
             <filter id="filter">
-                <feFlood flood-color="black" result="black"/>
+                <feFlood flood-color="red" result="red"/>
                 <feFlood flood-color="red" result="flood1"/>
-                <feFlood flood-color="limegreen" result="flood2"/>
+                <feFlood flood-color="black" result="flood2"/>
                 <feOffset in="SourceGraphic" dx="3" dy="0" result="off1a"/>
                 <feOffset in="SourceGraphic" dx="2" dy="0" result="off1b"/>
                 <feOffset in="SourceGraphic" dx="-3" dy="0" result="off2a"/>
@@ -16,7 +15,7 @@
                 <feComposite in="flood2" in2="off2a" operator="in" result="comp2"/>
 
                 <feMerge width="100%" result="merge1">
-                    <feMergeNode in="black"/>
+                    <feMergeNode in="white"/>
                     <feMergeNode in="comp1"/>
                     <feMergeNode in="off1b"/>
 
@@ -44,7 +43,7 @@
 
 
                 <feMerge width="100%" y="60px" height="65px" result="merge2">
-                    <feMergeNode in="black"/>
+                    <feMergeNode in="white"/>
                     <feMergeNode in="comp2"/>
                     <feMergeNode in="off2b"/>
 
@@ -80,7 +79,7 @@
         </defs>
 
         <g>
-            <text x="0" y="100">Red planet: timebooth</text>
+            <text x="0" y="90">Red planet: timebooth</text>
         </g>
     </svg>
 </div>

@@ -22,12 +22,11 @@ body {
     position: relative;
     overflow: hidden;
     margin: 0 auto;
-    background: black;
     text {
       filter: url(#filter);
       fill: white;
       font-family: 'Share Tech Mono', sans-serif;
-      font-size: 1.8em;
+      font-size: 3em;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }

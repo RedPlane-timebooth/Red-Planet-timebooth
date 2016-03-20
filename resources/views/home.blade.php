@@ -2,13 +2,12 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="col-md-offset-2">
+            @include('heading')
         </div>
 
         <div class="row">
-            <div class="col-md-4 ">
-
-                @include('heading')
+            <div class="col-md-4 col-md-offset-3">
 
                 <ul  class="list-group panel panel-default text-center">
                     <li class="panel-heading list-group-item" >
