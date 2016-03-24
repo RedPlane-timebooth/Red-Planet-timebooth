@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.app')
 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
     @if (Auth::guest())

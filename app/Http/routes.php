@@ -24,6 +24,7 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
+    Route::auth();
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
     Route::get('/shop', 'ShopController@index');
@@ -31,8 +32,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('news', 'ArticlesController');
 });
-
-Route::group(array('namespace'=>'admin'), function()
+Route::group(['middleware' => ['admin']], function()
 {
-    Route::get('/admin', array('as' => 'admin', 'uses' => 'AdminController@index'));
-});
+    Route::get('/admin', 'AdminController@index');
+    Route::get('/admin/index', 'AdminController@index');
+    });
