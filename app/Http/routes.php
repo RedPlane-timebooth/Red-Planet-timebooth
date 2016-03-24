@@ -10,11 +10,29 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| This route group applies the "web" middleware group to every route
+| it contains. The "web" middleware group is defined in your HTTP
+| kernel and includes session state, CSRF protection, and more.
+|
+*/
+
+Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
-    Route::get('/game', function() {
-        return view('game');
-    })->middleware('auth');
+    Route::get('/shop', 'ShopController@index');
+    Route::get('/games', 'GameController@index');
+
+    Route::resource('news', 'ArticlesController');
+});
+
+Route::group(array('namespace'=>'admin'), function()
+{
+    Route::get('/admin', array('as' => 'admin', 'uses' => 'AdminController@index'));
 });
