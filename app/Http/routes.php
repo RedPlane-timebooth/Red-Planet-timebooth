@@ -31,4 +31,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('/news', 'ArticlesController');
     Route::get('/shop', 'ItemController@index');
     Route::resource('/admin', 'AdminController');
+    Route::resource('/admin/articles', 'AdminController');
+    Route::resource('/admin/shop', 'AdminController');
 });

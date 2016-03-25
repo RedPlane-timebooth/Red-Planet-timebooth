@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.adminPanel')
 
 @section('content')
 <h1>Edit: {{$article -> title}}</h1>

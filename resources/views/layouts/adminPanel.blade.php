@@ -47,12 +47,17 @@
                     <li><a href="{{ url('admin/home') }}">Home</a></li>
                     <li><a href="{{ url('admin/shop') }}">Shop</a>
                         <ul>
-                            <li>Add new item</li>
+                            <li><a href="{{ url('admin/shop/create') }}">Add new item</a></li>
+                            <li><a href="{{ url('admin/shop/{id?}/edit') }}">Add new item</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ url('admin/games') }}">Games</a></li>
-                    <li><a href="{{ url('admin/news') }}">News</a></li>
-                    <li><a href="{{ url('admin/about') }}">About Us</a></li>
+                    <li><a href="{{ url('admin/articles') }}">News</a>
+                        <ul>
+                            <li><a href="{{ url('admin/articles/create') }}">Add new item</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ url('/about') }}">About Us</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
