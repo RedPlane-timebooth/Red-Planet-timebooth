@@ -44,19 +44,19 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                    <li><a href="{{ url('/shop') }}">Shop</a>
+                    <li><a href="{{ url('admin/home') }}">Home</a></li>
+                    <li><a href="{{ url('admin/shop') }}">Shop</a>
                         <ul>
                             <li>Add new item</li>
                         </ul>
                     </li>
-                    <li><a href="{{ url('/games') }}">Games</a></li>
-                    <li><a href="{{ url('/news') }}">News</a></li>
-                    <li><a href="{{ url('/about') }}">About Us</a></li>
+                    <li><a href="{{ url('admin/games') }}">Games</a></li>
+                    <li><a href="{{ url('admin/news') }}">News</a></li>
+                    <li><a href="{{ url('admin/about') }}">About Us</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-
+                @yield('menu')
             </div>
             {{--</div>--}}
         </nav>

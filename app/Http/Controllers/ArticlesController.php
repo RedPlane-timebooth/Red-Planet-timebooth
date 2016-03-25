@@ -10,6 +10,14 @@ use App\Http\Requests;
 class ArticlesController extends Controller
 {
     /**
+     * ArticlesController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['index', 'show']]);
+    }
+
+    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
@@ -52,5 +60,10 @@ class ArticlesController extends Controller
         $article = Article::findOrFail($id);
         $article -> update($request->all());
         return redirect('news');
+    }
+
+    public function delete()
+    {
+        
     }
 }

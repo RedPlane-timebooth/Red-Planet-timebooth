@@ -27,13 +27,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
-    Route::get('/shop', 'ShopController@index');
     Route::get('/games', 'GameController@index');
-
-    Route::resource('news', 'ArticlesController');
+    Route::resource('/news', 'ArticlesController');
+    Route::get('/shop', 'ItemController@index');
+    Route::resource('/admin', 'AdminController');
 });
-Route::group(['middleware' => ['admin']], function()
-{
-    Route::get('/admin', 'AdminController@index');
-    Route::get('/admin/index', 'AdminController@index');
-    });

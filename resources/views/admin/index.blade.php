@@ -1,4 +1,6 @@
-@extends('admin.app')
+@extends('layouts.adminPanel')
+
+@section('menu')
 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
     @if (Auth::guest())
@@ -16,3 +18,4 @@
         </li>
     @endif
 </ul>
+    @endsection

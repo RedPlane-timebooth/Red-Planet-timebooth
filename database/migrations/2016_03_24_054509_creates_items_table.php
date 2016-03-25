@@ -12,12 +12,14 @@ class CreatesItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('item', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('description', 400);
             $table->string('img_address');
-            $table->integer('category_id');
+            $table->unsignedInteger('price');
+            $table->unsignedInteger('available');
+            $table->unsignedInteger('category_id');
             $table->timestamps();
         });
     }
