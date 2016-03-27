@@ -29,8 +29,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/home', 'HomeController@index');
     Route::get('/games', 'GameController@index');
     Route::resource('/news', 'ArticlesController');
-    Route::get('/shop', 'ItemController@index');
-    Route::resource('/admin', 'AdminController');
-    Route::resource('/admin/articles', 'AdminController');
-    Route::resource('/admin/shop', 'AdminController');
+    Route::resource('/shop', 'ItemController');
+    Route::get('/admin', 'AdminController@index');
 });

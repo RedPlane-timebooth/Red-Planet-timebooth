@@ -50,4 +50,7 @@ main.container {
   overflow: hidden;
   text-overflow: ellipsis; }
 
+.delete {
+  display: inline; }
+
 /*# sourceMappingURL=stylesheet.css.map */

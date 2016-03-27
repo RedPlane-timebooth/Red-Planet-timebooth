@@ -62,8 +62,10 @@ class ArticlesController extends Controller
         return redirect('news');
     }
 
-    public function delete()
+    public function destroy($id)
     {
-        
+        $affectedRows  = Article::where('id', '=', $id)->delete();
+
+        return view('articles.index');
     }
 }
