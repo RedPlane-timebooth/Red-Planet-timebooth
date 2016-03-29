@@ -50,6 +50,7 @@
                             @if (Auth::user()->isAdmin())
                                 <a href="{{ url('/news') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/news') }}">All</a></li>
                                     <li><a href="{{ url('/news/create') }}">Create Article</a></li>
                                 </ul>
                             @endif
@@ -63,6 +64,7 @@
                             @if (Auth::user()->isAdmin())
                                 <a href="{{ url('/shop') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/shop') }}">All</a></li>
                                     <li><a href="{{ url('/shop/create') }}">Create Article</a></li>
                                 </ul>
                             @else

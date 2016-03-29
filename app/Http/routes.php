@@ -30,5 +30,15 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/games', 'GameController@index');
     Route::resource('/news', 'ArticlesController');
     Route::resource('/shop', 'ItemController');
+    Route::get('/message', 'SocketController@index');
+    Route::post('/send', 'SocketController@sendMessage');
+    Route::get('/write', 'SocketController@writeMessage');
+
+});
+
+Route::group(['middleware' => ['web']], function () {
+    Route::auth();
     Route::get('/admin', 'AdminController@index');
+    Route::resource('/admin/news', 'ArticlesController');
+    Route::resource('/admin/shop', 'ItemController');
 });

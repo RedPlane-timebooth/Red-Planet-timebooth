@@ -7,10 +7,14 @@
     @foreach($articles as $article)
         <h2>
             <a href="{{ url('/news', $article -> id) }}">{{ $article->title }}</a>
-            {!! Form::open(['action' => ['ArticlesController@destroy', $article->id], 'method' => 'delete', 'class' => 'delete']) !!}
-            {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-mini pull-right']) !!}
-            {!! Form::close() !!}
-            <a class="btn btn-default btn-primary pull-right" href="{{ url('/news/'. $article -> id . '/edit') }}">Edit</a>
+            @if(Auth::user())
+                @if(Auth::user()->isAdmin())
+                    {!! Form::open(['action' => ['ArticlesController@destroy', $article->id], 'method' => 'delete', 'class' => 'delete']) !!}
+                    {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-mini pull-right']) !!}
+                    {!! Form::close() !!}
+                    <a class="btn btn-default btn-primary pull-right" href="{{ url('/news/'. $article -> id . '/edit') }}">Edit</a>
+                @endif
+            @endif
         </h2>
         <p class="preview">{{ $article->body }}</p>
     @endforeach

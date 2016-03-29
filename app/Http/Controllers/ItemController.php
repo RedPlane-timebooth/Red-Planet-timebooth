@@ -31,9 +31,8 @@ class ItemController extends Controller
      * @param $param
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($param)
+    public function show()
     {
-        $item = Item::findOrFail($param);
         return view('shop.item', compact('item'));
     }
     /**
@@ -52,14 +51,12 @@ class ItemController extends Controller
         Item::create($request->all());
         return redirect('shop');
     }
-    public function edit($id)
+    public function edit()
     {
-        $article = Item::findOrFail($id);
         return view('shop.edit', compact('item'));
     }
-    public function update($id, ItemRequest $request)
+    public function update(Item $item,ItemRequest $request)
     {
-        $item = Item::findOrFail($id);
         $item -> update($request->all());
         return redirect('shop');
     }

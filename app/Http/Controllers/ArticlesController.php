@@ -29,9 +29,8 @@ class ArticlesController extends Controller
      * @param $param
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($param)
+    public function show(Article $article)
     {
-        $article = Article::findOrFail($param);
         return view('articles.article', compact('article'));
     }
     /**
@@ -50,21 +49,19 @@ class ArticlesController extends Controller
         Article::create($request->all());
         return redirect('news');
     }
-    public function edit($id)
+    public function edit(Article $article)
     {
-        $article = Article::findOrFail($id);
         return view('articles.edit', compact('article'));
     }
-    public function update($id, ArticleRequest $request)
+    public function update(Article $article, ArticleRequest $request)
     {
-        $article = Article::findOrFail($id);
         $article -> update($request->all());
         return redirect('news');
     }
 
     public function destroy($id)
     {
-        $affectedRows  = Article::where('id', '=', $id)->delete();
+        Article::where('id', '=', $id)->delete();
 
         return view('articles.index');
     }
