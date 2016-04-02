@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemRequest;
 use App\Item;
+use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
+use Session;
+use Storage;
 
 class ItemController extends Controller
 {
@@ -24,15 +28,25 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $shop = Item::all();
-        return view('shop.index', compact('shop'));
+        $items = Item::all();
+        if (Auth::user()){
+            if (Auth::user()->isAdmin()){
+                return view('shop.admin.index', compact('items'));
+            }
+        }
+        return view('shop.index', compact('items'));
     }
     /**
      * @param $param
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show()
+    public function show(Item $item)
     {
+        if (Auth::user()){
+            if (Auth::user()->isAdmin()){
+                return view('shop.admin.item', compact('item'));
+            }
+        }
         return view('shop.item', compact('item'));
     }
     /**
@@ -40,7 +54,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('shop.create');
+        $categories = [];
+        return view('shop.admin.create', compact('categories'));
     }
     /**
      * @param ItemRequest $request
@@ -48,21 +63,30 @@ class ItemController extends Controller
      */
     public function store(ItemRequest $request)
     {
-        Item::create($request->all());
-        return redirect('shop');
+        $destinationPath = 'resource/img/';
+        $fileName = Input::file('img_address')->getClientOriginalName();
+        $file = Input::file('img_address');
+        $file->move($destinationPath, $fileName);
+        $data = $request->all();
+        $data['img_address'] = $destinationPath . $fileName;
+        Item::create($data);
+        return redirect('admin/shop');
     }
-    public function edit()
+    public function edit(Item $item)
     {
-        return view('shop.edit', compact('item'));
+        $categories = [];
+        return view('shop.admin.edit', compact('item', 'categories'));
     }
     public function update(Item $item,ItemRequest $request)
     {
         $item -> update($request->all());
-        return redirect('shop');
+        return redirect('admin/shop');
     }
 
-    public function delete()
+    public function destroy(Item $item)
     {
+        Item::where('id', '=', $item ->id)->delete();
 
+        return redirect('admin/shop');
     }
 }

@@ -34,10 +34,7 @@
 
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <i class="fa fa-bars"></i>
                 </button>
             </div>
 
@@ -46,36 +43,11 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li class="dropdown">
-                        @if (Auth::user())
-                            @if (Auth::user()->isAdmin())
-                                <a href="{{ url('/news') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News<span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/news') }}">All</a></li>
-                                    <li><a href="{{ url('/news/create') }}">Create Article</a></li>
-                                </ul>
-                            @endif
-                        @else
-                            <a href="{{ url('/news') }}">News</a>
-                        @endif
+                        <a href="{{ url('/news') }}">News</a>
                     </li>
                     <li><a href="{{ url('/games') }}">Games</a></li>
                     <li class="dropdown">
-                        @if (Auth::user())
-                            @if (Auth::user()->isAdmin())
-                                <a href="{{ url('/shop') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop<span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/shop') }}">All</a></li>
-                                    <li><a href="{{ url('/shop/create') }}">Create Article</a></li>
-                                </ul>
-                            @else
-                                <a href="{{ url('/shop') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop<span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/shop/userItems') }}">My Items</a></li>
-                                </ul>
-                            @endif
-                        @else
                             <a href="{{ url('/shop') }}">Shop</a>
-                        @endif
                     </li>
                     <li><a href="{{ url('/about') }}">About Us</a></li>
                     @if (Auth::user())

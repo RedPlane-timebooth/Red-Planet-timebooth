@@ -9,7 +9,9 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "5.2.x-dev",
-        "cboden/ratchet": "0.4.x-dev"
+        "cboden/ratchet": "0.4.x-dev",
+        "barryvdh/laravel-debugbar": "v2.2.0",
+        "barryvdh/laravel-ide-helper": "v2.1.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
