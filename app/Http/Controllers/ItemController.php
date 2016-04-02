@@ -63,7 +63,7 @@ class ItemController extends Controller
      */
     public function store(ItemRequest $request)
     {
-        $destinationPath = 'resource/img/';
+        $destinationPath = '../resource/img/';
         $fileName = Input::file('img_address')->getClientOriginalName();
         $file = Input::file('img_address');
         $file->move($destinationPath, $fileName);
