@@ -57,18 +57,26 @@ class ItemController extends Controller
         $categories = [];
         return view('shop.admin.create', compact('categories'));
     }
+
+    protected function moveUploads($request)
+    {
+        $destinationPath = 'resource/img/';
+        $fileName = Input::file('img_address')->getClientOriginalName();
+        $file = Input::file('img_address');
+        $file->move($destinationPath, $fileName);
+        $path = $destinationPath . $fileName;
+        $data = $request->all();
+        $data['img_address'] = $path;
+
+        return $data;
+    }
     /**
      * @param ItemRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(ItemRequest $request)
     {
-        $destinationPath = '../resource/img/';
-        $fileName = Input::file('img_address')->getClientOriginalName();
-        $file = Input::file('img_address');
-        $file->move($destinationPath, $fileName);
-        $data = $request->all();
-        $data['img_address'] = $destinationPath . $fileName;
+        $data = $this -> moveUploads($request);
         Item::create($data);
         return redirect('admin/shop');
     }
@@ -79,7 +87,8 @@ class ItemController extends Controller
     }
     public function update(Item $item,ItemRequest $request)
     {
-        $item -> update($request->all());
+        $data = $this -> moveUploads($request);
+        $item -> update($data);
         return redirect('admin/shop');
     }
 
