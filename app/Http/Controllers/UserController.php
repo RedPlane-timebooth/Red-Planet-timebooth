@@ -38,9 +38,11 @@ class UserController extends Controller
      */
     public function buyItem($id)
     {
-        $user = Auth::user();
+        $user = $this ->show($id);
         $item = Item::find($id);
-        $user->items()->attach($item->id);
+        $user
+            ->items()
+            ->attach($item->id);
 
         return redirect('/shop');
 
