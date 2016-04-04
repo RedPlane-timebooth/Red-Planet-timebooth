@@ -28,8 +28,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
     Route::get('/games', 'GameController@index');
+    Route::get('/buyItem/{id?}', 'UserController@buyItem');
+    Route::get('/items/{id}', 'UserController@showItems');
+
+    Route::resource('/profile', 'UserController');
     Route::resource('/news', 'ArticlesController');
     Route::resource('/shop', 'ItemController');
+    Route::resource('/statistic', 'StatisticController');
+
     Route::post('/send', 'SocketController@sendMessage');
     Route::get('/write', 'SocketController@writeMessage');
     Route::get('/message', 'SocketController@index');

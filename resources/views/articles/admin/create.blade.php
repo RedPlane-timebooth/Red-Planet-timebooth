@@ -4,7 +4,7 @@
 
     @include('errors.list')
 
-    {!! Form::open(['action' => 'admin/news]) !!}
+    {!! Form::open(['url' => 'admin/news']) !!}
         @include('articles.admin._formArticles', ['submitButtonText' => 'Add article'])
     {!! Form::close() !!}
 

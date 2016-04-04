@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     public function items()
     {
-
+        return $this->belongsToMany(\App\Item::class, 'user_item');
     }
 
 }

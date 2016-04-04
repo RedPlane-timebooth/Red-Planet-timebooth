@@ -15,4 +15,9 @@ class Item extends Model
             'available',
             'category_id'
         ];
+
+    public function users()
+    {
+        return $this->belongsToMany(\App\User::class);
+    }
 }

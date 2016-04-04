@@ -42,13 +42,9 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
-                    <li class="dropdown">
-                        <a href="{{ url('/news') }}">News</a>
-                    </li>
+                    <li><a href="{{ url('/news') }}">News</a></li>
                     <li><a href="{{ url('/games') }}">Games</a></li>
-                    <li class="dropdown">
-                            <a href="{{ url('/shop') }}">Shop</a>
-                    </li>
+                    <li><a href="{{ url('/shop') }}">Shop</a></li>
                     <li><a href="{{ url('/about') }}">About Us</a></li>
                     @if (Auth::user())
                         <li class="dropdown">
@@ -57,6 +53,9 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/profile', Auth::user()->id) }}">Profile</a></li>
+                                <li><a href="{{ url('/statistic') }}">Statistic</a></li>
+                                <li><a href="{{ url('/items', Auth::user()->id) }}">My Items</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Statistic;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class Statistic extends Controller
+class StatisticController extends Controller
 {
+    /**
+     * ArticlesController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,28 +24,20 @@ class Statistic extends Controller
      */
     public function index()
     {
-        //
-    }
+        $all = Statistic::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $all;
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param $data []
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+
     }
 
     /**
@@ -51,24 +52,13 @@ class Statistic extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param $data []
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($data, $id)
     {
         //
     }

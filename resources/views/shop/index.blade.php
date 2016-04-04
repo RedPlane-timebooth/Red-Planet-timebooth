@@ -3,7 +3,7 @@
 @section('content')
 
     @if (count($items))
-        <h1>Lasted news</h1>
+        <h1>All items</h1>
         @foreach($items as $item)
             <div class="col-md-3 pull-left">
                 <h2>
@@ -11,7 +11,7 @@
                 </h2>
                 <img class="preview" src="{{url($item->img_address) }}">
                 <p>{{ $item->price }}</p>
-                <a href="#" class="btn btn-info">Buy</a>
+                <a href="{{url('/buyItem', $item->id)}}" class="btn btn-info">Buy</a>
             </div>
         @endforeach
     @else
