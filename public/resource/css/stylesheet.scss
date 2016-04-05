@@ -61,10 +61,13 @@ main.container{
   float: none;
   clear: both;
   width: 100%;
+  max-width: 768px;
   position: relative;
   padding-bottom: 56.25%;
   padding-top: 25px;
   height: 0;
+  display: block;
+  margin: 0 auto;
 }
 
 .videoContainer iframe {

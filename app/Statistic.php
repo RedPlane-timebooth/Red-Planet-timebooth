@@ -14,4 +14,9 @@ class Statistic extends Model
             'win_games',
             'lose_games'
         ];
+
+    public function users()
+    {
+        return $this -> hasMany(\App\User::class, 'id');
+    }
 }

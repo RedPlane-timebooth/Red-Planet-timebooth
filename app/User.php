@@ -34,4 +34,9 @@ class User extends Authenticatable
         return $this->belongsToMany(\App\Item::class, 'user_item');
     }
 
+    public function statistic()
+    {
+        return $this->belongsTo(\App\Statistic::class, 'user_id');
+    }
+
 }

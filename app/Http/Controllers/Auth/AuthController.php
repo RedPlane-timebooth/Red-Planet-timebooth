@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Statistic;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -63,10 +64,19 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        Statistic::create([
+            'user_id' => $user->id,
+            'total_score' => 0,
+            'total_games' => 0,
+            'win_games' => 0,
+            'lose_games' => 0
+        ]);
+
+        return $user;
     }
 }

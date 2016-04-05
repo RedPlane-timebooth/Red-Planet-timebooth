@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Http\Requests;
+use App\Statistic;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +16,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $articles= Article::where('homepage',1)->limit(4)->get();
+        $topUsers = Statistic::orderBy('total_score')
+            ->join('users', 'users.id', '=', 'user_id')
+            ->take(10)
+            ->get();
+        return view('home', compact('articles', 'topUsers'));
     }
     /**
      * @param $param
