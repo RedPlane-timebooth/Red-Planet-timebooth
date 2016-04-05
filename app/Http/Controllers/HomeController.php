@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $articles= Article::where('homepage',1)->limit(4)->get();
-        $topUsers = Statistic::orderBy('total_score')
+        $topUsers = Statistic::orderBy('total_score', 'desc')
             ->join('users', 'users.id', '=', 'user_id')
             ->take(10)
             ->get();

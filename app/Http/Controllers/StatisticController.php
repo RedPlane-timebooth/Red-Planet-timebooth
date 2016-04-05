@@ -26,6 +26,7 @@ class StatisticController extends Controller
     {
         $all = Statistic::with('users')->paginate(15);
 
+//        return $all;
         return view('statistic.index', compact('all'));
     }
 

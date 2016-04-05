@@ -13,6 +13,8 @@
     <br/>
     <br/>
     <div class="row">
+
+    @if($articles)
         <div class="col-md-offset-2 col-md-8 text-info">
             <table class="table table-hover text-center table-bordered table-responsive">
                 <caption class="well text-center info"> Leaderboard</caption>
@@ -24,44 +26,27 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="muted text-center">
-                    <td>1</td>
-                    <td>Daniel</td>
-                    <td>1241412</td>
-                </tr>
-                <tr class="muted text-center">
-                    <td>1</td>
-                    <td>Daniel</td>
-                    <td>1241412</td>
-                </tr>
-                <tr class="muted text-center">
-                    <td>1</td>
-                    <td>Daniel</td>
-                    <td>1241412</td>
-                </tr>
-                <tr class="muted text-center">
-                    <td>1</td>
-                    <td>Daniel</td>
-                    <td>1241412</td>
-                </tr>
+                <?php $number = 1 ?>
+                @foreach($topUsers as $user)
+                    <tr>
+                        <td>{{ $number++ }}</td>
+                        <td class="userName">{{ $user->name }}</td>
+                        <td class="userScore">{{ $user->total_score }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
-        </div>
-    </div>
-    @if($articles)
-        @foreach($articles as $article)
-            <div class="topNews">
-                <h2>{{ $article-> title }}</h2>
-                <p>{{ $article-> body }}</p>
             </div>
-        @endforeach
+        </div>
     @endif
     @if($articles)
-        <div class="topUsers">
-            @foreach($topUsers as $user)
-                <span class="userName">{{ $user->name }}</span>
-                <span class="userScore">{{ $user->total_score }}</span>
+        <table>
+            @foreach($articles as $article)
+                <tr class="muted text-center">
+                    <td><h2>{{ $article-> title }}</h2></td>
+                    <td>{{ $article-> body }}</td>
+                </tr>
             @endforeach
-        </div>
+        </table>
     @endif
 @endsection
