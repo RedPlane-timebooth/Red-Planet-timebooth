@@ -52,7 +52,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $items = $user->items()->get();
-
         return view('profile.items', compact('items'));
     }
 

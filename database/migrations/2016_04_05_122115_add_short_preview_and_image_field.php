@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddHomepageField extends Migration
+class AddShortPreviewAndImageField extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,8 @@ class AddHomepageField extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->boolean('homepage')->defaul('false');
+            $table->string('image');
+            $table->string('short');
         });
     }
 
@@ -25,7 +26,8 @@ class AddHomepageField extends Migration
     public function down()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->dropColumn('homepage');
+            $table->dropColumn('image');
+            $table->dropColumn('short');
         });
     }
 }
