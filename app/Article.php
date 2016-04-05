@@ -14,5 +14,4 @@ class Article extends Model
             'homepage'
         ];
 
-
 }
