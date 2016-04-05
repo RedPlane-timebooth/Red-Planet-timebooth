@@ -8,12 +8,15 @@
     <title>Laravel</title>
 
     <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
+          type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
     <!-- Styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-     <link href="{{ url("/resource/css/stylesheet.css") }}" rel="stylesheet">
+    <link href="{{ url("/node_modules/bootstrap/dist/css/bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ url("/node_modules/bootstrap/dist/css/bootstrap-theme.min.css") }}" rel="stylesheet">
+    <link href="{{ url("/resource/css/stylesheet.css") }}" rel="stylesheet">
+    <link href="{{ url("/node_modules/hover.css/css/hover.css") }}" rel="stylesheet" media="all">
 
     <style>
         body {
@@ -25,55 +28,71 @@
         }
     </style>
 </head>
-<body id="app-layout">
-    <header>
-        <img id="logo" src="{{url("/resource/img/logo.png")}}" alt="The Red Planet">
-        <nav id="nav" class="navbar navbar-default">
-            {{--<div class="container col-sm-12">--}}
+<body>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
             <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <i class="fa fa-bars"></i>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
+                <a class="navbar-brand" href="#">Brand</a>
             </div>
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ url('/news') }}">News</a></li>
-                    <li><a href="{{ url('/games') }}">Games</a></li>
-                    <li><a href="{{ url('/shop') }}">Shop</a></li>
-                    <li><a href="{{ url('/about') }}">About Us</a></li>
+                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Link</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
                     @if (Auth::user())
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle hvr-underline-from-center" data-toggle="dropdown"
+                               role="button"
+                               aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <ul class="dropdown-menu" role="menu">
+                            <ul class="dropdown-menu transperentBackground" role="menu" id="account">
                                 <li><a href="{{ url('/profile', Auth::user()->id) }}">Profile</a></li>
                                 <li><a href="{{ url('/statistic') }}">Statistic</a></li>
                                 <li><a href="{{ url('/items', Auth::user()->id) }}">My Items</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
-                        @endif
-                </ul>
+                    @endif
 
-                <!-- Right Side Of Navbar -->
-
-            </div>
-            {{--</div>--}}
-        </nav>
-    </header>
-    <main class="container">
-        @yield('content')
-    </main>
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+</header>
+    @yield('content')
+<!-- JavaScripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

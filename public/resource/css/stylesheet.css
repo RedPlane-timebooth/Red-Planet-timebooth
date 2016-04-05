@@ -1,79 +1,19 @@
 body {
-  background: url("../img/background5.jpg"); }
-
-.navbar-default {
-  background: rgba(255, 255, 255, 0.31); }
-  .navbar-default .nav .navbar-nav {
-    padding: 10px 5px 5px; }
-  .navbar-default .navbar-nav > li {
-    width: 150px;
-    margin-left: -10px;
-    margin-bottom: 10px;
-    vertical-align: middle;
-    background: url("../img/nav_a_background.png") no-repeat 100% 100%; }
-    .navbar-default .navbar-nav > li a {
-      vertical-align: baseline;
-      font-weight: bold;
-      font-size: 16px;
-      color: #fff; }
-
-.navbar .navbar-nav {
-  display: inline-block;
-  float: none;
-  vertical-align: top; }
-
-.navbar .navbar-collapse {
-  text-align: center; }
-
-#nav {
-  max-width: 768px;
-  margin: 0 auto 50px; }
-
-#app-navbar-collapse {
-  width: 100%;
-  margin: 0;
-  padding: 0; }
-
-#logo {
-  display: block;
-  margin: 0 auto; }
-
-main.container {
-  background: rgba(255, 255, 255, 0.31);
-  border: 1px solid #000;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
-  padding: 20px; }
-
-.videoContainer {
-  float: none;
-  clear: both;
-  width: 100%;
-  max-width: 768px;
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 25px;
-  height: 0;
-  display: block;
-  margin: 0 auto; }
-
-.videoContainer iframe {
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%; }
-
-@media all and (max-width: 768px) {
-  #logo {
-    display: none; } }
-.preview {
-  max-height: 140px;
-  overflow: hidden;
-  text-overflow: ellipsis; }
-
-.delete {
-  display: inline; }
+  background: url("../img/background4.jpg"); }
+  body nav {
+    margin: 10px auto 50px;
+    width: 90%; }
+  body main.container {
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    padding: 20px;
+    opacity: 0.5; }
+  body .preview {
+    max-height: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  body .delete {
+    display: inline; }
 
 /*# sourceMappingURL=stylesheet.css.map */
