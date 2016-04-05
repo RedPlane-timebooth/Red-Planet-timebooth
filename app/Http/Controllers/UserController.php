@@ -12,13 +12,11 @@ use App\Http\Requests;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * UserController constructor.
      */
-    public function index()
+    public function __construct()
     {
-//
+        $this->middleware('auth');
     }
 
     /**
@@ -30,7 +28,9 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return $user;
+//        return $user;
+
+        return view('profile.index', compact('user'));
     }
 
     /**
@@ -38,7 +38,7 @@ class UserController extends Controller
      */
     public function buyItem($id)
     {
-        $user = $this ->show($id);
+        $user = Auth::user();
         $item = Item::find($id);
         $user
             ->items()
@@ -50,10 +50,9 @@ class UserController extends Controller
 
     public function showItems($id)
     {
-        $user = $this ->show($id);
+        $user = User::findOrFail($id);
         $items = $user->items()->get();
 
-//        return $items;
         return view('profile.items', compact('items'));
     }
 

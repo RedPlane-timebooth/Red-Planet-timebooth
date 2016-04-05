@@ -1,4 +1,26 @@
+body{
+  background: url("../img/background5.jpg");
+}
 
+.navbar-default{
+  background: rgba(255, 255, 255, 0.31);
+  .nav .navbar-nav{
+    padding: 10px 5px 5px;
+  }
+  .navbar-nav > li{
+    width: 150px;
+    margin-left: -10px;
+    margin-bottom: 10px;
+    vertical-align: middle;
+    background: url("../img/nav_a_background.png") no-repeat 100% 100%;
+    a{
+      vertical-align: baseline;
+      font-weight: bold;
+      font-size: 16px;
+      color: #fff;
+    }
+  }
+}
 
 .navbar .navbar-nav {
   display: inline-block;
@@ -27,6 +49,7 @@
 }
 
 main.container{
+  background: rgba(255, 255, 255, 0.31);
   border: 1px solid #000;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;

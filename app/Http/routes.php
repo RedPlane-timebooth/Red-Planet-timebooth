@@ -25,8 +25,7 @@
 
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
-    Route::get('/', 'HomeController@index');
-    Route::get('/home', 'HomeController@index');
+    Route::get('/', 'ArticlesController@index');
     Route::get('/games', 'GameController@index');
     Route::get('/buyItem/{id?}', 'UserController@buyItem');
     Route::get('/items/{id}', 'UserController@showItems');

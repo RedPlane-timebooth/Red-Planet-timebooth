@@ -44,7 +44,6 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li><a href="{{ url('/admin/home') }}">Home</a></li>
                 <li class="dropdown">
                     <a href="{{ url('/admin/news') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
