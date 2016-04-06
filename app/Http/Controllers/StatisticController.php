@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Statistic;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 
 class StatisticController extends Controller
 {
@@ -22,12 +21,21 @@ class StatisticController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $all = Statistic::with('users')->paginate(15);
+        $query = Statistic::with('users');
+        if ($request->input('sortDirection') === 'DESC')
+        {
+            $sortDirection = 'ASC';
+        } else {
+            $sortDirection = 'DESC';
+        }
+        $sortBy = $request->input('sortBy', 'user_id');
+        $all = $query->orderBy($sortBy, $sortDirection)->paginate(15);
 
-//        return $all;
-        return view('statistic.index', compact('all'));
+//            ->paginate(15);
+
+        return view('statistic.index', compact('all', 'sortDirection'));
     }
 
     /**
