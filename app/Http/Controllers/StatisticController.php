@@ -33,9 +33,19 @@ class StatisticController extends Controller
         $sortBy = $request->input('sortBy', 'user_id');
         $all = $query->orderBy($sortBy, $sortDirection)->paginate(15);
 
-//            ->paginate(15);
-
         return view('statistic.index', compact('all', 'sortDirection'));
+    }
+
+    public function search(Request $request)
+    {
+        // Gets the query string from our form submission
+        $query = $request->input('search');
+        // Returns an array of articles that have the query string located somewhere within
+        // our articles titles. Paginates them so we can break up lots of search results.
+        $user = DB::table('users')->where('username', 'LIKE', '%' . $query . '%')->first()->get();
+
+        // returns a view and passes the view the list of articles and the original query.
+        return view('statistic.search', compact('user', 'query'));
     }
 
     /**

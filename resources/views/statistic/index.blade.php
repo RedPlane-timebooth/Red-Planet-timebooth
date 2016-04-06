@@ -8,11 +8,14 @@
             <thead>
             <tr>
                 <th colspan="6">
-                {!! Form::open() !!}
-                    {!! Form::label('Search by Username') !!}
-                    {!! Form::input('search', 'search') !!}
-                    {!! Form::submit('Search')!!}
-                {!! Form::close() !!}
+                    {!! Form::open(['url' => '/statistic/search', 'class'=>'form navbar-form navbar-right searchform']) !!}
+                    {!! Form::text('search', null,
+                                           array('required',
+                                                'class'=>'form-control',
+                                                'placeholder'=>'Search for a user...')) !!}
+                    {!! Form::submit('Search',
+                                               array('class'=>'btn btn-default')) !!}
+                    {!! Form::close() !!}
                 </th>
             </tr>
             <tr class="muted text-center text-white">
@@ -20,8 +23,8 @@
                 <th class="text-center">{{link_to_route('statistic.index', 'Username', ['sortBy' => 'user_id', 'sortDirection' => $sortDirection]) }}</th>
                 <th class="text-center">{{link_to_route('statistic.index', 'Total Points', ['sortBy' => 'total_score', 'sortDirection' => $sortDirection]) }}</th>
                 <th class="text-center">{{link_to_route('statistic.index', 'Total Games', ['sortBy' => 'total_games', 'sortDirection' => $sortDirection]) }}</th>
-                <th class="text-center">{{link_to_route('statistic.index', 'Win Points', ['sortBy' => 'win_games', 'sortDirection' => $sortDirection]) }}</th>
-                <th class="text-center">{{link_to_route('statistic.index', 'Lose Points', ['sortBy' => 'lose_games', 'sortDirection' => $sortDirection]) }}</th>
+                <th class="text-center">{{link_to_route('statistic.index', 'Win Games', ['sortBy' => 'win_games', 'sortDirection' => $sortDirection]) }}</th>
+                <th class="text-center">{{link_to_route('statistic.index', 'Lose Games', ['sortBy' => 'lose_games', 'sortDirection' => $sortDirection]) }}</th>
             </tr>
             </thead>
             <tbody>
@@ -39,6 +42,6 @@
             @endforeach
             </tbody>
         </table>
-        {!! $all->links() !!}
+        <div class="pagination center-block">{!! $all->links() !!}</div>
     </div>
 @endsection
