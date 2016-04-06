@@ -38,18 +38,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}">Home</a>
+                <a class="navbar-brand hvr-underline-from-center" href="{{ url('/') }}">Home</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/shop') }}">Shop</a></li>
-                    <li><a href="{{ url('/about') }}">About</a></li>
+                    <li><a href="{{ url('/shop') }}" class="hvr-underline-from-center">Shop</a></li>
+                    <li><a href="{{ url('/about') }}" class="hvr-underline-from-center">About</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Game <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle hvr-underline-from-center" data-toggle="dropdown" role="button" aria-expanded="false">Game <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/game') }}">Play now</a></li>
-                            <li><a href="{{ url('/news') }}">Getting Started</a></li>
+                            <li><a href="{{ url('/game') }}" class="hvr-underline-from-center">Play now</a></li>
+                            <li><a href="{{ url('/news') }}" class="hvr-underline-from-center">Getting Started</a></li>
                             {{--or tutorial here--}}
                         </ul>
                     </li>
@@ -74,6 +74,7 @@
                     @if (!Auth::user())
                         <li>
                             <form class="navbar-form" name="loginForm" method="POST" action="{{ url('/login') }}">
+                                {!! csrf_field() !!}
                                 <div class="form-group" style="height: 30px; vertical-align: baseline;" >
                                     <input type="text" required placeholder="E-mail" class="form-control"/>
                                     <input type="password" required placeholder="Password" class="form-control"/>
