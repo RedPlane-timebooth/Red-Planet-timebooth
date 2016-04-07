@@ -62,7 +62,6 @@ RedPlanetGame.Game = (function iife() {
     };
 
     RedPlanetGame.Game.prototype.update = function update() {
-        console.log(this.game.canBuild)
         this.game.canvas.style.cursor = this.game.cursorType;
 
         //on building state
