@@ -4,6 +4,12 @@
 
     @if (count($articles))
 <h1>Lasted news</h1>
+<div>
+    {!! Form::open(['url' => '/news/search', 'class'=>'form navbar-form navbar-right searchform']) !!}
+    {!! Form::text('search', null, ['required', 'class'=>'form-control', 'placeholder'=>'Search article']) !!}
+    {!! Form::submit('Search', ['class'=>'btn btn-default']) !!}
+    {!! Form::close() !!}
+</div>
     @foreach($articles as $article)
         <h2>
             <a href="{{ url('/news', $article -> id) }}">{{ $article->title }}</a>

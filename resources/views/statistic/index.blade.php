@@ -9,12 +9,8 @@
             <tr>
                 <th colspan="6">
                     {!! Form::open(['url' => '/statistic/search', 'class'=>'form navbar-form navbar-right searchform']) !!}
-                    {!! Form::text('search', null,
-                                           array('required',
-                                                'class'=>'form-control',
-                                                'placeholder'=>'Search for a user...')) !!}
-                    {!! Form::submit('Search',
-                                               array('class'=>'btn btn-default')) !!}
+                    {!! Form::text('search', null, [ 'required', 'class'=>'form-control', 'placeholder'=>'Search user']) !!}
+                    {!! Form::submit('Search', ['class'=>'btn btn-default']) !!}
                     {!! Form::close() !!}
                 </th>
             </tr>
@@ -31,9 +27,10 @@
             <?php
                 $number = $all->firstItem()?>
             @foreach($all as $row)
+                {{--{{ dd($row) }}--}}
                 <tr>
                     <td>{{ $number++ }}</td>
-                    <td>{{ $row->users[0]['name'] }}</td>
+                    <td>{{ $row->username }}</td>
                     <td>{{ $row->total_score }}</td>
                     <td>{{ $row->total_games }}</td>
                     <td>{{ $row->win_games }}</td>

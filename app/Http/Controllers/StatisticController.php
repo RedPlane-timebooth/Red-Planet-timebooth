@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Statistic;
+use App\User;
+use DB;
 use Illuminate\Http\Request;
 
 
@@ -23,7 +25,7 @@ class StatisticController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Statistic::with('users');
+
         if ($request->input('sortDirection') === 'DESC')
         {
             $sortDirection = 'ASC';
@@ -31,32 +33,20 @@ class StatisticController extends Controller
             $sortDirection = 'DESC';
         }
         $sortBy = $request->input('sortBy', 'user_id');
-        $all = $query->orderBy($sortBy, $sortDirection)->paginate(15);
 
-        return view('statistic.index', compact('all', 'sortDirection'));
-    }
-
-    public function search(Request $request)
-    {
-        // Gets the query string from our form submission
-        $query = $request->input('search');
-        // Returns an array of articles that have the query string located somewhere within
-        // our articles titles. Paginates them so we can break up lots of search results.
-        $user = DB::table('users')->where('username', 'LIKE', '%' . $query . '%')->first()->get();
+        if ($request->input('search')) {
+            $query = $request->input('search');
+            $all = Statistic::where('username', 'LIKE', '%' . $query . '%')
+                ->join('users', 'users.id', '=', 'user_id')
+                ->paginate(10);
+        } else {
+            $all = Statistic::orderBy($sortBy, $sortDirection)
+                ->join('users', 'users.id', '=', 'user_id')
+                ->paginate(10);
+        }
 
         // returns a view and passes the view the list of articles and the original query.
-        return view('statistic.search', compact('user', 'query'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param $data []
-     * @return \Illuminate\Http\Response
-     */
-    public function store()
-    {
-
+        return view('statistic.index', compact('all', 'sortDirection'));
     }
 
     /**
@@ -78,17 +68,6 @@ class StatisticController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update($data, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }
