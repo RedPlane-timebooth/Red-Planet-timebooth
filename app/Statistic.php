@@ -17,6 +17,6 @@ class Statistic extends Model
 
     public function users()
     {
-        return $this -> hasMany(\App\User::class, 'id');
+        return $this -> belongsTo(\App\User::class);
     }
 }

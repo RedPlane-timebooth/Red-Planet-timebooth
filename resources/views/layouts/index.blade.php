@@ -70,16 +70,38 @@
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
-                    @endif
-                    @if (!Auth::user())
+                    @else
                         <li>
-                            <form class="navbar-form" name="loginForm" method="POST" action="{{ url('/login') }}">
-                                {!! csrf_field() !!}
-                                <div class="form-group" style="height: 30px; vertical-align: baseline;" >
-                                    <input type="text" required placeholder="E-mail" class="form-control"/>
-                                    <input type="password" required placeholder="Password" class="form-control"/>
-                                </div>
-                                <button type="submit">Login</button>
+                            <form class="navbar-form" name="loginForm" role="form" method="POST" action="{{ url('/login') }}">
+                                    {!! csrf_field() !!}
+
+                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                        <div class="col-md-4">
+                                            <input type="email" class="form-control" name="email" placeholder="E-Mail Address" value="{{ old('email') }}">
+
+                                            @if ($errors->has('email'))
+                                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+
+                                        <div class="col-md-4">
+                                            <input type="password" class="form-control" name="password" placeholder="Password">
+
+                                            @if ($errors->has('password'))
+                                                <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-btn fa-sign-in"></i>Login
+                                </button>
                             </form>
                         </li>
                             <li><a href="{{ url('/register')}}">Register</a></li>
