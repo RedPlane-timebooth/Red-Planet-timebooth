@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="row">
-        <main class="container col-md-offset-2 col-md-8">
+        <div class="container col-md-offset-2 col-md-8 opacity">
             <div align="center" class="embed-responsive embed-responsive-16by9 ">
                 <video autoplay class="embed-responsive-item">
                     <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
                 </video>
             </div>
-        </main>
+        </div>
     </div>
     <br/>
     <br/>

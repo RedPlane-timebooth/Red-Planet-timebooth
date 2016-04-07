@@ -3,6 +3,10 @@
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
+    {!! Form::label('short', 'Content') !!}
+    {!! Form::textarea('short', null, ['class' => 'form-control']) !!}
+</div>
+<div class="form-group">
     {!! Form::label('body', 'Content') !!}
     {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
 </div>

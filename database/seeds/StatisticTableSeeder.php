@@ -15,7 +15,7 @@ class StatisticTableSeeder extends Seeder
 //        \DB::table('statistics')->delete();
         $faker = Faker\Factory::create();
 
-        for ($i = 0; $i < 50; $i +=1) {
+        for ($i = 5; $i < 45; $i +=1) {
             DB::table('statistics')->insert([
                 'user_id' => $i+1,
                 'total_score' => $faker->numberBetween($min = 1, $max = 100),

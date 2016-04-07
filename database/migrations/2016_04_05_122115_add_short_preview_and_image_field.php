@@ -14,7 +14,7 @@ class AddShortPreviewAndImageField extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->string('image');
-            $table->string('short');
+            $table->string('short', 500);
         });
     }
 

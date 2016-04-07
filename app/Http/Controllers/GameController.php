@@ -19,6 +19,12 @@ class GameController extends Controller
 
     public function index()
     {
-        return view('game.index');
+        $user = \Auth::user();
+        $userItems = $user->items()->get();
+        $items = $userItems->toArray();
+        $userArray = $user->toArray();
+        $data = array_merge($items,$userArray);
+        return $data;
+        return view('game.index', compact('data'));
     }
 }

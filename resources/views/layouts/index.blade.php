@@ -44,12 +44,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/shop') }}" class="hvr-underline-from-center">Shop</a></li>
-                    <li><a href="{{ url('/about') }}" class="hvr-underline-from-center">About</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle hvr-underline-from-center" data-toggle="dropdown" role="button" aria-expanded="false">Game <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('/game') }}" class="hvr-underline-from-center">Play now</a></li>
                             <li><a href="{{ url('/news') }}" class="hvr-underline-from-center">Getting Started</a></li>
+                            <li><a href="{{ url('/statistic') }}">Statistic</a></li>
                             {{--or tutorial here--}}
                         </ul>
                     </li>
@@ -65,7 +65,6 @@
 
                             <ul class="dropdown-menu transperentBackground" role="menu" id="account">
                                 <li><a href="{{ url('/profile', Auth::user()->id) }}">Profile</a></li>
-                                <li><a href="{{ url('/statistic') }}">Statistic</a></li>
                                 <li><a href="{{ url('/items', Auth::user()->id) }}">My Items</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
@@ -104,7 +103,7 @@
                                 </button>
                             </form>
                         </li>
-                            <li><a href="{{ url('/register')}}">Register</a></li>
+                            <li><a class="hvr-underline-from-center" href="{{ url('/register')}}">Register</a></li>
                         @endif
                 </ul>
             </div>
@@ -113,8 +112,10 @@
 
 
 </header>
+<main class="container-fluid">
     @yield('content')
-<!-- JavaScripts -->
+</main>
+            <!-- JavaScripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}

@@ -3,7 +3,7 @@ body {
   body nav {
     margin: 10px auto 50px;
     width: 90%; }
-  body main.container {
+  body .opacity {
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;

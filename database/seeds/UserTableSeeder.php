@@ -11,12 +11,16 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 50; $i +=1) {
+        \Eloquent::unguard();
+//        \DB::table('users')->delete();
+        $faker = Faker\Factory::create();
+
+        for ($i = 0; $i < 43; $i +=1) {
             DB::table('users')->insert ([
-                'name' => str_random(10),
-                'email' => str_random(10) . '@gmail.com',
+                'name' => $faker->name,
+                'email' => $faker->email,
                 'password' => bcrypt('secret'),
-                'username' => str_random(10),
+                'username' => $faker->userName,
             ]);
         }
     }
