@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "hover.css": "^2.0.2"
+    "hover.css": "^2.0.2",
+	"jquery": "^2.2.2"
   },
   "devDependencies": {},
   "scripts": {
