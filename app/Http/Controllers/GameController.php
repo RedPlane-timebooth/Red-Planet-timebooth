@@ -24,7 +24,6 @@ class GameController extends Controller
         $items = $userItems->toArray();
         $userArray = $user->toArray();
         $data = array_merge($items,$userArray);
-        return $data;
         return view('game.index', compact('data'));
     }
 }

@@ -4,7 +4,7 @@
         <div id="gameCanvas"></div>
     </div>
 
-    <script src="/node_modules/phaser.js"></script>
+    <script src="/node_modules/phaser/dist/phaser.js"></script>
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/GameLogic/Common/globalConstants.js"></script>
     <script src="/GameLogic/Common/globalFunctions.js"></script>
