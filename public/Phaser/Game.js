@@ -27,15 +27,24 @@ RedPlanetGame.Game = (function iife() {
         this.initMapLayersGroups();
         this.game.ui = new UserInterface(this.game);
 
-        const creepYOffset = 15;
         setInterval(function () {
-            _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y + creepYOffset,
-                UNIT_TYPES.CREEP1, _this.checkPoints);
-        }, 1000);
+            _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
+                UNIT_TYPES.ZEALOT, _this.checkPoints);
+        }, 5000);
+        setInterval(function () {
+            _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
+                UNIT_TYPES.MARINE, _this.checkPoints);
+        }, 2000);
+        setInterval(function () {
+            _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
+                UNIT_TYPES.DRAGOON, _this.checkPoints);
+        }, 8000);
 
 
         this.game.canBuild = false;
         this.game.buildState = false;
+        
+        //TODO: make another logic for overlaping towers/path
         this.game.invisiblePath.children.forEach(function (invisiblePath) {
             invisiblePath.inputEnabled = true;
             invisiblePath.events.onInputOver.add(function () {
@@ -54,14 +63,18 @@ RedPlanetGame.Game = (function iife() {
                     }
                     _this.game.canBuild = true;
                 }
-            }, this);
+            }, this)
         });
 
         this.game.cursorType = CURSOR_TYPE.NORMAL;
         this.game.canDestroyCircle = false;
+
+        //this.currentBuilding = this.game.add.sprite(0,0, 'turret', 0)
     };
 
     RedPlanetGame.Game.prototype.update = function update() {
+        //this.currentBuilding.x = this.game.input.activePointer.x;
+        //this.currentBuilding.y = this.game.input.activePointer.y;
         this.game.canvas.style.cursor = this.game.cursorType;
 
         //on building state
@@ -119,8 +132,7 @@ RedPlanetGame.Game = (function iife() {
         this.destinationForCreeps = this.map.objects['objectsLayer'][1];
         //resize world
         this.backgroundlayer.resizeWorld();
-        console.log(this.backgroundlayer.width)
-        this.game.world.setBounds(0, 0, 950, 750);
+        this.game.world.setBounds(0, 0, 960, 790);
         //group
         this.game.enemies = new UnitsPoolFactory(this.game);
         this.game.buildings = this.game.add.group();//TODO: make buildings for each player

@@ -3,15 +3,15 @@ var Turret = (function iife(parent) {
 
     const spriteSheetLevel1 = 'turret';
     const START_FRAME = 0;
-    const MONEY_COST = 80;
+    const MONEY_COST = 300;
     const FIRE_DAMAGE = [
-        20, 40, 80, 160, 400
+        50, 110, 250, 550, 1200
     ];
     const FIRE_SPEED = [
-        2500, 2300, 2000, 1600, 1200
+        4000, 3750, 3400, 3000, 2500
     ];
     const RANGE = [
-        60, 70, 85, 100, 120
+        100, 120, 140, 165, 200
     ];
     const FIRE_DAMAGE_UPGRADE_COST = [
         80, 200, 440, 890
@@ -22,12 +22,12 @@ var Turret = (function iife(parent) {
     const RANGE_UPGRADE_COST  = [
         80, 200, 440, 890
     ];
-    
+
     const SCALE = 1;
     const BULLET_TYPE = BULLET_TYPES.BULLET;
-    
+
     function Turret(game, x, y, player) {
-        parent.call(this, game, x, y, spriteSheetLevel1, START_FRAME, player, 
+        parent.call(this, game, x, y, spriteSheetLevel1, START_FRAME, player,
             BULLET_TYPE, FIRE_DAMAGE, FIRE_SPEED, SCALE, RANGE,
             FIRE_DAMAGE_UPGRADE_COST, FIRE_SPEED_UPGRADE_COST, RANGE_UPGRADE_COST);
         this.exists = false;
@@ -49,17 +49,6 @@ var Turret = (function iife(parent) {
             this.animations.add('build', [1, 2], 1, false);
             this.animations.play('build');
         }, this);
-
-        //turret shoots a bonus second missile after a 1/3 second
-        var even = 1;
-        this.getFireSpeed = function getFireSpeed() {
-            even++;
-            if(even % 2){
-                return this.fireSpeed[this.upgrades.fireSpeed];
-            } else {
-                return 300;
-            }
-        };
     }
 
     Turret.prototype = Object.create(parent.prototype);
@@ -68,10 +57,10 @@ var Turret = (function iife(parent) {
     Turret.prototype.MONEY_COST = MONEY_COST;
 
     Turret.prototype.fire = function fire() {
-        parent.prototype.fire.call(this);
         this.game.missileShoot = this.game.add.audio('missileShoot');
         this.game.missileShoot.play();
+        parent.prototype.fire.call(this);
     };
-    
+
     return Turret;
 }(Tower));

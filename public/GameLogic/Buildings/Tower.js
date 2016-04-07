@@ -93,12 +93,13 @@ var Tower = (function iife(parent) {
     Tower.prototype.getPersonalInfo = function getPersonalInfo() {
         var info = parent.prototype.getPersonalInfo.call(this);
         info.damage = this.getFireDamage();
-        info.fireSpeed = 1000 / this.getFireSpeed();
+        info.fireSpeed = 1000 / this.fireSpeed[this.upgrades.fireSpeed];
         info.range = this.getRange();
         info.infoType = 'tower';
         info.fireDamageUpgradeCost = this.getFireDamageUpgradeCost();
         info.fireSpeedUpgradeCost = this.getFireSpeedUpgradeCost();
         info.rangeUpgradeCost = this.getRangeUpgradeCost();
+        info.upgrades = this.upgrades;
         return info;
     };
     Tower.prototype.showDialog = function showPersonalInfo() {

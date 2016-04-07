@@ -1,7 +1,6 @@
 var Unit = (function iife(parent) {
     'use strict';
 
-    const MOVE_ANIMATION_LENGTH = 10;
     const START_X = 0;
     const START_Y = 0;
 
@@ -13,19 +12,6 @@ var Unit = (function iife(parent) {
     function Unit(game) {
         parent.call(this, game, START_X, START_Y);
         this.exists = false;
-        
-        this.inputEnabled = true;
-        this.events.onInputDown.add(this.showDialog, this);
-        this.events.onInputOver.add(function() {
-            if(!this.game.buildState) {
-                this.game.cursorType = CURSOR_TYPE.POINTER;
-            }
-        }, this);
-        this.events.onInputOut.add(function() {
-            if(!this.game.buildState) {
-                this.game.cursorType = CURSOR_TYPE.NORMAL;
-            }
-        }, this);
     }
 
     Unit.prototype = Object.create(parent.prototype);
@@ -37,7 +23,7 @@ var Unit = (function iife(parent) {
      * @param y
      * @param checkPoints
      * @param spriteName
-     * @param moveAnimationLength
+     * @param animateMovement
      * @param goldReward
      * @param speed
      * @param scale
@@ -45,10 +31,9 @@ var Unit = (function iife(parent) {
      * @param defence
      * @param isAir
      */
-    Unit.prototype.init = function init(x, y, checkPoints, spriteName, moveAnimationLength, goldReward, speed, scale, health, defence, isAir) {
+    Unit.prototype.init = function init(x, y, checkPoints, spriteName, animateMovement, goldReward, speed, scale, health, defence, isAir) {
         validator.validateIfNumber(x, spriteName + ' x');
         validator.validateIfNumber(y, spriteName + ' y');
-        validator.validateIfNumber(moveAnimationLength, spriteName + ' moveAnimationLength');
         validator.validateIfNumber(speed, spriteName + ' speed');
         validator.validateIfNumber(goldReward, spriteName + ' goldReward');
         validator.validateIfNumber(speed, spriteName + ' speed');
@@ -60,23 +45,30 @@ var Unit = (function iife(parent) {
         this.reset(x, y);
         this.key = spriteName;
         this.loadTexture(spriteName, 0);
+
         this.goldReward = goldReward;
         this.speed = speed;
         this.scale.setTo(scale);
         this.setHealth(health);
         this.defence = defence;
         this.isAir = isAir;
-        this.animations.add('move');
-        this.animations.play('move', MOVE_ANIMATION_LENGTH, true);
         this.walked = 0;
         this.body.setSize(32, 32);
-
+        this.checkPoints = checkPoints;
+        this.animateMovement = animateMovement;
         //define unit movement based on checkpoints with Phaser tween system ( I prefer events and promises over watchers )
+        this.animateMovement(checkPoints[0]);
         var currentCheckPoint = 0,
             _this = this;
         this.tweens = [];
-        checkPoints.forEach(function(checkPoint){
-            _this.tweens.push(_this.game.add.tween(_this).to( { x: checkPoint.x, y: checkPoint.y }, _this.calculateTimeForTween(checkPoint)));
+        checkPoints.forEach(function(checkPoint, i){
+            var tween = _this.game.add.tween(_this).to( { x: checkPoint.x, y: checkPoint.y }, _this.calculateTimeForTween(i));
+            tween.onComplete.add(function() {
+                if(checkPoints[i + 1]){
+                    _this.animateMovement(checkPoints[i + 1]);
+                }
+            }, _this);
+            _this.tweens.push(tween);
             currentCheckPoint++;
         });
         for (var i = 0; i < currentCheckPoint - 1; i++) {
@@ -87,6 +79,23 @@ var Unit = (function iife(parent) {
             //alert('reached end');
             this.kill();
         }, this);
+
+        //this overlap doesn work properly, becouse overlap over insibile path in Game.js ovverides this
+        //TODO: remove this, fix logic for building/tower overlap
+        this.inputEnabled = true;
+
+         this.events.onInputOver.add(function() {
+             if(!this.game.buildState) {
+                 this.game.cursorType = CURSOR_TYPE.POINTER;
+             }
+         }, this);
+         this.events.onInputOut.add(function() {
+             if(!this.game.buildState) {
+                 this.game.cursorType = CURSOR_TYPE.NORMAL;
+             }
+         }, this);
+         this.events.onInputDown.add(this.showDialog, this);
+
     };
 
     Unit.prototype.takeHit = function takeHit(bullet, player) {
@@ -108,7 +117,11 @@ var Unit = (function iife(parent) {
         });
     };
     Unit.prototype.calculateTimeForTween = function(destination) {
-        return this.game.physics.arcade.distanceBetween(this, destination) * (100 / this.speed);
+        if(destination == 0){
+            return this.game.physics.arcade.distanceBetween(this, this.checkPoints[destination]) * (100 / this.speed);
+        } else {
+            return this.game.physics.arcade.distanceBetween(this.checkPoints[destination - 1], this.checkPoints[destination]) * (100 / this.speed);
+        }
     };
     Unit.prototype.getPersonalInfo = function getPersonalInfo() {
         var info = parent.prototype.getPersonalInfo.call(this);

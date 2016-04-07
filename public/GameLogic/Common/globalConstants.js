@@ -1,7 +1,9 @@
 const gameWidth = 800;
 const gameHeight = 600;
 const UNIT_TYPES = {
-    CREEP1 : 'creep1'
+    MARINE : 'marine',
+    ZEALOT : 'zealot',
+    DRAGOON : 'dragoon'
 };
 const BUILDING_TYPES = {
     TURRET : 'turret'
