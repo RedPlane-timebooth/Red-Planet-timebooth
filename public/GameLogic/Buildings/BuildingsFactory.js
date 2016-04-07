@@ -18,4 +18,3 @@ var BuildingsFactory = (function iife() {
 
     return BuildingsFactory;
 }());
-//TODO: make sepparate towers factory?
