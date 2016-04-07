@@ -6,10 +6,11 @@ var Player = (function iife() {
      * @param id
      * @param username
      * @param gold
-     * @param bonusObjects
+     * @param bonusObject
+     * @param level
      * @constructor
      */
-    function Player(id, username, gold, bonusObject) {
+    function Player(id, username, gold, bonusObject, level) {
 
         id = id || 0;
         gold = gold || 0;
