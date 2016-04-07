@@ -91,11 +91,11 @@ RedPlanetGame.Game = (function iife() {
 
         //updates enemies
         this.game.enemies.forEachExists(function (enemy) {
-            enemy.onUpdate(_this.map.objects['objectsLayer'][6]);
+            enemy.onUpdate();
         });
         //updates buildings
         this.game.buildings.forEach(function (building) {
-            building.onUpdate(_this.game.bullets);
+            building.onUpdate();
         });
 
         //updates (static) position of UI
@@ -109,19 +109,18 @@ RedPlanetGame.Game = (function iife() {
 
     RedPlanetGame.Game.prototype.initMapLayersGroups = function init() {
         //Tile map
-        this.map = this.game.add.tilemap('sample2');
-        this.map.addTilesetImage('32x32_map_tile v3.1 [MARGINLESS]', 'gameTiles');
+        this.map = this.game.add.tilemap('level1');
+        this.map.addTilesetImage('badlands', 'gameTiles');
         //background and layers
         this.backgroundlayer = this.map.createLayer('backgroundLayer');
-        this.path = this.map.createLayer('path');
         this.map.setCollisionBetween(1, 2000, true, 'backgroundLayer');
-        this.map.setCollisionBetween(1, 2000, true, 'path');
         //objects from tile map
         this.spawnCreepsAt = this.map.objects['objectsLayer'][0];
         this.destinationForCreeps = this.map.objects['objectsLayer'][1];
         //resize world
         this.backgroundlayer.resizeWorld();
-        this.game.world.setBounds(0, 0, 800, 750);
+        console.log(this.backgroundlayer.width)
+        this.game.world.setBounds(0, 0, 950, 750);
         //group
         this.game.enemies = new UnitsPoolFactory(this.game);
         this.game.buildings = this.game.add.group();//TODO: make buildings for each player

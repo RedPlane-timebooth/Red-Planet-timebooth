@@ -6,16 +6,13 @@ var Player = (function iife() {
      * @param id
      * @param username
      * @param gold
-     * @param killed
-     * @param experience
+     * @param bonusObjects
      * @constructor
      */
-    function Player(id, username, gold, killed, experience, bonusObject) {
+    function Player(id, username, gold, bonusObject) {
 
         id = id || 0;
         gold = gold || 0;
-        killed = killed || 0;
-        experience = experience || 0;
         bonusObject = bonusObject || {};
 
         validator.validateIfNumber(id, 'Player id');
@@ -27,8 +24,8 @@ var Player = (function iife() {
 
         this.id = id;
         this.gold = gold;
-        this.killed = killed;
-        this.experience = experience;
+        this.killed = 0;
+        this.experience = 0;
     }
 
     return Player;

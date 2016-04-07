@@ -130,7 +130,7 @@ var UserInterface = (function iife() {
     }
 
     UserInterface.prototype.update = function update(xOffset, yOffset) {
-        this.background.x = this.background.x + xOffset;
+        this.background.x = xOffset;
         this.background.y = yOffset + 449;
         this.turret.x = this.turretX + xOffset;
         this.turret.y = this.turretY + yOffset;
