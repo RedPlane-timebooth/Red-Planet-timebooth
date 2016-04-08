@@ -32,6 +32,7 @@ var UserInterface = (function iife() {
             _this.game.currentBuilding.anchor.setTo(0.5);
             _this.game.buildState = true;
             _this.game.cursorType = CURSOR_TYPE.NONE;
+            _this.game.currentBuilding.body.setSize(5,5)
         });
 
         //upgrade button for tower range
@@ -99,7 +100,6 @@ var UserInterface = (function iife() {
             } else {
                 alert('not enought gold price is ' + _this.game.selected.getFireSpeedUpgradeCost())
             }
-
             _this.game.selected.showDialog();
         }
         this.upgradeButtonFireSpeed.events.onInputOver.add(function () {
