@@ -5,7 +5,7 @@
     @if (count($items))
         <h1>All Items</h1>
         @foreach($items as $item)
-            <div class="col-md-3 pull-left">
+            <div class="col-md-3 col-sm-6 col-xs-10 col-md-offset-1 pull-left well">
                 <h2>
                     <a href="{{ url('admin/shop', $item -> id) }}">{{ $item->name }}</a>
                 </h2>
