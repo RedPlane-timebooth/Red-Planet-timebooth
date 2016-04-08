@@ -28,7 +28,7 @@ class GameController extends Controller
             $data['items'][$key]['level'] = $item->level;
         }
 
-        return $data;
+        //return $data;
         return view('game.index', compact('data'));
     }
 }

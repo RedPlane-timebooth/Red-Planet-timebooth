@@ -19,7 +19,7 @@ RedPlanetGame.Preload = (function iife() {
             this.load.spritesheet('creep1', '/assets/creeps/creep1.png', 81, 80, 14, 0.5);
             this.load.spritesheet('marine', '/assets/creeps/marine.png', 64, 64, 238);
             this.load.spritesheet('zealot', '/assets/creeps/zealot.png', 128, 128, 238);
-            this.load.spritesheet('dragoon', '/assets/creeps/dragoon.png', 96, 96, 238);
+            this.load.spritesheet('dragoon', '/assets/creeps/dragoon.png', 96, 96, 425);
             this.load.spritesheet('turret', '/assets/buildings/towers/turret/turret.png', 64, 64, 3);
             this.load.spritesheet('turretFoundations', '/assets/buildings/towers/turret/turretFoundations.png', 64, 64, 2);
             this.load.spritesheet('turretUp', '/assets/buildings/towers/turret/turretUp.png', 64, 32, 17);

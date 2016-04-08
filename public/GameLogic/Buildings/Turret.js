@@ -5,7 +5,7 @@ var Turret = (function iife(parent) {
     const START_FRAME = 0;
     const MONEY_COST = 80;
     const FIRE_DAMAGE = [
-        20, 40, 80, 160, 400
+        20, 40, 80, 160, 260
     ];
     const FIRE_SPEED = [
         2500, 2300, 2000, 1600, 1200

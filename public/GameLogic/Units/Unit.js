@@ -24,18 +24,32 @@ var Unit = (function iife(parent) {
      * @param checkPoints
      * @param spriteName
      * @param animateMovement
+     * @param animationsStartRow
+     * @param animationsEndRow
      * @param goldReward
      * @param speed
      * @param scale
      * @param health
      * @param defence
      * @param isAir
+     * @param animateDeath
+     * @param deathSpriteArray
      */
-    Unit.prototype.init = function init(x, y, checkPoints, spriteName, animateMovement, goldReward, speed, scale, health, defence, isAir) {
+    Unit.prototype.init = function init
+        (
+        x, y, checkPoints, spriteName,
+        animateMovement, animationsStartRow, animationsEndRow,
+        goldReward, speed, scale, health, defence, isAir,
+        animateDeath, deathSpriteArray
+        )
+    {
+
         validator.validateIfNumber(x, spriteName + ' x');
         validator.validateIfNumber(y, spriteName + ' y');
         validator.validateIfNumber(speed, spriteName + ' speed');
         validator.validateIfNumber(goldReward, spriteName + ' goldReward');
+        validator.validateIfNumber(animationsStartRow, spriteName + ' animationsStartRow');
+        validator.validateIfNumber(animationsEndRow, spriteName + ' animationsEndRow');
         validator.validateIfNumber(speed, spriteName + ' speed');
         validator.validateIfNumber(scale, spriteName + ' scale');
         validator.validateIfNumber(health, spriteName + ' health');
@@ -57,7 +71,9 @@ var Unit = (function iife(parent) {
         this.body.setSize(32, 32);
         this.checkPoints = checkPoints;
         this.animateMovement = animateMovement;
-        this.animateMovement(checkPoints[0]);
+        this.animateMovement(checkPoints[0], animationsStartRow, animationsEndRow);
+        this.animateDeath = animateDeath;
+        this.deathSpriteArray = deathSpriteArray;
 
         var currentCheckPoint = 0,
             _this = this;
@@ -66,7 +82,7 @@ var Unit = (function iife(parent) {
             var tween = _this.game.add.tween(_this).to( { x: checkPoint.x, y: checkPoint.y }, _this.calculateTimeForTween(i));
             tween.onComplete.add(function() {
                 if(checkPoints[i + 1]){
-                    _this.animateMovement(checkPoints[i + 1]);
+                    _this.animateMovement(checkPoints[i + 1], animationsStartRow, animationsEndRow);
                 }
             }, _this);
             _this.tweens.push(tween);
@@ -92,7 +108,6 @@ var Unit = (function iife(parent) {
         var calculateHitDamage = bullet.damage - (bullet.damage * this.defence) / 100;
         this.damage(calculateHitDamage);
         if(this.health <= 0){
-            this.kill();
             player.gold += this.goldReward;
             player.killed += 1;
         }
@@ -101,10 +116,12 @@ var Unit = (function iife(parent) {
         this.walked++;
     };
     Unit.prototype.kill = function kill() {
-        parent.prototype.kill.call(this);
         this.tweens.forEach(function(tween){
             tween.stop();
         });
+        var dieObject = new WorldObject(this.game, this.x, this.y, this.key);
+        this.animateDeath.call(dieObject, this.deathSpriteArray);
+        parent.prototype.kill.call(this);
     };
     Unit.prototype.calculateTimeForTween = function(destination) {
         if(destination == 0){
