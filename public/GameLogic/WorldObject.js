@@ -38,6 +38,16 @@ var WorldObject = (function iife(parent) {
         this.game.selected = this;
         console.log(this.getPersonalInfo());
     };
+    WorldObject.prototype.onInputOver = function() {
+        if(!this.game.buildState) {
+            this.game.cursorType = CURSOR_TYPE.POINTER;
+        }
+    };
+    WorldObject.prototype.onInputOut = function() {
+        if(!this.game.buildState) {
+            this.game.cursorType = CURSOR_TYPE.NORMAL;
+        }
+    };
 
     return WorldObject;
 }(Phaser.Sprite));

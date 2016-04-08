@@ -43,38 +43,11 @@ RedPlanetGame.Game = (function iife() {
 
         this.game.canBuild = false;
         this.game.buildState = false;
-        
-        //TODO: make another logic for overlaping towers/path
-        this.game.invisiblePath.children.forEach(function (invisiblePath) {
-            invisiblePath.inputEnabled = true;
-            invisiblePath.events.onInputOver.add(function () {
-                if (_this.game.buildState) {
-                    if (_this.game.cursorType = CURSOR_TYPE.TURRET) {
-                        _this.game.cursorType = CURSOR_TYPE.TURRET_RED;
-                    }
-                    _this.game.canBuild = false;
-                }
-            }, this);
-
-            invisiblePath.events.onInputOut.add(function () {
-                if (_this.game.buildState) {
-                    if (_this.game.cursorType = CURSOR_TYPE.TURRET_RED) {
-                        _this.game.cursorType = CURSOR_TYPE.TURRET;
-                    }
-                    _this.game.canBuild = true;
-                }
-            }, this)
-        });
-
         this.game.cursorType = CURSOR_TYPE.NORMAL;
         this.game.canDestroyCircle = false;
-
-        //this.currentBuilding = this.game.add.sprite(0,0, 'turret', 0)
     };
 
     RedPlanetGame.Game.prototype.update = function update() {
-        //this.currentBuilding.x = this.game.input.activePointer.x;
-        //this.currentBuilding.y = this.game.input.activePointer.y;
         this.game.canvas.style.cursor = this.game.cursorType;
 
         //on building state
@@ -84,13 +57,13 @@ RedPlanetGame.Game = (function iife() {
 
         //Removes range cricle around tower when clicked somewhere else
         if (this.game.input.activePointer.isDown && this.game.cursorType == CURSOR_TYPE.NORMAL) {
-            if (this.game.dialogOn && !this.buffers.pressed.is) {
-                buffer(this.buffers.pressed, 90, this.game);
-                this.game.circle.destroy();
-                this.game.ui.hideDialog();
-                this.game.canDestroyCircle = false;
-                this.game.dialogOn = false;
-            }
+             if (this.game.dialogOn && !this.buffers.pressed.is) {
+                 buffer(this.buffers.pressed, 90, this.game);
+                 this.game.circle.destroy();
+                 this.game.ui.hideDialog();
+                 this.game.canDestroyCircle = false;
+                 this.game.dialogOn = false;
+             }
         }
 
         this.followCamera();
@@ -129,7 +102,6 @@ RedPlanetGame.Game = (function iife() {
         this.map.setCollisionBetween(1, 2000, true, 'backgroundLayer');
         //objects from tile map
         this.spawnCreepsAt = this.map.objects['objectsLayer'][0];
-        this.destinationForCreeps = this.map.objects['objectsLayer'][1];
         //resize world
         this.backgroundlayer.resizeWorld();
         this.game.world.setBounds(0, 0, 960, 790);
@@ -162,27 +134,23 @@ RedPlanetGame.Game = (function iife() {
     };
 
     RedPlanetGame.Game.prototype.onBuildState = function onBuildState() {
+        this.game.currentBuilding.x = this.game.input.activePointer.x;
+        this.game.currentBuilding.y = this.game.input.activePointer.y;
+        this.game.physics.arcade.overlap(this.game.currentBuilding, this.game.invisiblePath,
+            this.onBuildingOverlap, null, this);
+        this.game.physics.arcade.overlap(this.game.currentBuilding, this.game.buildings,
+            this.onBuildingOverlap, null, this);
+
         //on mouse down event
-        var xOffset,
-            yOffset,
-            buildingType;
-        if (this.game.input.activePointer.leftButton.isDown && this.game.canBuild && !this.buffers.pressed.is) {//yo Yoda
-            switch (this.game.cursorType) {
-                case CURSOR_TYPE.TURRET:
-                    xOffset = 22 + this.game.camera.x;
-                    yOffset = 31 + this.game.camera.y;
-                    buildingType = BUILDING_TYPES.TURRET;
-                    break;
-                default:
-                    break;
-            }
+        if (this.game.input.activePointer.leftButton.isDown && !this.buffers.pressed.is && this.game.canBuild) {//yo Yoda
+
             if (Building.prototype.canBuild(this.game.player.gold, Turret.prototype.MONEY_COST)) {
                 BuildingsFactory(
                     this.game,
-                    this.game.input.x + xOffset,
-                    this.game.input.y + yOffset,
+                    this.game.currentBuilding.x,
+                    this.game.currentBuilding.y,
                     this.game.player,
-                    buildingType
+                    this.game.currentBuilding.key
                 );
                 this.game.player.gold -= Turret.prototype.MONEY_COST;
             } else {
@@ -190,10 +158,20 @@ RedPlanetGame.Game = (function iife() {
             }
 
             this.game.buildState = false;
-            this.game.canBuild = false;
+            this.game.currentBuilding.destroy();
             this.game.cursorType = CURSOR_TYPE.NORMAL;
-            buffer(this.buffers.pressed, 400, this.game);
         }
+        
+        if (this.game.canBuild) {
+            this.game.currentBuilding.tint = 0xffffff;
+        }
+        this.game.canBuild = true;
+        buffer(this.buffers.pressed, 0, this.game);
+    };
+
+    RedPlanetGame.Game.prototype.onBuildingOverlap = function onBuildingOverlap() {
+        this.game.canBuild = false;
+        this.game.currentBuilding.tint = 0xff0000;
     };
 
     return RedPlanetGame.Game;

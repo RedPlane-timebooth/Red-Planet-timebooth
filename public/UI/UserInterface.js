@@ -24,31 +24,15 @@ var UserInterface = (function iife() {
         );
 
         //turret build
-        this.turretX = 85;
-        this.turretY = 480;
-        this.turret = new WorldObject(_this.game, 0, 0, 'turret', 0);
-        this.turret.scale.setTo(0.7);
-        this.turret.inputEnabled = true;
-        this.turret.events.onInputDown.add(onClickButtonTower1, this);
-        function onClickButtonTower1() {
-            _this.game.cursorType = CURSOR_TYPE.TURRET;
+        this.turretX = 60;
+        this.turretY = 500;
+        this.turret = this.game.add.button(this.turretX, this.turretY, 'turretBuild', function onBuildTower1() {
+            _this.game.currentBuilding = _this.game.add.sprite(_this.game.input.activePointer.x, _this.game.input.activePointer.y, 'turret', 0);
+            _this.game.physics.enable(_this.game.currentBuilding, Phaser.Physics.ARCADE);
+            _this.game.currentBuilding.anchor.setTo(0.5);
             _this.game.buildState = true;
-            _this.game.canBuild = false;
-            _this.game.time.events.add(1000, function () {
-                _this.game.canBuild = true
-            }, this);
-        }
-        this.turret.events.onInputOver.add(function () {
-            if(!this.game.buildState) {
-                this.game.cursorType = CURSOR_TYPE.POINTER;
-            }
-        }, this);
-
-        this.turret.events.onInputOut.add(function () {
-            if(!this.game.buildState){
-                this.game.cursorType = CURSOR_TYPE.NORMAL;
-            }
-        }, this);
+            _this.game.cursorType = CURSOR_TYPE.NONE;
+        });
 
         //upgrade button for tower range
         this.upgradeButtonRangeX = 500;

@@ -12,6 +12,7 @@ const BULLET_TYPES = {
     BULLET : 'bullet'
 };
 const CURSOR_TYPE = {
+    NONE: 'none',
     NORMAL : 'default',
     POINTER : "pointer",
     TURRET : 'url(/assets/buildings/towers/turret/turretBuild.png), auto',

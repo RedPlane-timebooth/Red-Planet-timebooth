@@ -49,6 +49,7 @@ var Unit = (function iife(parent) {
         this.goldReward = goldReward;
         this.speed = speed;
         this.scale.setTo(scale);
+        this.maxHealth = health;
         this.setHealth(health);
         this.defence = defence;
         this.isAir = isAir;
@@ -56,8 +57,8 @@ var Unit = (function iife(parent) {
         this.body.setSize(32, 32);
         this.checkPoints = checkPoints;
         this.animateMovement = animateMovement;
-        //define unit movement based on checkpoints with Phaser tween system ( I prefer events and promises over watchers )
         this.animateMovement(checkPoints[0]);
+
         var currentCheckPoint = 0,
             _this = this;
         this.tweens = [];
@@ -80,22 +81,11 @@ var Unit = (function iife(parent) {
             this.kill();
         }, this);
 
-        //this overlap doesn work properly, becouse overlap over insibile path in Game.js ovverides this
-        //TODO: remove this, fix logic for building/tower overlap
         this.inputEnabled = true;
 
-         this.events.onInputOver.add(function() {
-             if(!this.game.buildState) {
-                 this.game.cursorType = CURSOR_TYPE.POINTER;
-             }
-         }, this);
-         this.events.onInputOut.add(function() {
-             if(!this.game.buildState) {
-                 this.game.cursorType = CURSOR_TYPE.NORMAL;
-             }
-         }, this);
-         this.events.onInputDown.add(this.showDialog, this);
-
+        this.events.onInputOver.add(this.onInputOver, this);
+        this.events.onInputOut.add(this.onInputOut, this);
+        this.events.onInputDown.add(this.showDialog, this);
     };
 
     Unit.prototype.takeHit = function takeHit(bullet, player) {
