@@ -116,7 +116,6 @@ RedPlanetGame.Game = (function iife() {
         this.game.physics.enable(this.game.invisiblePath, Phaser.Physics.ARCADE);
         //creates checkPoints for creeps
         this.checkPoints = createCheckPoints('checkPoint', this.map, 'objectsLayer');
-
     };
 
     RedPlanetGame.Game.prototype.followCamera = function followCamera() {

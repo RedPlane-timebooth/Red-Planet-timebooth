@@ -22,58 +22,39 @@ var Unit = (function iife(parent) {
      * @param x
      * @param y
      * @param checkPoints
-     * @param spriteName
-     * @param animateMovement
-     * @param animationsStartRow
-     * @param animationsEndRow
-     * @param goldReward
-     * @param speed
-     * @param scale
-     * @param health
-     * @param defence
-     * @param isAir
-     * @param animateDeath
-     * @param deathSpriteArray
+     * @param unitType
      */
-    Unit.prototype.init = function init
-        (
-        x, y, checkPoints, spriteName,
-        animateMovement, animationsStartRow, animationsEndRow,
-        goldReward, speed, scale, health, defence, isAir,
-        animateDeath, deathSpriteArray
-        )
+    Unit.prototype.init = function init(x, y, checkPoints, unitType)
     {
 
-        validator.validateIfNumber(x, spriteName + ' x');
-        validator.validateIfNumber(y, spriteName + ' y');
-        validator.validateIfNumber(speed, spriteName + ' speed');
-        validator.validateIfNumber(goldReward, spriteName + ' goldReward');
-        validator.validateIfNumber(animationsStartRow, spriteName + ' animationsStartRow');
-        validator.validateIfNumber(animationsEndRow, spriteName + ' animationsEndRow');
-        validator.validateIfNumber(speed, spriteName + ' speed');
-        validator.validateIfNumber(scale, spriteName + ' scale');
-        validator.validateIfNumber(health, spriteName + ' health');
-        validator.validateIfNumber(defence, spriteName + ' defence');
-        validator.validateIfBool(isAir, spriteName + ' isAir');
+        validator.validateIfNumber(x, unitType.spriteName + ' x');
+        validator.validateIfNumber(y, unitType.spriteName + ' y');
+        validator.validateIfNumber(unitType.speed, unitType.spriteName + ' speed');
+        validator.validateIfNumber(unitType.goldReward, unitType.spriteName + ' goldReward');
+        validator.validateIfNumber(unitType.animationsStartRow, unitType.spriteName + ' animationsStartRow');
+        validator.validateIfNumber(unitType.animationsEndRow, unitType.spriteName + ' animationsEndRow');
+        validator.validateIfNumber(unitType.speed, unitType.spriteName + ' speed');
+        validator.validateIfNumber(unitType.scale, unitType.spriteName + ' scale');
+        validator.validateIfNumber(unitType.health, unitType.spriteName + ' health');
+        validator.validateIfNumber(unitType.defence, unitType.spriteName + ' defence');
+        validator.validateIfBool(unitType.isAir, unitType.spriteName + ' isAir');
         
         this.reset(x, y);
-        this.key = spriteName;
-        this.loadTexture(spriteName, 0);
+        this.key = unitType.spriteName;
+        this.loadTexture(unitType.spriteName, 0);
 
-        this.goldReward = goldReward;
-        this.speed = speed;
-        this.scale.setTo(scale);
-        this.maxHealth = health;
-        this.setHealth(health);
-        this.defence = defence;
-        this.isAir = isAir;
+        this.goldReward = unitType.goldReward;
+        this.speed = unitType.speed;
+        this.scale.setTo(unitType.scale);
+        this.maxHealth = unitType.health;
+        this.setHealth(unitType.health);
+        this.defence = unitType.defence;
+        this.isAir = unitType.isAir;
         this.walked = 0;
         this.body.setSize(32, 32);
         this.checkPoints = checkPoints;
-        this.animateMovement = animateMovement;
-        this.animateMovement(checkPoints[0], animationsStartRow, animationsEndRow);
-        this.animateDeath = animateDeath;
-        this.deathSpriteArray = deathSpriteArray;
+        this.animateMovement(checkPoints[0], unitType.animationsStartRow, unitType.animationsEndRow);
+        this.deathSpriteArray = unitType.deathSpriteArray;
 
         var currentCheckPoint = 0,
             _this = this;
@@ -82,7 +63,7 @@ var Unit = (function iife(parent) {
             var tween = _this.game.add.tween(_this).to( { x: checkPoint.x, y: checkPoint.y }, _this.calculateTimeForTween(i));
             tween.onComplete.add(function() {
                 if(checkPoints[i + 1]){
-                    _this.animateMovement(checkPoints[i + 1], animationsStartRow, animationsEndRow);
+                    _this.animateMovement(checkPoints[i + 1], unitType.animationsStartRow, unitType.animationsEndRow);
                 }
             }, _this);
             _this.tweens.push(tween);
@@ -119,8 +100,7 @@ var Unit = (function iife(parent) {
         this.tweens.forEach(function(tween){
             tween.stop();
         });
-        var dieObject = new WorldObject(this.game, this.x, this.y, this.key);
-        this.animateDeath.call(dieObject, this.deathSpriteArray);
+        this.animateDeath();
         parent.prototype.kill.call(this);
     };
     Unit.prototype.calculateTimeForTween = function(destination) {
@@ -140,6 +120,90 @@ var Unit = (function iife(parent) {
     };
     Unit.prototype.showDialog = function showPersonalInfo() {
         parent.prototype.showDialog.call(this);
+    };
+    Unit.prototype.animateDeath = function animateDeathGlobal() {
+        var dieObject = new WorldObject(this.game, this.x, this.y, this.key);
+        dieObject.animations.add('death', this.deathSpriteArray, 10, false);
+        dieObject.animations.play('death').onComplete.add(function(){
+            dieObject.destroy();
+        });
+    };
+    Unit.prototype.animateMovement = function animateMoveGlobal(destination, startRow, endRow) {
+        //MAGIC DO NOT TOUCH!!!
+        var angleBetween = Math.round((this.game.physics.arcade.angleBetween(this, destination) * 90) / 21) + 8,
+            spriteRow,
+            reverseX,
+            animationsArray;
+
+        //MAGIC DO NOT TOUCH!!!
+        if (0 < angleBetween && angleBetween <= 15) {
+            spriteRow = angleBetween;
+            reverseX = false;
+        }
+        else {
+            switch (angleBetween) {
+                case -5:
+                    spriteRow = 7;
+                    reverseX = true;
+                    break;
+                case -4:
+                    spriteRow = 6;
+                    reverseX = true;
+                    break;
+                case -3:
+                    spriteRow = 5;
+                    reverseX = true;
+                    break;
+                case -2:
+                    spriteRow = 4;
+                    reverseX = true;
+                    break;
+                case -1:
+                    spriteRow = 3;
+                    reverseX = true;
+                    break;
+                case 0:
+                    spriteRow = 2;
+                    reverseX = true;
+                    break;
+                case 21:
+                    spriteRow = 8;
+                    reverseX = true;
+                    break;
+                case 20:
+                    spriteRow = 9;
+                    reverseX = true;
+                    break;
+                case 19:
+                    spriteRow = 10;
+                    reverseX = true;
+                    break;
+                case 18:
+                    spriteRow = 11;
+                    reverseX = true;
+                    break;
+                case 17:
+                    spriteRow = 12;
+                    reverseX = true;
+                    break;
+                case 16:
+                    spriteRow = 13;
+                    reverseX = true;
+                    break;
+            }
+        }
+
+        animationsArray = [];
+        for (var i = startRow - 1; i < endRow; i++) {
+            animationsArray.push(spriteRow + i * 17);
+        }
+
+        this.animations.add('move', animationsArray, 15, true);
+        this.animations.play('move');
+
+        if (reverseX) {
+            this.scale.x *= -1;
+        }
     };
 
     return Unit;
