@@ -21,9 +21,14 @@ class GameController extends Controller
     {
         $user = \Auth::user();
         $userItems = $user->items()->get();
-        $items = $userItems->toArray();
-        $userArray = $user->toArray();
-        $data = array_merge($items,$userArray);
+        $data['user']['username'] = $user->username;
+        $data['user']['level'] = $user->level;
+        foreach ($userItems as $key => $item) {
+            $data['items'][$key]['type'] = $item->name;
+            $data['items'][$key]['type'] = $item->level;
+        }
+
+        return $data;
         return view('game.index', compact('data'));
     }
 }

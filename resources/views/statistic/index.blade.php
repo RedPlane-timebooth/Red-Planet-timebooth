@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-md-offset-2 col-md-8 text-info">
-        <table class="table table-hover text-center table-bordered table-responsive">
+        <table class="table table-striped-dark text-center table-bordered table-responsive">
             <caption class="well text-center info"> Statistics</caption>
 
             <thead>
@@ -39,6 +39,7 @@
             @endforeach
             </tbody>
         </table>
+
         <div class="pagination center-block">{!! $all->links() !!}</div>
     </div>
 @endsection

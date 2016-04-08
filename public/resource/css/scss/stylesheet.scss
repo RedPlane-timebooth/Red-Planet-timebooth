@@ -1,0 +1,55 @@
+body {
+  background: url("../../img/background4_dark.jpg");
+
+  nav{
+    margin: 10px auto 50px;
+    width: 90%;
+  }
+  .opacity {
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    padding: 20px;
+    opacity: 0.5;
+  }
+
+  .preview {
+    max-height: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .delete {
+    display: inline;
+  }
+
+  #topNews{
+    display: block;
+    margin: 0 auto;
+  }
+
+  .table-striped-dark{
+    background: transparent;
+  }
+
+  .table-striped-dark tbody{
+    color: #00aaff;
+  }
+
+  .table-striped-dark tbody > tr:nth-child(odd){
+    background: rgba(54, 54, 53, 0.5);
+  }
+
+  .table-striped-dark tbody > tr:nth-child(even){
+    background: rgba(76, 76, 75, 0.5);
+  }
+
+  .table-striped-dark tbody > tr:hover{
+    background: #505050;
+  }
+
+  .productsPreview img{
+    max-width: 98%;
+  }
+
+}

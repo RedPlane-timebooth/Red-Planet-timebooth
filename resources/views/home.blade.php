@@ -13,12 +13,13 @@
     <br/>
     <br/>
     <div class="row">
-
     @if($articles)
         <div class="col-md-offset-2 col-md-8 text-info">
-            <table class="table table-hover text-center table-bordered table-responsive">
-                <caption class="well text-center info"> Leaderboard</caption>
+            <table class="table table-striped-dark text-center table-bordered table-responsive">
                 <thead>
+                <tr>
+                    <th colspan="3" class="text-center panel-title">Leaderboard</th>
+                </tr>
                 <tr class="muted text-center text-white">
                     <th class="text-center">#</th>
                     <th class="text-center">Username</th>
@@ -40,13 +41,13 @@
         </div>
     @endif
     @if($articles)
-        <table>
+        <div id="topNews" class="container center-block">
             @foreach($articles as $article)
-                <tr class="muted text-center">
-                    <td><h2>{{ $article-> title }}</h2></td>
-                    <td>{{ $article-> body }}</td>
-                </tr>
+                <article class="topNews col-md-offset-1 col-md-5 well">
+                    <h2 class="page-header">{{ $article->title }}</h2>
+                    <p>{{ $article->short }}</p>
+                </article>
             @endforeach
-        </table>
+        </div>
     @endif
 @endsection
