@@ -13,6 +13,8 @@ var BuildingsFactory = (function iife() {
         switch (building) {
             case BUILDING_TYPES.TURRET:
                 return new Turret(game, x, y, player);
+            case BUILDING_TYPES.TANK:
+                return new Tank(game, x, y, player);
         }
     }
 

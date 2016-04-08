@@ -45,6 +45,19 @@ RedPlanetGame.Game = (function iife() {
         this.game.buildState = false;
         this.game.cursorType = CURSOR_TYPE.NORMAL;
         this.game.canDestroyCircle = false;
+
+        this.game.input.onDown.add(function() {
+            //Removes range cricle around tower when clicked somewhere else
+            if (this.game.cursorType == CURSOR_TYPE.NORMAL) {
+                if (this.game.dialogOn && !this.buffers.pressed.is) {
+                    buffer(this.buffers.pressed, 90, this.game);
+                    this.game.circle.destroy();
+                    this.game.ui.hideDialog();
+                    this.game.canDestroyCircle = false;
+                    this.game.dialogOn = false;
+                }
+            }
+        }, this);
     };
 
     RedPlanetGame.Game.prototype.update = function update() {
@@ -55,18 +68,8 @@ RedPlanetGame.Game = (function iife() {
             this.onBuildState();
         }
 
-        //Removes range cricle around tower when clicked somewhere else
-        if (this.game.input.activePointer.isDown && this.game.cursorType == CURSOR_TYPE.NORMAL) {
-             if (this.game.dialogOn && !this.buffers.pressed.is) {
-                 buffer(this.buffers.pressed, 90, this.game);
-                 this.game.circle.destroy();
-                 this.game.ui.hideDialog();
-                 this.game.canDestroyCircle = false;
-                 this.game.dialogOn = false;
-             }
-        }
-
         this.followCamera();
+
         //check for collision between enemy and non-path layer
         this.game.physics.arcade.collide(this.game.enemies, this.backgroundlayer);
         //checks for collision between bullets and enemies
@@ -74,7 +77,7 @@ RedPlanetGame.Game = (function iife() {
             enemy.takeHit(bullet, _this.game.player);
             bullet.kill(enemy);
         }, null, this);
-
+        
         //updates enemies
         this.game.enemies.forEachExists(function (enemy) {
             enemy.onUpdate();

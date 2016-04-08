@@ -1,5 +1,5 @@
 @extends('layouts.index')
-        @section('content')
+@section('content')
     <div id="gameWrapper">
         <div id="gameCanvas"></div>
     </div>
@@ -16,6 +16,7 @@
     <script src="/GameLogic/Buildings/Building.js"></script>
     <script src="/GameLogic/Buildings/Tower.js"></script>
     <script src="/GameLogic/Buildings/Turret.js"></script>
+    <script src="/GameLogic/Buildings/Tank.js"></script>
     <script src="/GameLogic/Buildings/BuildingsFactory.js"></script>
     <script src="/GameLogic/Player.js"></script>
     <script src="/GameLogic/Bullets/Bullet.js"></script>

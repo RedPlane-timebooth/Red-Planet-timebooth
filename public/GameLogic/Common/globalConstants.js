@@ -6,7 +6,8 @@ const UNIT_TYPES = {
     DRAGOON : 'dragoon'
 };
 const BUILDING_TYPES = {
-    TURRET : 'turret'
+    TURRET : 'turret',
+    TANK : 'tank'
 };
 const BULLET_TYPES = {
     BULLET : 'bullet'

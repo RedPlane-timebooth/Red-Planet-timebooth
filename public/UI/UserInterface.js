@@ -27,7 +27,21 @@ var UserInterface = (function iife() {
         this.turretX = 60;
         this.turretY = 500;
         this.turret = this.game.add.button(this.turretX, this.turretY, 'turretBuild', function onBuildTower1() {
-            _this.game.currentBuilding = _this.game.add.sprite(_this.game.input.activePointer.x, _this.game.input.activePointer.y, 'turret', 0);
+            _this.game.currentBuilding = _this.game.add.sprite(_this.game.input.activePointer.x,
+                _this.game.input.activePointer.y, 'turret', 0);
+            _this.game.physics.enable(_this.game.currentBuilding, Phaser.Physics.ARCADE);
+            _this.game.currentBuilding.anchor.setTo(0.5);
+            _this.game.buildState = true;
+            _this.game.cursorType = CURSOR_TYPE.NONE;
+            _this.game.currentBuilding.body.setSize(5,5)
+        });
+
+        //tank build
+        this.tankX = 20;
+        this.tankY = 500;
+        this.tank = this.game.add.button(this.tankX, this.tankY, 'tank', function onBuildTower1() {
+            _this.game.currentBuilding = _this.game.add.sprite(_this.game.input.activePointer.x,
+                _this.game.input.activePointer.y, 'tank');
             _this.game.physics.enable(_this.game.currentBuilding, Phaser.Physics.ARCADE);
             _this.game.currentBuilding.anchor.setTo(0.5);
             _this.game.buildState = true;
@@ -122,6 +136,8 @@ var UserInterface = (function iife() {
         this.background.y = yOffset + 449;
         this.turret.x = this.turretX + xOffset;
         this.turret.y = this.turretY + yOffset;
+        this.tank.x = this.tankX + xOffset;
+        this.tank.y = this.tankY + yOffset;
         this.gold.x = this.goldX + xOffset;
         this.gold.y = this.goldY + yOffset;
         this.killed.x = this.killedX + xOffset;
