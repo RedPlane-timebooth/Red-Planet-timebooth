@@ -25,7 +25,7 @@ class GameController extends Controller
         $data['user']['level'] = $user->level;
         foreach ($userItems as $key => $item) {
             $data['items'][$key]['type'] = $item->name;
-            $data['items'][$key]['type'] = $item->level;
+            $data['items'][$key]['level'] = $item->level;
         }
 
         return $data;

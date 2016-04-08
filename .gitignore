@@ -6,4 +6,5 @@ Homestead.json
 .env.example
 .env
 .gitignore
+/public/node_modules
 /.idea
