@@ -6,7 +6,6 @@ var Building = (function iife(parent) {
         
         this.game.buildings.add(this);
         this.playerId =  player.id;
-        this.inputEnabled = true;
         this.fullyBuild = false;
 
         this.invisibleChild = this.game.add.sprite(this.x - this.width, this.y - this.height, 'turret', 0);
@@ -46,6 +45,10 @@ var Building = (function iife(parent) {
     Building.prototype.showDialog = function showDialog() {
         parent.prototype.showDialog.call(this);
     };
-    
+    Building.prototype.sell = function destroy() {
+        parent.prototype.destroy.call(this);
+        this.invisibleChild.destroy();
+        this.game.player.gold += this.prototype.MONEY_COST * 0.8;
+    };
     return Building;
 }(WorldObject));

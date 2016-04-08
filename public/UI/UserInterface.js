@@ -39,11 +39,15 @@ var UserInterface = (function iife() {
             }, this);
         }
         this.turret.events.onInputOver.add(function () {
-            this.game.cursorType = CURSOR_TYPE.POINTER;
+            if(!this.game.buildState) {
+                this.game.cursorType = CURSOR_TYPE.POINTER;
+            }
         }, this);
 
         this.turret.events.onInputOut.add(function () {
-            this.game.cursorType = CURSOR_TYPE.NORMAL;
+            if(!this.game.buildState){
+                this.game.cursorType = CURSOR_TYPE.NORMAL;
+            }
         }, this);
 
         //upgrade button for tower range
