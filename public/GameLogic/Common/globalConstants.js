@@ -7,11 +7,13 @@ const UNIT_TYPES = {
 };
 const BUILDING_TYPES = {
     TURRET : 'turret',
-    TANK : 'tank'
+    TANK : 'tank',
+    SNIPER : 'sniper'
 };
 const BULLET_TYPES = {
     MISSILE : 'missile',
-    SPLASH : 'splash'
+    SPLASH : 'splash',
+    SNIPER : 'sniper'
 };
 const CURSOR_TYPE = {
     NONE: 'none',

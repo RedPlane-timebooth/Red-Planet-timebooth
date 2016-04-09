@@ -8,15 +8,23 @@ var BulletsPoolFactory = (function iife(parent) {
         tracking: true,
         explosionType: 'missileExplosion',
         explosionSound: 'missileExplosion',
-        visible: true
+        directHit: false
     };
     const tankMissile = {
         spriteName: 'missile',
-        bulletSpeed: 3000,
+        bulletSpeed: 0,
+        tracking: false,
+        explosionType: 'splashExplosion',
+        explosionSound: 'missileExplosion',
+        directHit: true
+    };
+    const sniperBullet = {
+        spriteName: 'missile',
+        bulletSpeed: 0,
         tracking: false,
         explosionType: 'missileExplosion',
         explosionSound: 'missileExplosion',
-        visible: true
+        directHit: true
     };
 
     /**
@@ -41,14 +49,19 @@ var BulletsPoolFactory = (function iife(parent) {
      * @param target
      * @param bulletType
      * @param damage
+     * @param bonuses
      */
-    BulletPoolFactory.prototype.factory = function (sourceX, sourceY, target, bulletType, damage) {
+    BulletPoolFactory.prototype.factory = function (sourceX, sourceY, target, bulletType, damage, bonuses) {
         switch (bulletType) {
             case BULLET_TYPES.MISSILE:
-                this.getFirstExists(false).init(sourceX, sourceY, target, damage, turretMissile);
+                this.getFirstExists(false).init(sourceX, sourceY, target, damage, turretMissile, bonuses);
                 break;
             case BULLET_TYPES.SPLASH:
-                this.getFirstExists(false).init(sourceX, sourceY, target, damage, tankMissile);
+                this.getFirstExists(false).init(sourceX, sourceY, target, damage, tankMissile, bonuses);
+                break;
+            case BULLET_TYPES.SNIPER:
+                this.getFirstExists(false).init(sourceX, sourceY, target, damage, sniperBullet, bonuses);
+                break;
         }
     };
 

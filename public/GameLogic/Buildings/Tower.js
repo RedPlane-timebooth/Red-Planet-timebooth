@@ -25,6 +25,7 @@ var Tower = (function iife(parent) {
         this.fireSpeedUpgradeCost = fireSpeedUpgradeCost;
         this.rangeUpgradeCost = rangeUpgradeCost;
         this.nextTarget = null;
+        this.bonuses = null;
         this.buffers = {
             fired: {
                 is: false
@@ -66,13 +67,13 @@ var Tower = (function iife(parent) {
     Tower.prototype.fire = function fire() {
         this.lastFired = this.game.time.now;
         this.game.bullets.factory(this.x, this.y - 30, this.nextTarget, this.bulletType,
-            this.getFireDamage());
+            this.getFireDamage(), this.bonuses);
     };
     Tower.prototype.findTarget = function findTarget() {
         if (!this.buffers.searchedForTarget.is) {
             nextTarget = null;
             this.game.enemies.forEachExists(function (enemy) {
-                if (this.game.physics.arcade.distanceBetween(this, enemy) < this.getRange()) {
+                if (this.game.physics.arcade.distanceBetween(this, enemy) < this.getRange() + 10) {
                     if (nextTarget === null || nextTarget.walked < enemy.walked) {
                         nextTarget = enemy;
                     }

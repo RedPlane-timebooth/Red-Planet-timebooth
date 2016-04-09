@@ -58,7 +58,7 @@ RedPlanetGame.Game = (function iife() {
             }
         }, this);
 
-        this.game.bmd = this.game.make.bitmapData(gameWidth, gameHeight);
+        this.game.bmd = this.game.make.bitmapData(960, 790);
         this.game.bmd.addToWorld();
     };
 
@@ -152,17 +152,13 @@ RedPlanetGame.Game = (function iife() {
         if (this.game.input.activePointer.leftButton.isDown && this.game.canBuild &&
             (this.game.time.now > this.game.lastBuild + BUFFER_FOR_BUILD)) {//yo Yoda
             this.game.lastBuild = this.game.time.now;
-            if (Building.prototype.canBuild(this.game.player.gold, Turret.prototype.MONEY_COST)) {
-                BuildingsFactory(
-                    this.game,
-                    this.game.currentBuilding.x,
-                    this.game.currentBuilding.y,
-                    this.game.player,
-                    this.game.currentBuilding.key
-                );
-            } else {
-                alert('Not enought gold');
-            }
+            BuildingsFactory(
+                this.game,
+                this.game.currentBuilding.x,
+                this.game.currentBuilding.y,
+                this.game.player,
+                this.game.currentBuilding.key
+            );
 
             this.game.buildState = false;
             this.game.currentBuilding.destroy();

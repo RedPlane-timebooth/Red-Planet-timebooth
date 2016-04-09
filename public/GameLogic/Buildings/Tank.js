@@ -41,6 +41,10 @@ var Tank = (function iife(parent) {
           }, this);
 
         this.reversed = false;
+        this.bonuses = {
+            splash: true,
+            splashRadius: 70
+        }
     }
 
     Tank.prototype = Object.create(parent.prototype);
@@ -69,6 +73,5 @@ var Tank = (function iife(parent) {
         
         this.rotateHeadTowardsTarget();
     };
-
     return Tank;
 }(Tower));

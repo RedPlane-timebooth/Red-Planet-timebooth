@@ -35,13 +35,25 @@ var UserInterface = (function iife() {
             _this.game.cursorType = CURSOR_TYPE.NONE;
             _this.game.currentBuilding.body.setSize(5,5)
         });
-
         //tank build
         this.tankX = 20;
         this.tankY = 500;
         this.tank = this.game.add.button(this.tankX, this.tankY, 'tank', function onBuildTower1() {
             _this.game.currentBuilding = _this.game.add.sprite(_this.game.input.activePointer.x,
                 _this.game.input.activePointer.y, 'tank');
+            _this.game.physics.enable(_this.game.currentBuilding, Phaser.Physics.ARCADE);
+            _this.game.currentBuilding.anchor.setTo(0.5);
+            _this.game.buildState = true;
+            _this.game.cursorType = CURSOR_TYPE.NONE;
+            _this.game.currentBuilding.body.setSize(5,5)
+        });
+
+        //tank build
+        this.ghostX = 60;
+        this.ghostY = 500;
+        this.ghost = this.game.add.button(this.tankX, this.tankY, 'ghostButton', function onBuildTower1() {
+            _this.game.currentBuilding = _this.game.add.sprite(_this.game.input.activePointer.x,
+                _this.game.input.activePointer.y, 'sniper');
             _this.game.physics.enable(_this.game.currentBuilding, Phaser.Physics.ARCADE);
             _this.game.currentBuilding.anchor.setTo(0.5);
             _this.game.buildState = true;
@@ -141,6 +153,9 @@ var UserInterface = (function iife() {
         this.tank.x = this.tankX + xOffset;
         this.tank.y = this.tankY + yOffset;
         this.tank.bringToTop();
+        this.ghost.x = this.ghostX + xOffset;
+        this.ghost.y = this.ghostY + yOffset;
+        this.ghost.bringToTop();
         this.gold.x = this.goldX + xOffset;
         this.gold.y = this.goldY + yOffset;
         this.gold.bringToTop();
