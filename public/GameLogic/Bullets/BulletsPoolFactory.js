@@ -22,8 +22,8 @@ var BulletsPoolFactory = (function iife(parent) {
         spriteName: 'missile',
         bulletSpeed: 0,
         tracking: false,
-        explosionType: 'missileExplosion',
-        explosionSound: 'missileExplosion',
+        explosionType: 'bloodExplosion',
+        explosionSound: 'shoot',
         directHit: true
     };
 

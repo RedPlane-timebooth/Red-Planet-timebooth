@@ -34,11 +34,11 @@ var Tank = (function iife(parent) {
         this.animations.add('build', [1, 2, 3, 4, 5, 6], 3, false);
         this.animations.play('build');
 
-         this.head = new WorldObject(this.game, this.x - 4, this.y - 16, 'tankUp', 18);
-          this.head.animations.add('buildUp', [34, 51, 68, 85, 102], 2, false);
-          this.head.animations.play('buildUp').onComplete.add(function(){
-              this.fullyBuild = true;
-          }, this);
+        this.head = new WorldObject(this.game, this.x - 4, this.y - 16, 'tankUp', 18);
+        this.head.animations.add('buildUp', [34, 51, 68, 85, 102], 2, false);
+        this.head.animations.play('buildUp').onComplete.add(function () {
+            this.fullyBuild = true;
+        }, this);
 
         this.reversed = false;
         this.bonuses = {
@@ -51,26 +51,26 @@ var Tank = (function iife(parent) {
     Tank.prototype.constructor = Turret;
 
     Tank.prototype.MONEY_COST = MONEY_COST;
-    
+
     Tank.prototype.rotateHeadTowardsTarget = function rotateHeadTowardsTarget() {
-        if(this.nextTarget && this.lastFired === this.game.time.now){
+        if (this.nextTarget && this.lastFired === this.game.time.now) {
             var rotation = this.calculateRotation(this.nextTarget);
             this.head.frame = rotation.spriteRow;
             if (rotation.reverseX && !this.reversed) {
                 this.reverseHeadX();
             }
-            if(!rotation.reverseX && this.reversed) {
+            if (!rotation.reverseX && this.reversed) {
                 this.reverseHeadX();
             }
         }
     };
-    Tank.prototype.reverseHeadX = function reverseHeadX(){
+    Tank.prototype.reverseHeadX = function reverseHeadX() {
         this.head.scale.x *= -1;
         this.reversed = !this.reversed;
     };
     Tank.prototype.onUpdate = function onUpdate() {
         parent.prototype.onUpdate.call(this);
-        
+
         this.rotateHeadTowardsTarget();
     };
     return Tank;

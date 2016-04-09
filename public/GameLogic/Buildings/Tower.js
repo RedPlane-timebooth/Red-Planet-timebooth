@@ -95,12 +95,15 @@ var Tower = (function iife(parent) {
     Tower.prototype.getPersonalInfo = function getPersonalInfo() {
         var info = parent.prototype.getPersonalInfo.call(this);
         info.damage = this.getFireDamage();
-        info.fireSpeed = 1000 / this.fireSpeed[this.upgrades.fireSpeed];
+        info.fireSpeed = Math.round((1000 / this.fireSpeed[this.upgrades.fireSpeed]) * 100) / 100;
         info.range = this.getRange();
         info.infoType = 'tower';
         info.fireDamageUpgradeCost = this.getFireDamageUpgradeCost();
         info.fireSpeedUpgradeCost = this.getFireSpeedUpgradeCost();
         info.rangeUpgradeCost = this.getRangeUpgradeCost();
+        info.getAdditionFireDamage = this.fireDamage[this.upgrades.fireDamage + 1] - this.getFireDamage();
+        info.getAdditionFireSpeed = Math.round((1000 / this.fireSpeed[this.upgrades.fireSpeed + 1] - info.fireSpeed) * 100) / 100;
+        info.getAdditionRange = this.range[this.upgrades.range + 1] - this.getRange();
         info.upgrades = this.upgrades;
         return info;
     };
@@ -113,15 +116,12 @@ var Tower = (function iife(parent) {
         }
         this.game.ui.showDialog(this.getPersonalInfo());
 
-       // this.game.circle = this.game.add.graphics(this.x, this.y);
-        for (var i = 1; i < this.getRange() * 2; i++) {
-            var gradient = this.game.bmd.context.createRadialGradient(this.x, this.y, 5, this.x, this.y, this.getRange());
-            gradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
-            gradient.addColorStop(0.8, 'rgba(255, 255, 255, 0.15)');
-            gradient.addColorStop(1, 'rgba(255, 255, 80, 0.3)');
-            this.game.bmd.cls();
-            this.game.bmd.circle(this.x, this.y, this.getRange(), gradient);
-        }
+        var gradient = this.game.bmd.context.createRadialGradient(this.x, this.y, 5, this.x, this.y, this.getRange());
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
+        gradient.addColorStop(0.8, 'rgba(255, 255, 255, 0.15)');
+        gradient.addColorStop(1, 'rgba(255, 255, 80, 0.3)');
+        this.game.bmd.cls();
+        this.game.bmd.circle(this.x, this.y, this.getRange(), gradient);
         this.game.dialogOn = true;
     };
     Tower.prototype.upgrade = function upgrade(type) {

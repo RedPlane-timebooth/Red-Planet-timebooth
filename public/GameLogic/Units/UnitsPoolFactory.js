@@ -38,6 +38,18 @@ var UnitsPoolFactory = (function iife(parent) {
         isAir: false,
         deathSpriteArray: [409, 410, 411, 412, 413, 414, 415]
     };
+    const ultralisk = {
+        spriteName: 'ultralisk',
+        animationsStartRow: 1,
+        animationsEndRow: 9,
+        goldReward: 220,
+        speed: 4,
+        scale: 1,
+        health: 2000,
+        defence: 20,
+        isAir: false,
+        deathSpriteArray: [256, 257, 258, 259, 260, 271, 272, 273, 274, 275]
+    };
 
     function UnitsPoolFactory(game) {
         parent.call(this, game);
@@ -67,8 +79,11 @@ var UnitsPoolFactory = (function iife(parent) {
             case UNIT_TYPES.DRAGOON:
                 this.getFirstExists(false).init(x, y, checkPoints, dragoon);
                 break;
+            case UNIT_TYPES.ULTRALISK:
+                this.getFirstExists(false).init(x, y, checkPoints, ultralisk);
+                break;
             default:
-                alert('FATAL ERROR')
+                alert('Unit not added')
         }
     };
 

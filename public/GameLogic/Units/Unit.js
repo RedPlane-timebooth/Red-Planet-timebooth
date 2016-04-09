@@ -96,6 +96,9 @@ var Unit = (function iife(parent) {
             player.gold += this.goldReward;
             player.killed += 1;
         }
+        if(this.game.selected === this){
+            this.showDialog();
+        }
     };
     Unit.prototype.onUpdate = function onUpdate() {
         var distance = Math.sqrt(
@@ -129,6 +132,12 @@ var Unit = (function iife(parent) {
     };
     Unit.prototype.showDialog = function showPersonalInfo() {
         parent.prototype.showDialog.call(this);
+        if (this.game.dialogOn) {
+            this.game.ui.hideDialog();
+            this.game.dialogOn = false;
+        }
+        this.game.ui.showDialog(this.getPersonalInfo());
+        this.game.dialogOn = true;
     };
     Unit.prototype.animateDeath = function animateDeathGlobal() {
         var dieObject = new WorldObject(this.game, this.x, this.y, this.key);

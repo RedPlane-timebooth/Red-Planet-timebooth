@@ -15,21 +15,21 @@ var BuildingsFactory = (function iife() {
                 if(Building.prototype.canBuild(player.gold, Turret.prototype.MONEY_COST)){
                     return new Turret(game, x, y, player);
                 } else {
-                    alert('Not enough gold!');
+                    game.ui.textNotification(centralTextPossX + game.camera.x, centralTextPossY + game.camera.y, 'Not enought gold!!!', 'red', 1500, true);
                     break;
                 }
             case BUILDING_TYPES.TANK:
                 if(Building.prototype.canBuild(player.gold, Tank.prototype.MONEY_COST)){
                     return new Tank(game, x, y, player);
                 } else {
-                    alert('Not enough gold!');
+                    game.ui.textNotification(centralTextPossX + game.camera.x, centralTextPossY + game.camera.y, 'Not enought gold!!!', 'red', 1500, true);
                     break;
                 }
             case BUILDING_TYPES.SNIPER:
                 if(Building.prototype.canBuild(player.gold, Sniper.prototype.MONEY_COST)){
                     return new Sniper(game, x, y, player);
                 } else {
-                    alert('Not enough gold!');
+                    game.ui.textNotification(centralTextPossX + game.camera.x, centralTextPossY + game.camera.y, 'Not enought gold!!!', 'red', 1500, true);
                     break;
                 }
         }

@@ -20,24 +20,28 @@ RedPlanetGame.Game = (function iife() {
         this.game.dialogOn = false;
         //A door for multyplayer
         this.players = [];
-        this.game.player = new Player(1, 'Daniel', 1000);
+        this.game.player = new Player(1, 'Daniel', 100000);
         this.players.push(this.game.player);
 
         this.initMapLayersGroups();
         this.game.ui = new UserInterface(this.game);
 
+        // setInterval(function () {
+        //     _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
+        //         UNIT_TYPES.ZEALOT, _this.checkPoints);
+        // }, 5000);
+        // setInterval(function () {
+        //     _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
+        //         UNIT_TYPES.MARINE, _this.checkPoints);
+        // }, 2000);
+        // setInterval(function () {
+        //     _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
+        //         UNIT_TYPES.DRAGOON, _this.checkPoints);
+        // }, 8000);
         setInterval(function () {
             _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
-                UNIT_TYPES.ZEALOT, _this.checkPoints);
-        }, 5000);
-        setInterval(function () {
-            _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
-                UNIT_TYPES.MARINE, _this.checkPoints);
+                UNIT_TYPES.ULTRALISK, _this.checkPoints);
         }, 2000);
-        setInterval(function () {
-            _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
-                UNIT_TYPES.DRAGOON, _this.checkPoints);
-        }, 8000);
 
 
         this.game.canBuild = false;
@@ -77,7 +81,7 @@ RedPlanetGame.Game = (function iife() {
         //checks for collision between bullets and enemies
         this.game.physics.arcade.overlap(this.game.bullets, this.game.enemies, function (bullet, enemy) {
             enemy.takeHit(bullet, _this.game.player);
-            bullet.kill(enemy);
+            bullet.kill(enemy, true);
         }, null, this);
 
         //updates buildings
@@ -128,12 +132,12 @@ RedPlanetGame.Game = (function iife() {
 
     RedPlanetGame.Game.prototype.followCamera = function followCamera() {
         //Camera follow cursor
-        if (this.game.input.mousePointer.x > gameWidth - gameWidth / 10) {
+        if (this.game.input.mousePointer.x > gameWidth - gameWidth / 15) {
             this.game.camera.x += 10;
         } else if (this.game.input.mousePointer.x <= 100) {
             this.game.camera.x -= 10
         }
-        if (this.game.input.mousePointer.y > gameHeight - gameHeight / 10) {
+        if (this.game.input.mousePointer.y > gameHeight - gameHeight / 15) {
             this.game.camera.y += 10;
         } else if (this.game.input.mousePointer.y <= 100) {
             this.game.camera.y -= 10;

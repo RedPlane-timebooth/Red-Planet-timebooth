@@ -1,9 +1,12 @@
 const gameWidth = 800;
 const gameHeight = 600;
+const centralTextPossX = gameWidth / 2 - 100;
+const centralTextPossY = gameHeight / 2 - 50;
 const UNIT_TYPES = {
     MARINE : 'marine',
     ZEALOT : 'zealot',
-    DRAGOON : 'dragoon'
+    DRAGOON : 'dragoon',
+    ULTRALISK : 'ultralisk'
 };
 const BUILDING_TYPES = {
     TURRET : 'turret',

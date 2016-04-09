@@ -38,11 +38,9 @@ var Bullet = (function iife(parent) {
         this.bonuses = bonuses || {};
         this.bonuses.splash = this.bonuses.splash || false;
         this.bonuses.critical = this.bonuses.critical || false;
-
         if (target) {
-            if (this.bonuses.critical && Math.random() < 0.2) {
-                alert('critical hit');
-                this.damage = damage * this.bonuses.criticalHit;
+            if (this.bonuses.critical) {
+                this.damage = damage * this.bonuses.criticalStrike;
             } else {
                 this.damage = damage
             }
@@ -56,7 +54,11 @@ var Bullet = (function iife(parent) {
                 this.y = target.y;
                 target.takeHit(this, this.game.player);
                 if (!this.bonuses.splash) {
-                    this.kill(target);
+                    if(this.bonuses.critical && !bulletType.isAir){
+                        this.kill(target, true);
+                    } else {
+                        this.kill(target, false);
+                    }
                 }
             } else {
                 this.reset(x, y);
@@ -79,26 +81,29 @@ var Bullet = (function iife(parent) {
                         }
                     }
                 }, this);
-                this.kill(target);
+                this.kill(target, true);
             }
         }
     };
 
-    Bullet.prototype.kill = function kill(enemy) {
+    Bullet.prototype.kill = function kill(enemy, explode) {
         parent.prototype.kill.call(this);
         if (enemy) {
             //TODO: refactor to explosion pool
             this.game.time.events.add(100, function () {
                 this.explosionSound.play();
             }, this);
-            var explosion = new WorldObject(this.game, enemy.x, enemy.y, this.explosionType);
-            if (this.bonuses.splash) {
-                explosion.scale.setTo(this.bonuses.splashRadius * 2 / explosion.width, this.bonuses.splashRadius * 2 / explosion.height);
+            if(explode){
+                var explosion = new WorldObject(this.game, enemy.x, enemy.y, this.explosionType);
+                if (this.bonuses.splash) {
+                    explosion.scale.setTo(this.bonuses.splashRadius * 2 / explosion.width,
+                        this.bonuses.splashRadius * 2 / explosion.height);
+                }
+                explosion.animations.add('explode');
+                explosion.animations.play('explode', 50, false).onComplete.add(function () {
+                    explosion.destroy();
+                });
             }
-            explosion.animations.add('explode');
-            explosion.animations.play('explode', 50, false).onComplete.add(function () {
-                explosion.destroy();
-            });
         }
     };
 
