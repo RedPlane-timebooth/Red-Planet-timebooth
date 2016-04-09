@@ -2,6 +2,7 @@
 @section('content')
     <div id="gameWrapper">
         <div id="gameCanvas"></div>
+
     </div>
 
     <script src="/lib/phaser.js"></script>
