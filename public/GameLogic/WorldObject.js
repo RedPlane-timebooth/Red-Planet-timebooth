@@ -48,6 +48,74 @@ var WorldObject = (function iife(parent) {
             this.game.cursorType = CURSOR_TYPE.NORMAL;
         }
     };
+    WorldObject.prototype.calculateRotation = function calculateRotation(destination) {
+        var angleBetween = Math.round((this.game.physics.arcade.angleBetween(this, destination) * 90) / 21) + 8,
+            spriteRow,
+            reverseX;
+
+        //MAGIC DO NOT TOUCH!!!
+        if (0 < angleBetween && angleBetween <= 15) {
+            spriteRow = angleBetween;
+            reverseX = false;
+        }
+        else {
+            switch (angleBetween) {
+                case -5:
+                    spriteRow = 7;
+                    reverseX = true;
+                    break;
+                case -4:
+                    spriteRow = 6;
+                    reverseX = true;
+                    break;
+                case -3:
+                    spriteRow = 5;
+                    reverseX = true;
+                    break;
+                case -2:
+                    spriteRow = 4;
+                    reverseX = true;
+                    break;
+                case -1:
+                    spriteRow = 3;
+                    reverseX = true;
+                    break;
+                case 0:
+                    spriteRow = 2;
+                    reverseX = true;
+                    break;
+                case 21:
+                    spriteRow = 8;
+                    reverseX = true;
+                    break;
+                case 20:
+                    spriteRow = 9;
+                    reverseX = true;
+                    break;
+                case 19:
+                    spriteRow = 10;
+                    reverseX = true;
+                    break;
+                case 18:
+                    spriteRow = 11;
+                    reverseX = true;
+                    break;
+                case 17:
+                    spriteRow = 12;
+                    reverseX = true;
+                    break;
+                case 16:
+                    spriteRow = 13;
+                    reverseX = true;
+                    break;
+            }
+        }
+
+        return {
+            spriteRow: spriteRow,
+            reverseX: reverseX
+        }
+    };
 
     return WorldObject;
 }(Phaser.Sprite));

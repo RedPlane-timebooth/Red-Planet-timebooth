@@ -33,7 +33,7 @@ var Tower = (function iife(parent) {
                 is: false
             }
         };
-
+        this.lastFired = this.game.time.now;
         this.upgrades = {
             fireSpeed: 0,
             fireDamage: 0,
@@ -64,6 +64,7 @@ var Tower = (function iife(parent) {
     Tower.prototype.constructor = Tower;
 
     Tower.prototype.fire = function fire() {
+        this.lastFired = this.game.time.now;
         this.game.bullets.factory(this.x, this.y - 30, this.nextTarget, this.bulletType,
             this.getFireDamage());
     };
@@ -105,16 +106,20 @@ var Tower = (function iife(parent) {
     Tower.prototype.showDialog = function showPersonalInfo() {
         parent.prototype.showDialog.call(this);
         if (this.game.dialogOn) {
-            this.game.circle.destroy();
+            this.game.bmd.cls();
             this.game.ui.hideDialog();
             this.game.dialogOn = false;
         }
         this.game.ui.showDialog(this.getPersonalInfo());
-        this.game.circle = this.game.add.graphics(this.x, this.y);
+
+       // this.game.circle = this.game.add.graphics(this.x, this.y);
         for (var i = 1; i < this.getRange() * 2; i++) {
-            this.game.circle.lineStyle(1, 0xd3d3d3);
-            this.game.circle.lineAlpha = ( (i * 5) / 3000);
-            this.game.circle.drawCircle(0, 0, i);
+            var gradient = this.game.bmd.context.createRadialGradient(this.x, this.y, 5, this.x, this.y, this.getRange());
+            gradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
+            gradient.addColorStop(0.8, 'rgba(255, 255, 255, 0.15)');
+            gradient.addColorStop(1, 'rgba(255, 255, 80, 0.3)');
+            this.game.bmd.cls();
+            this.game.bmd.circle(this.x, this.y, this.getRange(), gradient);
         }
         this.game.dialogOn = true;
     };

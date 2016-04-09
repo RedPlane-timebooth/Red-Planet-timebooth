@@ -24,7 +24,7 @@ var UserInterface = (function iife() {
         );
 
         //turret build
-        this.turretX = 60;
+        this.turretX = 80;
         this.turretY = 500;
         this.turret = this.game.add.button(this.turretX, this.turretY, 'turretBuild', function onBuildTower1() {
             _this.game.currentBuilding = _this.game.add.sprite(_this.game.input.activePointer.x,
@@ -132,32 +132,44 @@ var UserInterface = (function iife() {
     }
 
     UserInterface.prototype.update = function update(xOffset, yOffset) {
+        this.background.bringToTop();
         this.background.x = xOffset;
         this.background.y = yOffset + 449;
         this.turret.x = this.turretX + xOffset;
         this.turret.y = this.turretY + yOffset;
+        this.turret.bringToTop();
         this.tank.x = this.tankX + xOffset;
         this.tank.y = this.tankY + yOffset;
+        this.tank.bringToTop();
         this.gold.x = this.goldX + xOffset;
         this.gold.y = this.goldY + yOffset;
+        this.gold.bringToTop();
         this.killed.x = this.killedX + xOffset;
         this.killed.y = this.killedY + yOffset;
+        this.killed.bringToTop();
         if(this.dialog.tower.show){
             this.dialog.tower.sprite.x = DIALOG_X + xOffset;
             this.dialog.tower.sprite.y = DIALOG_Y + 20 + yOffset;
+            this.dialog.tower.sprite.bringToTop();
             this.dialog.tower.damage.x = DIALOG_X + 100 + xOffset;
             this.dialog.tower.damage.y = DIALOG_Y + yOffset;
+            this.dialog.tower.damage.bringToTop();
             this.dialog.tower.range.x = DIALOG_X + 100 + xOffset;
             this.dialog.tower.range.y = DIALOG_Y + 40 + yOffset;
+            this.dialog.tower.range.bringToTop();
             this.dialog.tower.speed.x = DIALOG_X + 100 + xOffset;
             this.dialog.tower.speed.y = DIALOG_Y + 80 + yOffset;
+            this.dialog.tower.speed.bringToTop();
 
             this.upgradeButtonRange.x = this.upgradeButtonRangeX + xOffset;
             this.upgradeButtonRange.y = this.upgradeButtonRangeY + yOffset;
+            this.upgradeButtonRange.bringToTop();
             this.upgradeButtonFireDamage.x = this.upgradeButtonFireDamageX + xOffset;
             this.upgradeButtonFireDamage.y = this.upgradeButtonFireDamageY + yOffset;
+            this.upgradeButtonFireDamage.bringToTop();
             this.upgradeButtonFireSpeed.x = this.upgradeButtonFireSpeedX + xOffset;
             this.upgradeButtonFireSpeed.y = this.upgradeButtonFireSpeedY + yOffset;
+            this.upgradeButtonFireSpeed.bringToTop();
         }
     };
     UserInterface.prototype.showDialog = function showDialog(dialog){

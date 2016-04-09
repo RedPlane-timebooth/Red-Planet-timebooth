@@ -5,8 +5,9 @@ var Building = (function iife(parent) {
         parent.call(this, game, x, y, spriteName, startFrame);
         
         this.game.buildings.add(this);
-        this.playerId =  player.id;
+        this.playerId =  player.id;//door for multiplayer, keeping dependency injection here
         this.fullyBuild = false;
+        this.game.player.gold -= this.MONEY_COST;
 
         this.inputEnabled = true;
         this.events.onInputOver.add(this.onInputOver, this);

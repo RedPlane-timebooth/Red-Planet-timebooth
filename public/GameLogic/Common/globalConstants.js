@@ -10,7 +10,8 @@ const BUILDING_TYPES = {
     TANK : 'tank'
 };
 const BULLET_TYPES = {
-    BULLET : 'bullet'
+    MISSILE : 'missile',
+    SPLASH : 'splash'
 };
 const CURSOR_TYPE = {
     NONE: 'none',

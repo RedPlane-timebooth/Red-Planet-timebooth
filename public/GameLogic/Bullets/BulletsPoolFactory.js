@@ -7,7 +7,16 @@ var BulletsPoolFactory = (function iife(parent) {
         bulletSpeed: 500,
         tracking: true,
         explosionType: 'missileExplosion',
-        explosionSound: 'missileExplosion'
+        explosionSound: 'missileExplosion',
+        visible: true
+    };
+    const tankMissile = {
+        spriteName: 'missile',
+        bulletSpeed: 3000,
+        tracking: false,
+        explosionType: 'missileExplosion',
+        explosionSound: 'missileExplosion',
+        visible: true
     };
 
     /**
@@ -35,10 +44,11 @@ var BulletsPoolFactory = (function iife(parent) {
      */
     BulletPoolFactory.prototype.factory = function (sourceX, sourceY, target, bulletType, damage) {
         switch (bulletType) {
-            case BULLET_TYPES.BULLET:
-                this.getFirstExists(false).init(sourceX, sourceY, target,
-                    turretMissile.spriteName, turretMissile.bulletSpeed, damage, turretMissile.tracking,
-                    turretMissile.explosionType, turretMissile.explosionSound);
+            case BULLET_TYPES.MISSILE:
+                this.getFirstExists(false).init(sourceX, sourceY, target, damage, turretMissile);
+                break;
+            case BULLET_TYPES.SPLASH:
+                this.getFirstExists(false).init(sourceX, sourceY, target, damage, tankMissile);
         }
     };
 

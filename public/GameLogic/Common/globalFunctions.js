@@ -2,7 +2,7 @@ function buffer(object, time, game) {
     object.is = true;
     game.time.events.add(time, function () {
         object.is = false
-    }, RedPlanetGame.Game);
+    }, game);
 }
 function createInvisibleSpriteGroupFromMapObjects(type, map, layer, game, group) {
     var result = [];

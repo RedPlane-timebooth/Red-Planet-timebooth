@@ -3,6 +3,8 @@ var RedPlanetGame = RedPlanetGame || {};
 RedPlanetGame.Game = (function iife() {
     'use strict';
     var _this = null;
+    const BUFFER_FOR_PRESSED_KEY = 100;
+    const BUFFER_FOR_BUILD = 1000;
 
     RedPlanetGame.Game = function () {
         Phaser.State.call(this);
@@ -13,11 +15,8 @@ RedPlanetGame.Game = (function iife() {
     RedPlanetGame.Game.prototype.constructor = RedPlanetGame.Game;
 
     RedPlanetGame.Game.prototype.create = function create() {
-        this.buffers = {
-            pressed: {
-                is: false
-            }
-        };
+        this.game.lastPressed = this.game.time.now;
+        this.game.lastBuild = this.game.time.now;
         this.game.dialogOn = false;
         //A door for multyplayer
         this.players = [];
@@ -46,18 +45,21 @@ RedPlanetGame.Game = (function iife() {
         this.game.cursorType = CURSOR_TYPE.NORMAL;
         this.game.canDestroyCircle = false;
 
-        this.game.input.onDown.add(function() {
+        this.game.input.onDown.add(function () {
             //Removes range cricle around tower when clicked somewhere else
             if (this.game.cursorType == CURSOR_TYPE.NORMAL) {
-                if (this.game.dialogOn && !this.buffers.pressed.is) {
-                    buffer(this.buffers.pressed, 90, this.game);
-                    this.game.circle.destroy();
+                if (this.game.dialogOn && (this.game.time.now > this.game.lastPressed + BUFFER_FOR_PRESSED_KEY)) {
+                    this.game.lastPressed = this.game.time.now;
+                    this.game.bmd.cls();
                     this.game.ui.hideDialog();
                     this.game.canDestroyCircle = false;
                     this.game.dialogOn = false;
                 }
             }
         }, this);
+
+        this.game.bmd = this.game.make.bitmapData(gameWidth, gameHeight);
+        this.game.bmd.addToWorld();
     };
 
     RedPlanetGame.Game.prototype.update = function update() {
@@ -77,14 +79,17 @@ RedPlanetGame.Game = (function iife() {
             enemy.takeHit(bullet, _this.game.player);
             bullet.kill(enemy);
         }, null, this);
-        
-        //updates enemies
-        this.game.enemies.forEachExists(function (enemy) {
-            enemy.onUpdate();
-        });
+
         //updates buildings
         this.game.buildings.forEach(function (building) {
             building.onUpdate();
+            building.bringToTop();
+        });
+
+        //updates enemies
+        this.game.enemies.forEachExists(function (enemy) {
+            enemy.onUpdate();
+            enemy.bringToTop();
         });
 
         //updates (static) position of UI
@@ -144,8 +149,9 @@ RedPlanetGame.Game = (function iife() {
             this.onBuildingOverlap, null, this);
 
         //on mouse down event
-        if (this.game.input.activePointer.leftButton.isDown && !this.buffers.pressed.is && this.game.canBuild) {//yo Yoda
-
+        if (this.game.input.activePointer.leftButton.isDown && this.game.canBuild &&
+            (this.game.time.now > this.game.lastBuild + BUFFER_FOR_BUILD)) {//yo Yoda
+            this.game.lastBuild = this.game.time.now;
             if (Building.prototype.canBuild(this.game.player.gold, Turret.prototype.MONEY_COST)) {
                 BuildingsFactory(
                     this.game,
@@ -154,7 +160,6 @@ RedPlanetGame.Game = (function iife() {
                     this.game.player,
                     this.game.currentBuilding.key
                 );
-                this.game.player.gold -= Turret.prototype.MONEY_COST;
             } else {
                 alert('Not enought gold');
             }
@@ -163,12 +168,11 @@ RedPlanetGame.Game = (function iife() {
             this.game.currentBuilding.destroy();
             this.game.cursorType = CURSOR_TYPE.NORMAL;
         }
-        
+
         if (this.game.canBuild) {
             this.game.currentBuilding.tint = 0xffffff;
         }
         this.game.canBuild = true;
-        buffer(this.buffers.pressed, 0, this.game);
     };
 
     RedPlanetGame.Game.prototype.onBuildingOverlap = function onBuildingOverlap() {

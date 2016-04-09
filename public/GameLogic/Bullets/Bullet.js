@@ -24,45 +24,40 @@ var Bullet = (function iife(parent) {
      * @param x
      * @param y
      * @param target
-     * @param spriteName
-     * @param speed
      * @param damage
-     * @param tracking
-     * @param explosionType
-     * @param explosionSound
+     * @param bulletType
      */
-    Bullet.prototype.init = function fire(x, y, target, spriteName, speed, damage, tracking,
-                                          explosionType, explosionSound) {
-        validator.validateIfNumber(x, spriteName + ' x');
-        validator.validateIfNumber(y, spriteName + ' y');
-        validator.validateIfString(spriteName, spriteName + ' spriteName');
-        validator.validateIfNumber(speed, spriteName + ' speed');
-        validator.validateIfNumber(damage, spriteName + ' damage');
-        validator.validateIfBool(tracking, spriteName + ' tracking');
+    Bullet.prototype.init = function fire(x, y, target, damage, bulletType) {
+        validator.validateIfNumber(x, bulletType.spriteName + ' x');
+        validator.validateIfNumber(y, bulletType.spriteName + ' y');
+        validator.validateIfString(bulletType.spriteName, bulletType.spriteName + ' spriteName');
+        validator.validateIfNumber(bulletType.bulletSpeed, bulletType.spriteName + ' speed');
+        validator.validateIfNumber(damage, bulletType.spriteName + ' damage');
+        validator.validateIfBool(bulletType.tracking, bulletType.spriteName + ' tracking');
 
         if(target){
             this.reset(x, y);
-            this.key = spriteName;
-            this.loadTexture(spriteName, 0);
+            this.key = bulletType.spriteName;
+            this.loadTexture(bulletType.spriteName, 0);
+            this.visible = bulletType.visible;
             this.damage = damage;
-            this.tracking = tracking;
+            this.tracking = bulletType.tracking;
 
             this.rotation = this.game.physics.arcade.angleBetween(this, target);
-            this.game.physics.arcade.velocityFromAngle(this.rotation, speed, this.body.velocity);
-            this.game.physics.arcade.moveToObject(this, target, speed);
-            this.explosionType = explosionType;
-            this.explosionSound = this.game.add.audio(explosionSound);
+            this.game.physics.arcade.velocityFromAngle(this.rotation, bulletType.bulletSpeed, this.body.velocity);
+            this.game.physics.arcade.moveToObject(this, target, bulletType.bulletSpeed);
+            this.explosionType = bulletType.explosionType;
+            this.explosionSound = this.game.add.audio(bulletType.explosionSound);
         }
     };
 
     Bullet.prototype.kill = function kill(enemy) {
         parent.prototype.kill.call(this);
-        this.game.time.events.add(100, function(){
-            this.explosionSound.play();
-        }, this);
-
         if(enemy){
             //TODO: refactor to explosion pool
+            this.game.time.events.add(100, function(){
+                this.explosionSound.play();
+            }, this);
             var explosion = new WorldObject(this.game, enemy.x, enemy.y, this.explosionType);
             explosion.animations.add('explode');
             explosion.animations.play('explode', 25, false).onComplete.add(function() {

@@ -24,7 +24,7 @@ var Turret = (function iife(parent) {
     ];
     
     const SCALE = 1;
-    const BULLET_TYPE = BULLET_TYPES.BULLET;
+    const BULLET_TYPE = BULLET_TYPES.MISSILE;
     
     function Turret(game, x, y, player) {
         parent.call(this, game, x, y, spriteSheetLevel1, START_FRAME, player, 
