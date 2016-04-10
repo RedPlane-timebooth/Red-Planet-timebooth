@@ -87,6 +87,10 @@ var Unit = (function iife(parent) {
         this.events.onInputDown.add(this.showDialog, this);
 
         this.lastPoss = {x: this.x, y: this.y};
+
+        this.getHealth = function() {
+            return this.health;
+        }
     };
 
     Unit.prototype.takeHit = function takeHit(bullet, player) {
@@ -97,7 +101,11 @@ var Unit = (function iife(parent) {
             player.killed += 1;
         }
         if(this.game.selected === this){
-            this.showDialog();
+            if(this.health <= 0){
+                this.game.ui.hideDialog();
+            } else {
+                this.showDialog();
+            }
         }
     };
     Unit.prototype.onUpdate = function onUpdate() {
@@ -124,7 +132,8 @@ var Unit = (function iife(parent) {
     };
     Unit.prototype.getPersonalInfo = function getPersonalInfo() {
         var info = parent.prototype.getPersonalInfo.call(this);
-        info.health = this.health;
+        info.health = this.getHealth();
+        info.maxHealth = this.maxHealth;
         info.speed = this.speed;
         info.defence = this.defence;
         info.infoType = 'unit';

@@ -3,7 +3,7 @@ var RedPlanetGame = RedPlanetGame || {};
 RedPlanetGame.Game = (function iife() {
     'use strict';
     var _this = null;
-    const BUFFER_FOR_PRESSED_KEY = 100;
+    const BUFFER_FOR_PRESSED_KEY = 250;
     const BUFFER_FOR_BUILD = 1000;
 
     RedPlanetGame.Game = function () {
@@ -26,22 +26,22 @@ RedPlanetGame.Game = (function iife() {
         this.initMapLayersGroups();
         this.game.ui = new UserInterface(this.game);
 
-        // setInterval(function () {
-        //     _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
-        //         UNIT_TYPES.ZEALOT, _this.checkPoints);
-        // }, 5000);
-        // setInterval(function () {
-        //     _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
-        //         UNIT_TYPES.MARINE, _this.checkPoints);
-        // }, 2000);
-        // setInterval(function () {
-        //     _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
-        //         UNIT_TYPES.DRAGOON, _this.checkPoints);
-        // }, 8000);
-        setInterval(function () {
-            _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
-                UNIT_TYPES.ULTRALISK, _this.checkPoints);
-        }, 2000);
+         setInterval(function () {
+             _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
+                 UNIT_TYPES.ZEALOT, _this.checkPoints);
+         }, 5000);
+         setInterval(function () {
+             _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
+                 UNIT_TYPES.MARINE, _this.checkPoints);
+         }, 2000);
+         setInterval(function () {
+             _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
+                 UNIT_TYPES.DRAGOON, _this.checkPoints);
+         }, 8000);
+         setInterval(function () {
+             _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
+                 UNIT_TYPES.ULTRALISK, _this.checkPoints);
+         }, 10000);
 
 
         this.game.canBuild = false;
@@ -101,8 +101,8 @@ RedPlanetGame.Game = (function iife() {
     };
 
     RedPlanetGame.Game.prototype.render = function render() {
-        this.game.ui.gold.text = 'G: ' + this.game.player.gold;
-        this.game.ui.killed.text = 'K: ' + this.game.player.killed;
+        this.game.ui.gold.text = this.game.player.gold;
+        this.game.ui.killed.text = this.game.player.killed;
     };
 
     RedPlanetGame.Game.prototype.initMapLayersGroups = function init() {
@@ -166,7 +166,7 @@ RedPlanetGame.Game = (function iife() {
 
             this.game.buildState = false;
             this.game.currentBuilding.destroy();
-            this.game.cursorType = CURSOR_TYPE.NORMAL;
+            this.game.cursorType = CURSOR_TYPE.NORMAL
         }
 
         if (this.game.canBuild) {
