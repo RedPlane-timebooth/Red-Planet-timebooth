@@ -27,6 +27,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
     Route::get('/', 'HomeController@index');
     Route::get('/game', 'GameController@index');
+    Route::post('/game', 'GameController@update');
     Route::get('/buyItem/{id?}', 'UserController@buyItem');
     Route::get('/items/{id}', 'UserController@showItems');
     Route::post('/statistic/search', 'StatisticController@index');
@@ -48,8 +49,4 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/admin', 'AdminController@index');
     Route::resource('/admin/news', 'ArticlesController');
     Route::resource('/admin/shop', 'ItemController');
-});
-
-Route::group(['namespace' => 'Api', 'prefix' => 'api'], function () {
-    Route::resource('/play', 'GameController', ['except' => ['create','edit']]);
 });

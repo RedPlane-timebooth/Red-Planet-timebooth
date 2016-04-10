@@ -36,7 +36,7 @@ class StatisticController extends Controller
 
         if ($request->input('search')) {
             $query = $request->input('search');
-            $all = Statistic::where('username', 'LIKE', '%' . $query . '%')
+            $all = Statistic::where('name', 'LIKE', '%' . $query . '%')
                 ->join('users', 'users.id', '=', 'user_id')
                 ->paginate(10);
         } else {

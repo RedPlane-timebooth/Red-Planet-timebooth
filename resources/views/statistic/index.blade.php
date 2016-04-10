@@ -30,7 +30,7 @@
                 {{--{{ dd($row) }}--}}
                 <tr>
                     <td>{{ $number++ }}</td>
-                    <td>{{ $row->username }}</td>
+                    <td>{{ $row->name }}</td>
                     <td>{{ $row->total_score }}</td>
                     <td>{{ $row->total_games }}</td>
                     <td>{{ $row->win_games }}</td>
