@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <link href="{{ url("/resource/css/bootstrap.min.css") }}" rel="stylesheet">
-    <link href="{{ url("/resource/css/stylesheet.css") }}" rel="stylesheet">
+    <link href="{{ url("/resource/css/scss/stylesheet.css") }}" rel="stylesheet">
 
     <style>
         body {
@@ -79,7 +79,7 @@
         {{--</div>--}}
     </nav>
 </header>
-<main class="container">
+<main class="container-fluid">
     @yield('content')
 </main>
 <!-- JavaScripts -->

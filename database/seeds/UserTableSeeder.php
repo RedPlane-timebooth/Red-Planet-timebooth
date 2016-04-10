@@ -20,7 +20,6 @@ class UserTableSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->email,
                 'password' => bcrypt('secret'),
-                'username' => $faker->userName,
             ]);
         }
     }
