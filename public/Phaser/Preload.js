@@ -16,14 +16,9 @@ RedPlanetGame.Preload = (function iife() {
             this.preloadBar.anchor.setTo(0.5);
             this.load.setPreloadSprite(this.preloadBar);
 
-            this.load.tilemap('level1', '/assets/maps/level1.json', null, Phaser.Tilemap.TILED_JSON);
+            
             this.load.image('gameTiles', '/assets/images/badlands.png');
 
-            this.load.spritesheet('marine', '/assets/creeps/marine.png', 64, 64, 238);
-            this.load.spritesheet('zealot', '/assets/creeps/zealot.png', 128, 128, 238);
-            this.load.spritesheet('ultralisk', '/assets/creeps/ultralisk.png', 128, 128, 272);
-            this.load.spritesheet('dragoon', '/assets/creeps/dragoon.png', 96, 96, 425);
-            
             this.load.spritesheet('turret', '/assets/buildings/towers/turret/turret.png', 64, 64, 3);
             this.load.spritesheet('sniper', '/assets/buildings/towers/sniper/ghost.png', 64, 64, 238);
             this.load.spritesheet('smoke', '/assets/buildings/towers/sniper/smoke.png', 84, 84, 8);
@@ -38,6 +33,7 @@ RedPlanetGame.Preload = (function iife() {
             this.load.spritesheet('bloodExplosion', '/assets/buildings/towers/sniper/blood.png', 192, 192, 15);
 
             this.load.spritesheet('healthBar', '/assets/images/health.png', 323, 50, 11);
+            this.load.spritesheet('buttons', '/assets/images/buttons.png', 197, 54, 60);
 
             this.load.image('missile', '/assets/buildings/towers/turret/missile.png');
             this.load.image('turretBuild', '/assets/buildings/towers/turret/turretBuild.png');
@@ -53,14 +49,14 @@ RedPlanetGame.Preload = (function iife() {
             this.load.image('skeletonIcon', '/assets/images/skeleton.png');
             this.load.image('defence', '/assets/images/defence.png');
             this.load.image('speed', '/assets/images/speed.png');
+            this.load.image('sellIcon', '/assets/images/sellIcon.png');
             
             this.load.audio('missileShoot', '/assets/buildings/towers/turret/missileShoot.mp3');
             this.load.audio('missileExplosion', '/assets/buildings/towers/turret/missileExplosion.mp3');
             this.load.audio('shoot', '/assets/buildings/towers/sniper/shoot.mp3');
-
         },
         create: function () {
-            this.state.start('Game');
+            this.state.start('Menu');
         }
     };
 

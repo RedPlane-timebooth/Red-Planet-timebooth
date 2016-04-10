@@ -22,8 +22,8 @@ var Building = (function iife(parent) {
         return playerMoney >= moneyCost;
     };
     Building.prototype.sell = function destroy() {
-        parent.prototype.destroy.call(this);
-        this.game.player.gold += this.prototype.MONEY_COST * 0.8;
+        this.game.player.gold += this.MONEY_COST * 0.8;
+        this.destroy();
     };
     return Building;
 }(WorldObject));

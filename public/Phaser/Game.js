@@ -1,48 +1,25 @@
 var RedPlanetGame = RedPlanetGame || {};
 
-RedPlanetGame.Game = (function iife() {
+RedPlanetGame.Game = (function iife(parent) {
     'use strict';
     var _this = null;
-    const BUFFER_FOR_PRESSED_KEY = 250;
+    const BUFFER_FOR_PRESSED_KEY = 500;
     const BUFFER_FOR_BUILD = 1000;
 
     RedPlanetGame.Game = function () {
-        Phaser.State.call(this);
+        parent.call(this);
         _this = this;
     };
 
-    RedPlanetGame.Game.prototype = Object.create(Phaser.State.prototype);
+    RedPlanetGame.Game.prototype = Object.create(parent.prototype);
     RedPlanetGame.Game.prototype.constructor = RedPlanetGame.Game;
-
+    
     RedPlanetGame.Game.prototype.create = function create() {
         this.game.lastPressed = this.game.time.now;
         this.game.lastBuild = this.game.time.now;
         this.game.dialogOn = false;
-        //A door for multyplayer
-        this.players = [];
-        this.game.player = new Player(1, 'Daniel', 100000);
-        this.players.push(this.game.player);
-
-        this.initMapLayersGroups();
+        
         this.game.ui = new UserInterface(this.game);
-
-         setInterval(function () {
-             _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
-                 UNIT_TYPES.ZEALOT, _this.checkPoints);
-         }, 5000);
-         setInterval(function () {
-             _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
-                 UNIT_TYPES.MARINE, _this.checkPoints);
-         }, 2000);
-         setInterval(function () {
-             _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
-                 UNIT_TYPES.DRAGOON, _this.checkPoints);
-         }, 8000);
-         setInterval(function () {
-             _this.game.enemies.factory(_this.spawnCreepsAt.x, _this.spawnCreepsAt.y,
-                 UNIT_TYPES.ULTRALISK, _this.checkPoints);
-         }, 10000);
-
 
         this.game.canBuild = false;
         this.game.buildState = false;
@@ -67,6 +44,7 @@ RedPlanetGame.Game = (function iife() {
     };
 
     RedPlanetGame.Game.prototype.update = function update() {
+        //cursor state
         this.game.canvas.style.cursor = this.game.cursorType;
 
         //on building state
@@ -105,9 +83,9 @@ RedPlanetGame.Game = (function iife() {
         this.game.ui.killed.text = this.game.player.killed;
     };
 
-    RedPlanetGame.Game.prototype.initMapLayersGroups = function init() {
+    RedPlanetGame.Game.prototype.initMapLayersGroups = function init(tilemap) {
         //Tile map
-        this.map = this.game.add.tilemap('level1');
+        this.map = this.game.add.tilemap(tilemap);
         this.map.addTilesetImage('badlands', 'gameTiles');
         //background and layers
         this.backgroundlayer = this.map.createLayer('backgroundLayer');
@@ -116,7 +94,7 @@ RedPlanetGame.Game = (function iife() {
         this.spawnCreepsAt = this.map.objects['objectsLayer'][0];
         //resize world
         this.backgroundlayer.resizeWorld();
-        this.game.world.setBounds(0, 0, 960, 790);
+        this.game.world.setBounds(0, 0, 960, 760);
         //group
         this.game.enemies = new UnitsPoolFactory(this.game);
         this.game.buildings = this.game.add.group();//TODO: make buildings for each player
@@ -154,8 +132,10 @@ RedPlanetGame.Game = (function iife() {
 
         //on mouse down event
         if (this.game.input.activePointer.leftButton.isDown && this.game.canBuild &&
-            (this.game.time.now > this.game.lastBuild + BUFFER_FOR_BUILD)) {//yo Yoda
+            (this.game.time.now > this.game.lastBuild + BUFFER_FOR_BUILD) &&
+            (this.game.time.now > this.game.lastPressed + BUFFER_FOR_PRESSED_KEY)) {//yo Yoda
             this.game.lastBuild = this.game.time.now;
+            this.game.lastPressed = this.game.time.now;
             BuildingsFactory(
                 this.game,
                 this.game.currentBuilding.x,
@@ -181,4 +161,4 @@ RedPlanetGame.Game = (function iife() {
     };
 
     return RedPlanetGame.Game;
-})();
+})(Phaser.State);

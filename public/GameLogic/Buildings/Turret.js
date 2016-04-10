@@ -72,6 +72,9 @@ var Turret = (function iife(parent) {
         this.game.missileShoot = this.game.add.audio('missileShoot');
         this.game.missileShoot.play();
     };
-    
+    Turret.prototype.destroy = function destroy() {
+        parent.prototype.destroy.call(this);
+        this.head.destroy();
+    };
     return Turret;
 }(Tower));

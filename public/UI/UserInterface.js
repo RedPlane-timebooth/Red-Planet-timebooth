@@ -45,6 +45,7 @@ var UserInterface = (function iife() {
         this.turret.scale.setTo(48 / this.turret.width, 42 / this.turret.height);
         this.turret.inputEnabled = true;
         this.turret.events.onInputDown.add(function onBuildTower1() {
+            this.game.lastPressed = this.game.time.now;
             this.game.currentBuilding = _this.game.add.sprite(_this.game.input.activePointer.x,
                 _this.game.input.activePointer.y, 'turret', 0);
             this.game.physics.enable(_this.game.currentBuilding, Phaser.Physics.ARCADE);
@@ -72,6 +73,7 @@ var UserInterface = (function iife() {
         this.tank.scale.setTo(48 / this.tank.width, 42 / this.tank.height);
         this.tank.inputEnabled = true;
         this.tank.events.onInputDown.add(function onBuildTower1() {
+            this.game.lastPressed = this.game.time.now;
             this.game.currentBuilding = this.game.add.sprite(this.game.input.activePointer.x,
                 this.game.input.activePointer.y, 'tank');
             this.game.physics.enable(this.game.currentBuilding, Phaser.Physics.ARCADE);
@@ -98,6 +100,7 @@ var UserInterface = (function iife() {
         this.ghostX = DIALOG_X + 375;
         this.ghostY = DIALOG_Y - 12;
         this.ghost.events.onInputDown.add(function onBuildTower1() {
+            this.game.lastPressed = this.game.time.now;
             this.game.currentBuilding = this.game.add.sprite(this.game.input.activePointer.x,
                 this.game.input.activePointer.y, 'sniper');
             this.game.physics.enable(this.game.currentBuilding, Phaser.Physics.ARCADE);
@@ -159,7 +162,6 @@ var UserInterface = (function iife() {
         this.upgradeButtonFireDamage.inputEnabled = true;
         this.upgradeButtonFireDamage.events.onInputDown.add(onClickButtonUpgradeButtonFireDamage, this);
         function onClickButtonUpgradeButtonFireDamage() {
-            //TODO: and if tower is upgradable
             if (_this.game.player.gold > _this.game.selected.getFireDamageUpgradeCost()) {
                 _this.game.player.gold -= _this.game.selected.getFireDamageUpgradeCost();
                 _this.game.selected.upgrade('fireDamage');
@@ -242,18 +244,55 @@ var UserInterface = (function iife() {
         this.dialog.defenceIcon = new WorldObject(this.game, 0, 0, 'defence');
         this.dialog.defenceIcon.scale.setTo(0.02, 0.02);
         this.dialog.defenceIcon.visible = false;
+        
+        this.dialog.sellButton = new WorldObject(this.game, 0, 0, 'sellIcon');
+        this.dialog.sellButton.scale.setTo(0.4);
+        this.dialog.sellButton.inputEnabled = true;
+        this.dialog.sellButton.events.onInputDown.add(function() {
+            this.game.selected.sell();
+        }, this);
+        
+        this.dialog.sellButton.events.onInputOver.add(function () {
+            this.hover.text = "$" + this.game.selected.getSellPrice();
+            this.hoverY = this.upgradeButtonRangeY - 15;
+            this.hoverX = this.upgradeButtonRangeX + 70;
+            this.showHover = true;
+            if (!this.game.buildState) {
+                this.game.cursorType = CURSOR_TYPE.POINTER;
+            }
+        }, this);
+        this.dialog.sellButton.events.onInputOut.add(removeHover, this);
+        this.dialog.sellButton.visible = false;
+
+        this.exitButton = DIALOG_X + 190;
+        this.exitButton = DIALOG_Y + 60;
+        this.exitButton = new WorldObject(this.game, 100, 30, 'buttons', 19);
+        this.exitButton.inputEnabled = true;
+        this.exitButton.events.onInputDown.add(function exit() {
+            this.game.state.start('Menu');
+        }, this);
+
+        this.exitButton.events.onInputOver.add(function () {
+            if (!this.game.buildState) {
+                this.game.cursorType = CURSOR_TYPE.POINTER;
+            }
+        }, this);
+        this.exitButton.events.onInputOut.add(removeHover, this);
 
         this.notification = this.game.add.text(0, 0, '');
         this.notification.exists = false;
     }
 
     UserInterface.prototype.update = function update(xOffset, yOffset) {
-        this.background.bringToTop();
         this.background.x = xOffset;
         this.background.y = yOffset;
+        this.background.bringToTop();
         this.turret.x = this.turretX + xOffset;
         this.turret.y = this.turretY + yOffset;
         this.turret.bringToTop();
+        this.exitButton.x = 100 + xOffset;
+        this.exitButton.y = 30 + yOffset;
+        this.exitButton.bringToTop();
         this.tank.x = this.tankX + xOffset;
         this.tank.y = this.tankY + yOffset;
         this.tank.bringToTop();
@@ -274,8 +313,11 @@ var UserInterface = (function iife() {
         this.skeletonImage.bringToTop();
         if (this.dialog.tower.show) {
             this.dialog.tower.sprite.x = DIALOG_X - 60 + xOffset;
-            this.dialog.tower.sprite.y = DIALOG_Y + 30 + yOffset;
+            this.dialog.tower.sprite.y = DIALOG_Y + 20 + yOffset;
             this.dialog.tower.sprite.bringToTop();
+            this.dialog.sellButton.x = DIALOG_X - 30 + xOffset;
+            this.dialog.sellButton.y = DIALOG_Y + 100 + yOffset;
+            this.dialog.sellButton.bringToTop();
             this.dialog.tower.damage.x = DIALOG_X + 90 + xOffset;
             this.dialog.tower.damage.y = DIALOG_Y + 15 + yOffset;
             this.dialog.tower.damage.bringToTop();
@@ -311,7 +353,7 @@ var UserInterface = (function iife() {
                 this.upgradeButtonFireSpeed.bringToTop();
             }
         } else if (this.dialog.unit.show) {
-            this.dialog.unit.sprite.x = DIALOG_X - 10 + xOffset;
+            this.dialog.unit.sprite.x = DIALOG_X - 15 + xOffset;
             this.dialog.unit.sprite.y = DIALOG_Y + 60 + yOffset;
             this.dialog.unit.sprite.bringToTop();
             this.dialog.unit.health.x = DIALOG_X + 70 + xOffset;
@@ -369,6 +411,7 @@ var UserInterface = (function iife() {
             this.dialog.attackIcon.visible = true;
             this.dialog.rangeIcon.visible = true;
             this.dialog.timeIcon.visible = true;
+            this.dialog.sellButton.visible = true;
         }
         if (dialog.infoType === 'unit') {
             var healthPercent = ((dialog.health / dialog.maxHealth) * 100);
@@ -440,6 +483,7 @@ var UserInterface = (function iife() {
             this.dialog.attackIcon.visible = false;
             this.dialog.rangeIcon.visible = false;
             this.dialog.timeIcon.visible = false;
+            this.dialog.sellButton.visible = false;
         } else if (this.dialog.unit.show) {
             this.dialog.unit.show = false;
             this.dialog.unit.sprite.visible = false;

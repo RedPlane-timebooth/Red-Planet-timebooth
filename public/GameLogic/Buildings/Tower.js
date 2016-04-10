@@ -59,6 +59,9 @@ var Tower = (function iife(parent) {
         this.getRangeUpgradeCost = function getRangeUpgradeCost() {
             return this.rangeUpgradeCost[this.upgrades.range];
         };
+        this.getSellPrice = function getSellPrice() {
+            return this.MONEY_COST * 0.8;
+        }
     }
 
     Tower.prototype = Object.create(parent.prototype);
@@ -131,6 +134,12 @@ var Tower = (function iife(parent) {
             console.log('Cant upgrade');
         }
     };
-
+    Tower.prototype.destroy = function destroy() {
+        this.game.ui.hideDialog();
+        this.game.bmd.cls();
+        this.game.canDestroyCircle = false;
+        this.game.dialogOn = false;
+        parent.prototype.destroy.call(this);
+    };
     return Tower;
 }(Building));

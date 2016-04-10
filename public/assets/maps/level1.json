@@ -1,12 +1,10 @@
 { "height":20,
  "layers":[
         {
-         "data":"0QYAANIGAADTBgAA1AYAANUGAADWBgAA1wYAANgGAADJBgAAygYAAMsGAADMBgAAzQYAAM4GAADPBgAA0AYAANAGAADJBgAAygYAACwIAAAtCAAALggAAC8IAAA1CAAANggAADcIAADMBgAAzQYAAM4GAADPBgAA4QYAAOIGAADjBgAA5AYAAOUGAADmBgAA5wYAAOgGAADZBgAA2gYAANsGAADcBgAA3QYAAN4GAADfBgAAKwgAACwIAAAtCAAAMggAADMIAAA0CAAANQgAADYIAAA2CAAAQwgAAEcIAADcBgAA3QYAAN4GAADfBgAA8QYAAPIGAADzBgAA9AYAAPUGAAD2BgAA9wYAAPgGAADpBgAA6gYAAOsGAADsBgAA7QYAACsIAAAsCAAALQgAAC4IAAAyCAAAMwgAADQIAAA1CAAANggAAEYIAABGCAAARwgAAOsGAADsBgAA7QYAAO4GAADvBgAAAQcAAAIHAAADBwAABAcAAAUHAAAGBwAABwcAAAgHAAD5BgAA+gYAAPsGAAD8BgAAKwgAACwIAAAtCAAAMggAADMIAAA0CAAANQgAADYIAABFCAAARggAAEcIAABWCAAA+gYAAPsGAAD8BgAA\/QYAAP4GAAD\/BgAAEQcAABIHAAATBwAAFAcAABUHAAAWBwAAFwcAABgHAAAJBwAACgcAAKUMAAArCAAAdwAAAC8IAAAzCAAANAgAADUIAAA2CAAANggAAEYIAABHCAAAVggAAA4HAAAJBwAACgcAAAsHAAAMBwAADQcAAA4HAAAPBwAAyQYAAMoGAADLBgAAzAYAAM0GAADOBgAAzwYAANAGAADJBgAAygYAAMsGAAA7CAAALwgAADMIAAA0CAAANQgAADYIAABGCAAARggAAEcIAADNBgAAzgYAAM8GAADQBgAAyQYAAMoGAADLBgAAzAYAAM0GAADOBgAA2QYAANoGAADbBgAA3AYAAN0GAADeBgAA3wYAAOAGAADZBgAA2gYAANsGAAB3AAAAVAgAAEMIAABECAAARQgAAEYIAABGCAAARwgAANwGAADdBgAA3gYAAN8GAADgBgAA2QYAANoGAADbBgAA3AYAAN0GAADeBgAA6QYAAOoGAADrBgAA7AYAAO0GAADuBgAA7wYAAPAGAADpBgAA6gYAAOsGAADsBgAAUggAADIIAAAzCAAANAgAADUIAABJCAAA6wYAAOwGAADtBgAA7gYAAO8GAADwBgAA6QYAAOoGAADrBgAA7AYAAO0GAADuBgAA+QYAAPoGAAD7BgAA\/AYAAP0GAAD+BgAA\/wYAAAAHAAD5BgAA+gYAAPsGAAD8BgAAUggAAEIIAABDCAAARAgAAEUIAABgCAAA+wYAAPwGAAD9BgAA\/gYAAP8GAAAABwAA+QYAAPoGAAD7BgAA\/AYAAP0GAAD+BgAACQcAAAoHAAALBwAADAcAAA0HAAAOBwAADwcAABAHAAAJBwAACgcAAAsHAAAMBwAAVAgAADIIAAAzCAAANAgAADUIAABgCAAACwcAAAwHAAANBwAADgcAAA8HAAAQBwAACQcAAAoHAAALBwAADAcAAA0HAAAOBwAA0QYAANIGAADTBgAA1AYAANUGAADWBgAA1wYAANgGAADJBgAAygYAAMsGAADMBgAAVQgAAEIIAABDCAAARAgAAEUIAADKBgAAywYAALcMAAC3DAAAtwwAAGoMAABrDAAAtwwAALcMAAC3DAAAzAYAAM0GAADOBgAA4QYAAOIGAADjBgAA5AYAAOUGAADmBgAA5wYAAOgGAADZBgAA2gYAANsGAADcBgAAVQgAADIIAAAzCAAANAgAADUIAACtDAAArgwAAGoMAABrDAAAcwwAAHQMAAB1DAAAdgwAAHcMAAB4DAAAeQwAAHoMAAC3DAAA8QYAAPIGAADzBgAA9AYAAPUGAAD2BgAA9wYAAPgGAADpBgAA6gYAAOsGAADsBgAAVQgAAEIIAABDCAAARAgAAEUIAABeCAAAagwAAGsMAABqDAAAawwAAIQMAACFDAAAhgwAAIcMAACIDAAAiQwAAIoMAAC3DAAAAQcAAAIHAAADBwAABAcAAAUHAAAGBwAABwcAAAgHAAD5BgAA+gYAAPsGAAD8BgAAVAgAAFIIAAAyCAAAMggAADMIAAA0CAAAMggAAF4IAABgCAAAYAgAAGAIAAC3DAAA+QYAALcMAAC3DAAAtwwAAP0GAAD+BgAAEQcAABIHAAATBwAAFAcAABUHAAAWBwAAFwcAABgHAAAJBwAACgcAAAsHAAAMBwAADQcAAE8IAABCCAAAQggAAEMIAABECAAAQggAAEMIAAAyCAAAMwgAADQIAABeCAAACQcAAAoHAAALBwAADAcAAA0HAAAOBwAAFgwAABcMAADLBgAAzAYAAM0GAADOBgAAzwYAANAGAADJBgAAygYAAMsGAADMBgAAzQYAAM4GAABSCAAAUggAAEMIAABDCAAAQwgAAEMIAABCCAAAQwgAAEQIAABFCAAAyQYAAMoGAADLBgAAzAYAAM0GAADOBgAAJgwAACcMAADbBgAA3AYAAN0GAADeBgAA3wYAAOAGAADZBgAA2gYAANsGAADcBgAA3QYAAN4GAADfBgAAlAwAAJUMAACWDAAAlwwAAFMIAABSCAAAMggAADMIAAA0CAAAXggAANoGAADbBgAA3AYAAN0GAADeBgAA6QYAAOoGAADrBgAA7AYAAO0GAADuBgAA7wYAAPAGAADpBgAA6gYAAOsGAADsBgAA7QYAAO4GAADvBgAApAwAAKUMAACmDAAApwwAAOwGAABcCAAAQggAAEMIAABECAAARQgAAOoGAADrBgAA7AYAAO0GAADuBgAA+QYAAPoGAAD7BgAA\/AYAAP0GAAD+BgAA\/wYAAAAHAAD5BgAA+gYAAPsGAAD8BgAA\/QYAAP4GAAD\/BgAAAAcAAPkGAAD6BgAA+wYAAPwGAAD9BgAAUggAAFMIAABUCAAAVQgAAPoGAAD7BgAA\/AYAAP0GAAD+BgAACQcAAAoHAAALBwAADAcAAA0HAAAOBwAADwcAABAHAAAJBwAACgcAAAsHAAAMBwAADQcAAA4HAAAPBwAAEAcAAAkHAAAKBwAACwcAAAwHAAANBwAADgcAAA8HAAAQBwAACQcAAAoHAAALBwAADAcAAA0HAAAOBwAA",
+         "data":"0QYAAMwGAADNBgAAzgYAAM8GAADQBgAA0AYAAMkGAADKBgAALAgAAC0IAAAuCAAALwgAADUIAAA2CAAANwgAANsGAADcBgAA2wYAANwGAADdBgAA3AYAABQPAAAVDwAAFg8AABcPAAAYDwAAGQ8AABoPAAAbDwAA4QYAANwGAADdBgAA3gYAAN8GAAArCAAALAgAAC0IAAAyCAAAMwgAADQIAAA1CAAANggAADYIAABDCAAARwgAAOsGAADsBgAA6wYAAOwGAADtBgAA7AYAACQPAAAlDwAAJg8AACcPAAAoDwAAKQ8AACoPAAArDwAA8QYAAOwGAADtBgAAKwgAACwIAAAtCAAALggAADIIAAAzCAAANAgAADUIAAA2CAAARggAAEYIAABHCAAA6wYAAPsGAAD8BgAA+wYAAPwGAAD9BgAA\/AYAAAwHAAALBwAADAcAAA0HAAAMBwAACwcAAAwHAAANBwAAAQcAAPwGAAArCAAALAgAAC0IAAAyCAAAMwgAADQIAAA1CAAANggAAEUIAABGCAAARwgAAFYIAAD6BgAA+wYAAAsHAAAMBwAACwcAAAwHAAANBwAADAcAAA0HAAAOBwAACwcAAAwHAAANBwAADQcAAA4HAAAPBwAAEQcAACsIAAB3AAAALwgAADMIAAA0CAAANQgAADYIAAA2CAAARggAAEcIAABWCAAADgcAAAkHAAAKBwAACwcAAAwHAAANBwAADgcAAA8HAADKBgAAOwgAADAIAAAwCAAAPggAAD0IAAA+CAAALggAAC8IAAAwCAAAyQYAADsIAAAvCAAAMwgAADQIAAA1CAAANggAAEYIAABGCAAARwgAAM0GAADOBgAAzwYAANAGAADJBgAAygYAAMsGAADMBgAAzQYAAM4GAAA7CAAALggAAEQPAABFDwAARg8AAEcPAABOCAAANAgAADUIAAA2CAAA2QYAAHcAAABUCAAAQwgAAEQIAABFCAAARggAAEYIAABHCAAA3AYAAN0GAADeBgAA3wYAAOAGAADZBgAA2gYAANsGAADcBgAADAcAABgHAAAtCAAATAgAAFQPAABVDwAAVg8AAFcPAAA1CAAARAgAAEUIAABGCAAA6QYAAOwGAABSCAAAMggAADMIAAA0CAAANQgAAEkIAADrBgAA7AYAAO0GAADuBgAA7wYAAPAGAADpBgAA6gYAAOsGAADsBgAAzAYAAFUIAABDCAAAQQgAAEIIAABDCAAARAgAADYIAABFCAAARggAAEcIAABWCAAA+QYAAPwGAABSCAAAQggAAEMIAABECAAARQgAAGAIAAD7BgAA\/AYAAP0GAAD+BgAA\/wYAAAAHAAD5BgAA+gYAAPsGAAD8BgAA3AYAAFUIAABEDwAARQ8AAEYPAABHDwAARQgAAEYIAABHCAAAVggAAA4HAAAJBwAACQcAAAwHAABUCAAAMggAADMIAAA0CAAANQgAAGAIAAALBwAADAcAAA0HAAAOBwAADwcAABAHAAAJBwAACgcAAAsHAAAMBwAA7AYAAFUIAABUDwAAVQ8AAFYPAABXDwAARQgAAEcIAADNBgAAzgYAAM8GAADQBgAA0QYAAMwGAABVCAAAQggAAEMIAABECAAARQgAAMoGAADLBgAAtwwAALcMAAC3DAAAagwAAGsMAAC3DAAAtwwAALcMAADMBgAA\/AYAAFQIAABMCAAATQgAAEUIAABFCAAARQgAAOsGAADsBgAA7QYAAO4GAADvBgAA4QYAANwGAABVCAAAMggAADMIAAA0CAAANQgAAK0MAACuDAAAagwAAGsMAABzDAAAdAwAAHUMAAB2DAAAdwwAAHgMAAB5DAAAegwAADwIAABFCAAARQgAAEUIAABFCAAARQgAAPsGAAD8BgAA\/QYAAN4GAADfBgAA8QYAAOwGAABVCAAAQggAAEMIAABECAAARQgAAF4IAABqDAAAawwAAGoMAABrDAAAhAwAAIUMAACGDAAAhwwAAIgMAACJDAAAigwAAEUIAABFCAAARQgAAEUIAABFCAAARggAAAsHAAAMBwAADQcAAO4GAADvBgAAAQcAAPwGAABUCAAAUggAADIIAAAyCAAAMwgAADQIAAAyCAAAXggAAGAIAABgCAAAYAgAALcMAAD5BgAAtwwAALcMAAA0DwAANQ8AAEUIAABFCAAARQgAAEUIAABFCAAASAgAAPsGAAD8BgAA\/QYAAP4GAAD\/BgAAEQcAAAwHAAANBwAATwgAAEIIAABCCAAAQwgAAEQIAABCCAAAQwgAADIIAAAzCAAAZQgAAGYIAABnCAAAaAgAAGkIAABqCAAATAgAAEUIAABOCAAAbggAAG8IAABGCAAASAgAAAsHAAAMBwAADQcAAA4HAAAPBwAAFgwAAMwGAADNBgAAzgYAAFIIAABSCAAAQwgAAEMIAABDCAAAQwgAAEIIAABDCAAARAgAAGUIAABmCAAAZwgAAGgIAABpCAAANAgAADUIAAA2CAAAbQgAAG4IAABiCAAAzgYAAMoGAADLBgAAzAYAAM0GAADOBgAAJgwAANwGAADdBgAA3gYAAN8GAABhDwAAYg8AAGMPAABnCAAAaAgAAFIIAAAyCAAAZQgAAGYIAABnCAAAaAgAAGkIAABqCAAAawgAAGwIAABtCAAAbggAAEkIAABZCAAA3gYAANoGAADbBgAA3AYAAN0GAADeBgAA6QYAAOwGAADtBgAA7gYAAE4PAABPDwAAUA8AAEsPAABMDwAATQ8AAEsPAABMDwAATQ8AAE4PAABPDwAAUA8AAEsPAABMDwAATQ8AAE4PAABPDwAAUA8AAFkIAADtBgAA7gYAAOoGAADrBgAA7AYAAO0GAADuBgAA+QYAAJQMAACVDAAAlgwAAJcMAAAABwAA+QYAAPoGAAD7BgAA+wYAAPwGAAD9BgAA\/gYAAPoGAAD7BgAA+gYAAPsGAAD8BgAA\/QYAAP4GAAD6BgAA+wYAAPwGAAD9BgAA\/gYAAPoGAAD7BgAA\/AYAAP0GAAD+BgAACQcAAKQMAAClDAAApgwAAFEIAAAQBwAACQcAAAoHAAALBwAADAcAAA0HAAAOBwAADwcAABAHAAAJBwAACgcAAAsHAAAMBwAADQcAAA4HAAAKBwAACwcAAAwHAAANBwAADgcAAAoHAAALBwAADAcAAA0HAAAOBwAA",
          "encoding":"base64",
          "height":20,
          "name":"backgroundLayer",
-         "offsetx":112,
-         "offsety":0,
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
@@ -31,8 +29,8 @@
                  "type":"",
                  "visible":true,
                  "width":21,
-                 "x":845,
-                 "y":-16
+                 "x":435,
+                 "y":-10
                 }, 
                 {
                  "height":24,
@@ -46,7 +44,7 @@
                  "type":"checkPoint",
                  "visible":true,
                  "width":23,
-                 "x":455,
+                 "x":147,
                  "y":373
                 }, 
                 {
@@ -61,7 +59,7 @@
                  "type":"checkPoint",
                  "visible":true,
                  "width":30,
-                 "x":513,
+                 "x":205,
                  "y":452
                 }, 
                 {
@@ -76,7 +74,7 @@
                  "type":"checkPoint",
                  "visible":true,
                  "width":23,
-                 "x":638,
+                 "x":330,
                  "y":472
                 }, 
                 {
@@ -91,12 +89,12 @@
                  "type":"",
                  "visible":true,
                  "width":44,
-                 "x":756,
-                 "y":594
+                 "x":900,
+                 "y":158
                 }, 
                 {
                  "ellipse":true,
-                 "height":62,
+                 "height":67.3333333333333,
                  "id":17,
                  "name":"",
                  "properties":
@@ -106,13 +104,13 @@
                  "rotation":0,
                  "type":"path",
                  "visible":true,
-                 "width":216,
-                 "x":578,
+                 "width":163.333333333333,
+                 "x":270,
                  "y":6
                 }, 
                 {
                  "ellipse":true,
-                 "height":68,
+                 "height":64,
                  "id":19,
                  "name":"",
                  "properties":
@@ -122,13 +120,13 @@
                  "rotation":0,
                  "type":"path",
                  "visible":true,
-                 "width":152,
-                 "x":500,
+                 "width":134.666666666667,
+                 "x":192,
                  "y":60
                 }, 
                 {
                  "ellipse":true,
-                 "height":136,
+                 "height":133.333333333333,
                  "id":20,
                  "name":"",
                  "properties":
@@ -138,8 +136,8 @@
                  "rotation":0,
                  "type":"path",
                  "visible":true,
-                 "width":114,
-                 "x":454,
+                 "width":100.666666666667,
+                 "x":146,
                  "y":84
                 }, 
                 {
@@ -155,8 +153,8 @@
                  "type":"path",
                  "visible":true,
                  "width":144,
-                 "x":400,
-                 "y":152
+                 "x":80,
+                 "y":149.333333333333
                 }, 
                 {
                  "height":22,
@@ -170,12 +168,12 @@
                  "type":"checkPoint",
                  "visible":true,
                  "width":9,
-                 "x":477,
+                 "x":169,
                  "y":222
                 }, 
                 {
                  "ellipse":true,
-                 "height":46,
+                 "height":72.6666666666666,
                  "id":27,
                  "name":"",
                  "properties":
@@ -185,24 +183,9 @@
                  "rotation":0,
                  "type":"path",
                  "visible":true,
-                 "width":277,
-                 "x":447,
+                 "width":626.333333333333,
+                 "x":139,
                  "y":422
-                }, 
-                {
-                 "height":20,
-                 "id":29,
-                 "name":"5",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"checkPoint",
-                 "visible":true,
-                 "width":14,
-                 "x":768,
-                 "y":600
                 }, 
                 {
                  "height":0,
@@ -216,13 +199,13 @@
                  "type":"checkPoint",
                  "visible":true,
                  "width":0,
-                 "x":540,
+                 "x":232,
                  "y":116
                 }, 
                 {
                  "ellipse":true,
-                 "height":118,
-                 "id":33,
+                 "height":40,
+                 "id":34,
                  "name":"",
                  "properties":
                     {
@@ -231,12 +214,197 @@
                  "rotation":0,
                  "type":"path",
                  "visible":true,
-                 "width":106,
-                 "x":654,
-                 "y":460
+                 "width":56,
+                 "x":221.333333333333,
+                 "y":116
+                }, 
+                {
+                 "ellipse":true,
+                 "height":40,
+                 "id":36,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":56,
+                 "x":305.333333333333,
+                 "y":58.6666666666667
+                }, 
+                {
+                 "ellipse":true,
+                 "height":67.3333,
+                 "id":37,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":163.333,
+                 "x":333.000166666667,
+                 "y":-20.3333166666666
+                }, 
+                {
+                 "ellipse":true,
+                 "height":42.9999833333333,
+                 "id":38,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":163.333,
+                 "x":802.3335,
+                 "y":129.000016666667
+                }, 
+                {
+                 "ellipse":true,
+                 "height":67.3333,
+                 "id":39,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":163.333,
+                 "x":687.666833333333,
+                 "y":129.000016666667
+                }, 
+                {
+                 "ellipse":true,
+                 "height":67.3333,
+                 "id":40,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":163.333,
+                 "x":655.666833333333,
+                 "y":174.33335
+                }, 
+                {
+                 "ellipse":true,
+                 "height":216,
+                 "id":41,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":148.333166666667,
+                 "x":644,
+                 "y":228
+                }, 
+                {
+                 "ellipse":true,
+                 "height":67.3333,
+                 "id":42,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":163.333,
+                 "x":610.3335,
+                 "y":371.666683333333
+                }, 
+                {
+                 "height":24,
+                 "id":43,
+                 "name":"5",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"checkPoint",
+                 "visible":true,
+                 "width":23,
+                 "x":665.833333333333,
+                 "y":478.666666666667
+                }, 
+                {
+                 "height":24,
+                 "id":44,
+                 "name":"6",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"checkPoint",
+                 "visible":true,
+                 "width":23,
+                 "x":707.166666666667,
+                 "y":413.333333333333
+                }, 
+                {
+                 "height":24,
+                 "id":45,
+                 "name":"7",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"checkPoint",
+                 "visible":true,
+                 "width":23,
+                 "x":699.166666666667,
+                 "y":266.666666666667
+                }, 
+                {
+                 "height":24,
+                 "id":46,
+                 "name":"8",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"checkPoint",
+                 "visible":true,
+                 "width":23,
+                 "x":776.5,
+                 "y":181.333333333333
+                }, 
+                {
+                 "height":24,
+                 "id":47,
+                 "name":"9",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"checkPoint",
+                 "visible":true,
+                 "width":23,
+                 "x":927.166666666667,
+                 "y":158.666666666667
                 }],
-         "offsetx":110,
-         "offsety":-6,
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -244,7 +412,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":34,
+ "nextobjectid":48,
  "orientation":"orthogonal",
  "properties":
     {

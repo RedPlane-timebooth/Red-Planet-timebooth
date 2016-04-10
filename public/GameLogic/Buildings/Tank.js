@@ -73,5 +73,9 @@ var Tank = (function iife(parent) {
 
         this.rotateHeadTowardsTarget();
     };
+    Tank.prototype.destroy = function destroy() {
+        parent.prototype.destroy.call(this);
+        this.head.destroy();
+    };
     return Tank;
 }(Tower));
