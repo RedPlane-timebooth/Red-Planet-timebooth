@@ -231,7 +231,7 @@ var UserInterface = (function iife() {
         this.dialog.attackIcon.scale.setTo(0.20, 0.20);
         this.dialog.attackIcon.visible = false;
         this.dialog.rangeIcon = new WorldObject(this.game, DIALOG_X + 50, DIALOG_Y + 35, 'rangeIcon');
-        this.dialog.rangeIcon.scale.setTo(0.07, 0.07);
+        this.dialog.rangeIcon.scale.setTo(0.2, 0.2);
         this.dialog.rangeIcon.visible = false;
         this.dialog.timeIcon = new WorldObject(this.game, DIALOG_X + 50, DIALOG_Y + 60, 'timeIcon');
         this.dialog.timeIcon.scale.setTo(0.20, 0.20);
