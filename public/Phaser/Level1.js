@@ -64,7 +64,7 @@ RedPlanetGame.Level1 = (function iife(parent) {
                     clearInterval(_this.thirdWave);
                     creepsCounter = 0;
                 }
-            }, 2600);
+            }, 3600);
         }, 140000);
 
         setTimeout(function () {
@@ -88,6 +88,7 @@ RedPlanetGame.Level1 = (function iife(parent) {
         clearInterval(this.secondWave);
         clearInterval(this.thirdWave);
         clearInterval(this.forthWave);
+        alert('Level over send data to server');
     };
     return RedPlanetGame.Level1;
 }(RedPlanetGame.Game));

@@ -39,7 +39,7 @@ RedPlanetGame.Preload = (function iife() {
             this.load.image('turretBuild', '/assets/buildings/towers/turret/turretBuild.png');
             this.load.image('tank', '/assets/buildings/towers/tank/tank.png');
             this.load.image('ghostButton', '/assets/buildings/towers/sniper/ghostButton.png');
-            this.load.image('uiBackground', '/assets/images/tConsole.png');
+            this.load.image('tConsole', '/assets/images/tconsole.png');
             this.load.image('select', '/assets/images/select.png');
             this.load.image('upgradeButton', '/assets/images/upgradeIcon.png');
             this.load.image('attackIcon', '/assets/images/attackIcon.png');

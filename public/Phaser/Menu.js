@@ -15,11 +15,13 @@ RedPlanetGame.Menu = (function iife(parent) {
     RedPlanetGame.Menu.prototype.preload = function preload() {
         this.load.image('marsMap', '/assets/images/marsMap.jpg');
         this.load.image('pylon', '/assets/images/Pylon.png');
+        this.load.image('bunker', '/assets/images/Bunker.png');
     };
 
     RedPlanetGame.Menu.prototype.create = function create() {
         this.background = this.game.add.sprite(0,0,'marsMap');
         this.game.world.setBounds(0, 0, 1920, 1080);
+
         this.game.player = new Player(1, 'Daniel', 0);
         var level1 = this.game.add.sprite(472, 322, 'pylon');
 
@@ -32,6 +34,25 @@ RedPlanetGame.Menu = (function iife(parent) {
         }, this);
         level1.events.onInputOut.add( function() {
                 this.game.cursorType = CURSOR_TYPE.NORMAL;
+        }, this);
+
+        var level2 = this.game.add.sprite(600, 352, 'bunker');
+
+        if(this.game.player.level > 1){
+            level2.inputEnabled = true;
+            level2.tint = 0xffffff;
+        } else {
+            level2.tint = 0x2a2a2a;
+        }
+        level2.events.onInputDown.add( function() {
+            //this.state.start('Level2');
+            alert('start level 2')
+        }, this);
+        level2.events.onInputOver.add( function() {
+            this.game.cursorType = CURSOR_TYPE.POINTER;
+        }, this);
+        level2.events.onInputOut.add( function() {
+            this.game.cursorType = CURSOR_TYPE.NORMAL;
         }, this);
     };
 

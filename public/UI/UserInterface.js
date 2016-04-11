@@ -6,7 +6,7 @@ var UserInterface = (function iife() {
     function UserInterface(game) {
         this.game = game;
         var _this = this;
-        this.background = this.game.add.sprite(0, 0, 'uiBackground', 0);
+        this.background = this.game.add.sprite(0, 0, 'tConsole');
 
         //gold
         this.goldX = 65;
