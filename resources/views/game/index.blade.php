@@ -4,7 +4,7 @@
         <div id="gameCanvas"></div>
 
     </div>
-
+    <script> jsonData = '{!! $data !!}'</script>
     <script src="/lib/phaser.js"></script>
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/GameLogic/Common/globalConstants.js"></script>

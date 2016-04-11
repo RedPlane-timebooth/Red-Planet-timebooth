@@ -12,13 +12,13 @@
         "cboden/ratchet": "0.4.x-dev",
         "barryvdh/laravel-debugbar": "v2.2.0",
         "barryvdh/laravel-ide-helper": "v2.1.4",
-        "fzaninotto/faker": "1.6.x-dev"
+        "fzaninotto/faker": "1.6.x-dev",
+        "laravel/socialite": "v2.0.15"
     },
     "require-dev": {
         "predis/predis": "~1.1@dev",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
-        "laravel/socialite": "~2.0",
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*"
     },

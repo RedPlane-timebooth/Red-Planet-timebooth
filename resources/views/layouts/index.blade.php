@@ -76,25 +76,13 @@
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <div class="col-md-4">
                                             <input type="email" class="form-control" name="email" placeholder="E-Mail Address" value="{{ old('email') }}">
-
-                                            @if ($errors->has('email'))
-                                                <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                            @endif
                                         </div>
                                     </div>
 
                                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-
                                         <div class="col-md-4">
                                             <input type="password" class="form-control" name="password" placeholder="Password">
 
-                                            @if ($errors->has('password'))
-                                                <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                            @endif
                                         </div>
                                     </div>
                                 <button type="submit" class="btn btn-primary">
@@ -115,8 +103,8 @@
     @yield('content')
 </main>
             <!-- JavaScripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="{{url('/resource/js/jquery.min.js')}}"></script>
+<script src="{{url('/resource/js/bootstrap.min.js')}}"></script>
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

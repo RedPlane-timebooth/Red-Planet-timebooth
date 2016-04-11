@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +50,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('/admin/news', 'ArticlesController');
     Route::resource('/admin/shop', 'ItemController');
 });
+
+ Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
+ Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
