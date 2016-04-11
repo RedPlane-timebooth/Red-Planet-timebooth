@@ -1,13 +1,12 @@
 var Building = (function iife(parent) {
     'use strict';
     
-    function Building(game, x, y, spriteName, startFrame, player) {
+    function Building(game, x, y, spriteName, startFrame) {
         parent.call(this, game, x, y, spriteName, startFrame);
         
         this.game.buildings.add(this);
-        this.playerId =  player.id;//door for multiplayer, keeping dependenci i
         this.fullyBuild = false;
-        this.game.player.gold -= this.MONEY_COST;
+        this.game.gold -= this.MONEY_COST;
 
         this.inputEnabled = true;
         this.events.onInputOver.add(this.onInputOver, this);
@@ -22,7 +21,7 @@ var Building = (function iife(parent) {
         return playerMoney >= moneyCost;
     };
     Building.prototype.sell = function destroy() {
-        this.game.player.gold += this.getSellPrice();
+        this.game.gold += this.getSellPrice();
         this.destroy();
     };
     return Building;

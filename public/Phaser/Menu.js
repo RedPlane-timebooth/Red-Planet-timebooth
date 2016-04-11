@@ -27,6 +27,9 @@ RedPlanetGame.Menu = (function iife(parent) {
         playerData = $.parseJSON(jsonData);
         this.game.player = new Player(playerData.user.id, playerData.user.name, playerData.user.level,
             playerData.user.bonusObjects);
+        this.game.level = this.game.player.level;
+        this.game.nextLevel = 2;
+        
         var level1 = this.game.add.sprite(435, 240, 'pylon'),
             level2 = this.game.add.sprite(690, 305, 'bunker'),
             level3 = this.game.add.sprite(870, 400, 'barracks');
@@ -50,7 +53,7 @@ RedPlanetGame.Menu = (function iife(parent) {
         }
         level2.events.onInputDown.add( function() {
             //this.state.start('Level2');
-            alert('start level 2')
+            this.state.start('Work');
         }, this);
         level2.events.onInputOver.add( function() {
             this.game.cursorType = CURSOR_TYPE.POINTER;

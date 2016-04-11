@@ -11,7 +11,7 @@ var UserInterface = (function iife() {
         //gold
         this.goldX = 65;
         this.goldY = 460;
-        this.gold = this.game.add.text(this.goldX, this.goldY, this.game.player.gold,
+        this.gold = this.game.add.text(this.goldX, this.goldY, '',
             {font: "24px Algerian", fill: '#FFD700'}
         );
         this.goldImage = new WorldObject(this.game, 0, 0, 'goldIcon');
@@ -19,19 +19,27 @@ var UserInterface = (function iife() {
 
         //killed
         this.killedX = 65;
-        this.killedY = 520;
-        this.killed = this.game.add.text(this.killedX, this.killedY, 'K: ' + this.game.player.gold,
+        this.killedY = 500;
+        this.killed = this.game.add.text(this.killedX, this.killedY, '',
             {font: "24px Algerian", fill: 'white'}
         );
         this.skeletonImage = new WorldObject(this.game, 0, 0, 'skeletonIcon');
         this.skeletonImage.scale.setTo(0.15, 0.15);
+
+        //lives
+        this.livesX = 65;
+        this.livesY = 560;
+        this.lives = this.game.add.text(this.killedX, this.killedY, '',
+            {font: "24px Algerian", fill: 'red'}
+        );
+        this.livesImage = new WorldObject(this.game, 0, 0, 'livesIcon');
+        this.livesImage.scale.setTo(0.13, 0.13);
 
         //hover message
         this.hover = this.game.add.text(0, 0, '',
             {font: "14px Algerian", fill: '#FFD700'}
         );
         this.hover.text = '';
-        this.hover.width = 250;
         this.showHover = false;
         this.hoverX = 0;
         this.hoverY = 0;
@@ -45,6 +53,11 @@ var UserInterface = (function iife() {
         this.turret.inputEnabled = true;
         this.turret.events.onInputDown.add(function onBuildTower1() {
             this.game.lastPressed = this.game.time.now;
+            if(!Building.prototype.canBuild(game.gold, Turret.prototype.MONEY_COST)){
+                game.ui.textNotification(centralTextPossX + game.camera.x, centralTextPossY + game.camera.y,
+                    'Not enought gold!!!', 'red', 1500, true);
+                return;
+            }
             this.game.currentBuilding = _this.game.add.sprite(_this.game.input.activePointer.x,
                 _this.game.input.activePointer.y, 'turret', 0);
             this.game.physics.enable(_this.game.currentBuilding, Phaser.Physics.ARCADE);
@@ -73,6 +86,11 @@ var UserInterface = (function iife() {
         this.tank.inputEnabled = true;
         this.tank.events.onInputDown.add(function onBuildTower1() {
             this.game.lastPressed = this.game.time.now;
+            if(!Building.prototype.canBuild(game.gold, Tank.prototype.MONEY_COST)){
+                game.ui.textNotification(centralTextPossX + game.camera.x, centralTextPossY + game.camera.y,
+                    'Not enought gold!!!', 'red', 1500, true);
+                return;
+            }
             this.game.currentBuilding = this.game.add.sprite(this.game.input.activePointer.x,
                 this.game.input.activePointer.y, 'tank');
             this.game.physics.enable(this.game.currentBuilding, Phaser.Physics.ARCADE);
@@ -100,6 +118,11 @@ var UserInterface = (function iife() {
         this.ghostY = DIALOG_Y - 12;
         this.ghost.events.onInputDown.add(function onBuildTower1() {
             this.game.lastPressed = this.game.time.now;
+            if(!Building.prototype.canBuild(game.gold, Sniper.prototype.MONEY_COST)){
+                game.ui.textNotification(centralTextPossX + game.camera.x, centralTextPossY + game.camera.y,
+                    'Not enought gold!!!', 'red', 1500, true);
+                return;
+            }
             this.game.currentBuilding = this.game.add.sprite(this.game.input.activePointer.x,
                 this.game.input.activePointer.y, 'sniper');
             this.game.physics.enable(this.game.currentBuilding, Phaser.Physics.ARCADE);
@@ -127,10 +150,10 @@ var UserInterface = (function iife() {
         this.upgradeButtonRange.inputEnabled = true;
         this.upgradeButtonRange.events.onInputDown.add(onClickButtonUpgradeButtonRange, this);
         function onClickButtonUpgradeButtonRange() {
-            if (_this.game.player.gold > _this.game.selected.getRangeUpgradeCost()) {
-                _this.game.player.gold -= _this.game.selected.getRangeUpgradeCost();
+            if (_this.game.gold >= _this.game.selected.getRangeUpgradeCost()) {
+                _this.game.gold -= _this.game.selected.getRangeUpgradeCost();
                 _this.game.selected.upgrade('range');
-                _this.hover.text = "$" + _this.game.selected.getRangeUpgradeCost() +
+                _this.hover.texttext = "$" + _this.game.selected.getRangeUpgradeCost() +
                     "\n+" + _this.dialog.tower.getAdditionRange;
             } else {
                 _this.textNotification(centralTextPossX + _this.game.camera.x, centralTextPossY + _this.game.camera.y,
@@ -161,8 +184,8 @@ var UserInterface = (function iife() {
         this.upgradeButtonFireDamage.inputEnabled = true;
         this.upgradeButtonFireDamage.events.onInputDown.add(onClickButtonUpgradeButtonFireDamage, this);
         function onClickButtonUpgradeButtonFireDamage() {
-            if (_this.game.player.gold > _this.game.selected.getFireDamageUpgradeCost()) {
-                _this.game.player.gold -= _this.game.selected.getFireDamageUpgradeCost();
+            if (_this.game.gold >= _this.game.selected.getFireDamageUpgradeCost()) {
+                _this.game.gold -= _this.game.selected.getFireDamageUpgradeCost();
                 _this.game.selected.upgrade('fireDamage');
                 _this.hover.text = "$" + _this.game.selected.getFireDamageUpgradeCost()
                     + "\n+" + _this.dialog.tower.getAdditionFireDamage;
@@ -194,8 +217,8 @@ var UserInterface = (function iife() {
         this.upgradeButtonFireSpeed.inputEnabled = true;
         this.upgradeButtonFireSpeed.events.onInputDown.add(onClickButtonUpgradeButtonFireSpeed, this);
         function onClickButtonUpgradeButtonFireSpeed() {
-            if (_this.game.player.gold > _this.game.selected.getFireSpeedUpgradeCost()) {
-                _this.game.player.gold -= _this.game.selected.getFireSpeedUpgradeCost();
+            if (_this.game.gold >= _this.game.selected.getFireSpeedUpgradeCost()) {
+                _this.game.gold -= _this.game.selected.getFireSpeedUpgradeCost();
                 _this.game.selected.upgrade('fireSpeed');
                 _this.hover.text = "$" + _this.game.selected.getFireSpeedUpgradeCost()
                     + "\n+" + _this.dialog.tower.getAdditionFireSpeed;
@@ -218,6 +241,60 @@ var UserInterface = (function iife() {
         }, this);
         this.upgradeButtonFireSpeed.events.onInputOut.add(removeHover, this);
         this.upgradeButtonFireSpeed.visible = false;
+
+        //upgrade button for tower splash bonus
+        this.upgradeButtonSplashX = DIALOG_X + 30;
+        this.upgradeButtonSplashY = DIALOG_Y - 50;
+        this.upgradeButtonSplash = new WorldObject(_this.game, 0, 0, 'splash', 0);
+        //this.upgradeButtonSplash.scale.setTo(0.1);
+        this.upgradeButtonSplash.inputEnabled = true;
+        this.upgradeButtonSplash.events.onInputDown.add(function() {
+            var index;
+            if (index = this.game.player.bonusObjects.indexOf('splash') > -1) {
+                this.game.player.bonusObjects.splice(index, 1);
+                this.game.selected.upgrade('splash');
+                this.game.selected.showDialog();
+            }
+        }, this);
+
+        this.upgradeButtonSplash.events.onInputOver.add(function () {
+            this.hover.text = "+70 /n splash";
+            this.hoverY = this.upgradeButtonRangeY - 15;
+            this.hoverX = this.upgradeButtonRangeX + 70;
+            this.showHover = true;
+            if (!this.game.buildState) {
+                this.game.cursorType = CURSOR_TYPE.POINTER;
+            }
+        }, this);
+        this.upgradeButtonSplash.events.onInputOut.add(removeHover, this);
+        this.upgradeButtonSplash.visible = false;
+
+        //upgrade button for tower splash bonus
+        this.upgradeButtonCriticalX = DIALOG_X + 100;
+        this.upgradeButtonCriticalY = DIALOG_Y - 50;
+        this.upgradeButtonCritical = new WorldObject(_this.game, 0, 0, 'critical', 0);
+        //this.upgradeButtonSplash.scale.setTo(0.1);
+        this.upgradeButtonCritical.inputEnabled = true;
+        this.upgradeButtonCritical.events.onInputDown.add(function() {
+            var index;
+            if (index = this.game.player.bonusObjects.indexOf('critical') > -1) {
+                this.game.player.bonusObjects.splice(index, 1);
+                this.game.selected.upgrade('critical');
+                this.game.selected.showDialog();
+            }
+        }, this);
+
+        this.upgradeButtonCritical.events.onInputOver.add(function () {
+            this.hover.text = "+2.5x /n critical";
+            this.hoverY = this.upgradeButtonRangeY - 15;
+            this.hoverX = this.upgradeButtonRangeX + 70;
+            this.showHover = true;
+            if (!this.game.buildState) {
+                this.game.cursorType = CURSOR_TYPE.POINTER;
+            }
+        }, this);
+        this.upgradeButtonCritical.events.onInputOut.add(removeHover, this);
+        this.upgradeButtonCritical.visible = false;
 
         //dialog for towers
         this.dialog = {};
@@ -245,7 +322,7 @@ var UserInterface = (function iife() {
         this.dialog.defenceIcon.visible = false;
         
         this.dialog.sellButton = new WorldObject(this.game, 0, 0, 'sellIcon');
-        this.dialog.sellButton.scale.setTo(0.4);
+        this.dialog.sellButton.scale.setTo(0.15);
         this.dialog.sellButton.inputEnabled = true;
         this.dialog.sellButton.events.onInputDown.add(function() {
             this.game.selected.sell();
@@ -358,11 +435,17 @@ var UserInterface = (function iife() {
         this.goldImage.y = this.goldY + yOffset + 10;
         this.goldImage.bringToTop();
         this.killed.x = this.killedX + xOffset;
-        this.killed.y = this.killedY + yOffset;
+        this.killed.y = this.killedY + yOffset + 5;
         this.killed.bringToTop();
         this.skeletonImage.x = this.killedX + xOffset - 30;
-        this.skeletonImage.y = this.killedY + yOffset + 10;
+        this.skeletonImage.y = this.killedY + yOffset + 18;
         this.skeletonImage.bringToTop();
+        this.lives.x = this.livesX + xOffset + 1;
+        this.lives.y = this.livesY + yOffset - 8;
+        this.lives.bringToTop();
+        this.livesImage.x = this.livesX + xOffset - 30;
+        this.livesImage.y = this.livesY + yOffset + 5;
+        this.livesImage.bringToTop();
         if (this.dialog.tower.show) {
             this.dialog.tower.sprite.x = DIALOG_X - 60 + xOffset;
             this.dialog.tower.sprite.y = DIALOG_Y + 20 + yOffset;
@@ -389,6 +472,20 @@ var UserInterface = (function iife() {
             this.dialog.timeIcon.y = DIALOG_Y + 96 + yOffset;
             this.dialog.timeIcon.bringToTop();
 
+            if(this.game.player.bonusObjects.indexOf('critical') > -1){
+                this.upgradeButtonCritical.x = this.upgradeButtonCriticalX + xOffset;
+                this.upgradeButtonCritical.y = this.upgradeButtonCriticalY + yOffset;
+                this.upgradeButtonCritical.bringToTop();
+            } else {
+                this.upgradeButtonCritical.visible = false;
+            }
+            if(this.game.player.bonusObjects.indexOf('splash') > -1){
+                this.upgradeButtonSplash.x = this.upgradeButtonSplashX + xOffset;
+                this.upgradeButtonSplash.y = this.upgradeButtonSplashY + yOffset;
+                this.upgradeButtonSplash.bringToTop();
+            } else {
+                this.upgradeButtonSplash.visible = false;
+            }
             if (this.dialog.tower.upgrades.range < 4) {
                 this.upgradeButtonRange.x = this.upgradeButtonRangeX + xOffset;
                 this.upgradeButtonRange.y = this.upgradeButtonRangeY + yOffset;
@@ -464,6 +561,8 @@ var UserInterface = (function iife() {
             this.dialog.rangeIcon.visible = true;
             this.dialog.timeIcon.visible = true;
             this.dialog.sellButton.visible = true;
+            this.upgradeButtonSplash.visible = true;
+            this.upgradeButtonCritical.visible = true;
         }
         if (dialog.infoType === 'unit') {
             var healthPercent = ((dialog.health / dialog.maxHealth) * 100);
@@ -536,6 +635,8 @@ var UserInterface = (function iife() {
             this.dialog.rangeIcon.visible = false;
             this.dialog.timeIcon.visible = false;
             this.dialog.sellButton.visible = false;
+            this.upgradeButtonSplash.visible = false;
+            this.upgradeButtonCritical.visible = false;
         } else if (this.dialog.unit.show) {
             this.dialog.unit.show = false;
             this.dialog.unit.sprite.visible = false;
@@ -571,8 +672,6 @@ var UserInterface = (function iife() {
 function removeHover() {
     this.hover.text = '';
     this.showHover = false;
-    this.hoverX = 0;
-    this.hoverY = 0;
     if (!this.game.buildState) {
         this.game.cursorType = CURSOR_TYPE.NORMAL;
     }

@@ -76,8 +76,11 @@ var Unit = (function iife(parent) {
         }
         this.tweens[0].start();
         this.tweens[currentCheckPoint - 1].onComplete.add(function onEndReach() {
-            //alert('reached end');
+            this.game.lives -= 1;
             this.kill();
+            if(this.game.lives <= 0){
+                this.game.state.start('Defeat');
+            }
         }, this);
 
         this.inputEnabled = true;
@@ -93,12 +96,21 @@ var Unit = (function iife(parent) {
         }
     };
 
-    Unit.prototype.takeHit = function takeHit(bullet, player) {
+    Unit.prototype.takeHit = function takeHit(bullet) {
+        if (bullet.bonuses.splash) {
+            this.game.enemies.forEachExists(function (enemy) {
+                if (this.game.physics.arcade.distanceBetween(bullet, enemy) < bullet.bonuses.splashRadius) {
+                    if (enemy !== this) {
+                        enemy.takeHit({damage: bullet.damage, bonuses:{splash : false}});
+                    }
+                }
+            }, this);
+        }
         var calculateHitDamage = bullet.damage - (bullet.damage * this.defence) / 100;
         this.damage(calculateHitDamage);
         if (this.health <= 0) {
-            player.gold += this.goldReward;
-            player.killed += 1;
+            this.game.gold += this.goldReward;
+            this.game.killed += 1;
         }
         if(this.game.selected === this){
             if(this.health <= 0){

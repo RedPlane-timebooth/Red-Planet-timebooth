@@ -38,15 +38,23 @@ RedPlanetGame.Game = (function iife(parent) {
                 }
             }
         }, this);
-
-        this.game.bmd = this.game.make.bitmapData(960, 790);
-        this.game.bmd.addToWorld();
+        
+        this.game.killed = 0;
+        this.game.lives = 10;
+        this.game.rewards = 0;
     };
 
     RedPlanetGame.Game.prototype.update = function update() {
         //cursor state
         this.game.canvas.style.cursor = this.game.cursorType;
 
+        //check if win
+        if(this.game.killed + 10 - this.game.lives >= this.game.creeps){
+            this.game.rewards = this.game.killed * this.game.lives;
+            this.game.level = this.game.nextLevel;
+            this.state.start('Win');
+        }
+        
         //on building state
         if (this.game.buildState) {
             this.onBuildState();
@@ -58,7 +66,7 @@ RedPlanetGame.Game = (function iife(parent) {
         this.game.physics.arcade.collide(this.game.enemies, this.backgroundlayer);
         //checks for collision between bullets and enemies
         this.game.physics.arcade.overlap(this.game.bullets, this.game.enemies, function (bullet, enemy) {
-            enemy.takeHit(bullet, _this.game.player);
+            enemy.takeHit(bullet);
             bullet.kill(enemy, true);
         }, null, this);
 
@@ -79,8 +87,9 @@ RedPlanetGame.Game = (function iife(parent) {
     };
 
     RedPlanetGame.Game.prototype.render = function render() {
-        this.game.ui.gold.text = this.game.player.gold;
-        this.game.ui.killed.text = this.game.player.killed;
+        this.game.ui.gold.text = this.game.gold;
+        this.game.ui.killed.text = this.game.killed;
+        this.game.ui.lives.text = this.game.lives;
     };
 
     RedPlanetGame.Game.prototype.initMapLayersGroups = function init(tilemap) {
@@ -106,6 +115,7 @@ RedPlanetGame.Game = (function iife(parent) {
         this.game.physics.enable(this.game.invisiblePath, Phaser.Physics.ARCADE);
         //creates checkPoints for creeps
         this.checkPoints = createCheckPoints('checkPoint', this.map, 'objectsLayer');
+
     };
 
     RedPlanetGame.Game.prototype.followCamera = function followCamera() {
@@ -140,7 +150,6 @@ RedPlanetGame.Game = (function iife(parent) {
                 this.game,
                 this.game.currentBuilding.x,
                 this.game.currentBuilding.y,
-                this.game.player,
                 this.game.currentBuilding.key
             );
 
@@ -159,6 +168,12 @@ RedPlanetGame.Game = (function iife(parent) {
         this.game.canBuild = false;
         this.game.currentBuilding.tint = 0xff0000;
     };
+    RedPlanetGame.Game.prototype.shutdown = function shutdown() {
+        console.log(JSON.stringify({'user':{id: this.game.player.id, cash: this.game.rewards,
+            level: 0, items: this.game.player.bonusObjects}}));
 
+        $.post('/game', JSON.stringify({'user':{id: this.game.player.id, cash: this.game.rewards,
+            level: this.game.level, items: this.game.player.bonusObjects}}));
+    };
     return RedPlanetGame.Game;
 })(Phaser.State);

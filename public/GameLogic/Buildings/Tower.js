@@ -2,10 +2,10 @@ var Tower = (function iife(parent) {
     'use strict';
     var nextTarget = null;
 
-    function Tower(game, x, y, spriteName, startFrame, player,
+    function Tower(game, x, y, spriteName, startFrame,
                    bulletType, fireDamage, fireSpeed, scale, range,
                    fireDamageUpgradeCost, fireSpeedUpgradeCost, rangeUpgradeCost) {
-        parent.call(this, game, x, y, spriteName, startFrame, player);
+        parent.call(this, game, x, y, spriteName, startFrame);
 
         validator.validateIfString(bulletType, this.constructor + ' bulletType');
         validator.validateIfUndefined(fireDamage, this.constructor + ' fireDamage');
@@ -40,6 +40,7 @@ var Tower = (function iife(parent) {
             fireDamage: 0,
             range: 0
         };
+        this.bonuses = {};
 
         this.getFireDamage = function getFireDamage() {
             return this.fireDamage[this.upgrades.fireDamage];
@@ -82,6 +83,14 @@ var Tower = (function iife(parent) {
 
     Tower.prototype.fire = function fire() {
         this.lastFired = this.game.time.now;
+        if(this.bonuses.criticalStrike){
+            this.bonuses.critical = Math.random() < this.bonuses.criticalChance;
+            if(this.bonuses.critical){
+                var message = this.constructor == Sniper ?  'Headshot!!!  ' : 'Critical!!!  ';
+                this.game.ui.textNotification(this.x - 80, this.y - 80, message + this.bonuses.criticalStrike + 'x',
+                    'red', 2000, true);
+            }
+        }
         this.game.bullets.factory(this.x, this.y - 30, this.nextTarget, this.bulletType,
             this.getFireDamage(), this.bonuses);
     };
@@ -141,10 +150,25 @@ var Tower = (function iife(parent) {
         this.game.dialogOn = true;
     };
     Tower.prototype.upgrade = function upgrade(type) {
-        if (this.upgrades[type] < 4) {
+        if(type === 'splash'){
+            if(this.bonuses.splash){
+                this.bonuses.splashRadius += 70;
+                return;
+            }
+            this.bonuses.splash = true;
+            this.bonuses.splashRadius = 70;
+
+        } else if(type == 'critical'){
+            if(this.bonuses.critical){
+                this.bonuses.criticalChance += 0.2;
+                this.bonuses.criticalStrike += 2.5;
+                return;
+            }
+            this.bonuses.criticalChance = 0.2;
+            this.bonuses.criticalStrike = 2.5;
+            this.bonuses.critical = false;
+        } else if (this.upgrades[type] < 4) {
             this.upgrades[type]++;
-        } else {
-            console.log('Cant upgrade');
         }
     };
     Tower.prototype.destroy = function destroy() {

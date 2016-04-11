@@ -26,24 +26,22 @@ var Sniper = (function iife(parent) {
     const BULLET_TYPE = BULLET_TYPES.SNIPER;
     var nextTarget = null;
 
-    function Sniper(game, x, y, player) {
-        parent.call(this, game, x, y, spriteSheetLevel1, START_FRAME, player,
+    function Sniper(game, x, y) {
+        parent.call(this, game, x, y, spriteSheetLevel1, START_FRAME,
             BULLET_TYPE, FIRE_DAMAGE, FIRE_SPEED, SCALE, RANGE,
             FIRE_DAMAGE_UPGRADE_COST, FIRE_SPEED_UPGRADE_COST, RANGE_UPGRADE_COST);
 
         this.fullyBuild = true;
         this.reversed = false;
-        this.bonuses = {
-            critical: true,
-            criticalChance: 0.2,
-            criticalStrike: 2.5
-        };
+        this.bonuses.critical = true;
+        this.bonuses.criticalChance = 0.2;
+        this.bonuses.criticalStrike = 2.5;
         this.smoke = new WorldObject(this.game, this.x, this.y, 'smoke', 7);
         this.smoke.animations.add('fire', [0, 1,2,3,4,5,6,7], 30, false);
     }
 
     Sniper.prototype = Object.create(parent.prototype);
-    Sniper.prototype.constructor = Turret;
+    Sniper.prototype.constructor = Sniper;
 
     Sniper.prototype.MONEY_COST = MONEY_COST;
 
@@ -73,10 +71,6 @@ var Sniper = (function iife(parent) {
         this.rotateHeadTowardsTarget();
     };
     Sniper.prototype.fire = function fire() {
-        this.bonuses.critical = Math.random() < this.bonuses.criticalChance;
-        if(this.bonuses.critical){
-            this.game.ui.textNotification(this.x - 50, this.y - 50, 'Headshot!!!', 'red', 2000, true);
-        }
         parent.prototype.fire.call(this);
         this.smoke.animations.play('fire');
     };

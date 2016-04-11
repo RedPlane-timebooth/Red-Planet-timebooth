@@ -26,8 +26,8 @@ var Tank = (function iife(parent) {
     const SCALE = 1;
     const BULLET_TYPE = BULLET_TYPES.SPLASH;
 
-    function Tank(game, x, y, player) {
-        parent.call(this, game, x, y, spriteSheetLevel1, START_FRAME, player,
+    function Tank(game, x, y) {
+        parent.call(this, game, x, y, spriteSheetLevel1, START_FRAME,
             BULLET_TYPE, FIRE_DAMAGE, FIRE_SPEED, SCALE, RANGE,
             FIRE_DAMAGE_UPGRADE_COST, FIRE_SPEED_UPGRADE_COST, RANGE_UPGRADE_COST);
 
@@ -41,10 +41,8 @@ var Tank = (function iife(parent) {
         }, this);
 
         this.reversed = false;
-        this.bonuses = {
-            splash: true,
-            splashRadius: 70
-        }
+        this.bonuses.splash = true;
+        this.bonuses.splashRadius = 70;
     }
 
     Tank.prototype = Object.create(parent.prototype);

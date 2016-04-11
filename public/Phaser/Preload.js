@@ -47,9 +47,12 @@ RedPlanetGame.Preload = (function iife() {
             this.load.image('rangeIcon', '/assets/images/rangeIcon.png');
             this.load.image('goldIcon', '/assets/images/gold.png');
             this.load.image('skeletonIcon', '/assets/images/skeleton.png');
+            this.load.image('livesIcon', '/assets/images/heart.png');
             this.load.image('defence', '/assets/images/defence.png');
             this.load.image('speed', '/assets/images/speed.png');
             this.load.image('sellIcon', '/assets/images/sellIcon.png');
+            this.load.image('splash', '/assets/images/splash.png');
+            this.load.image('critical', '/assets/images/critical.png');
             
             this.load.audio('missileShoot', '/assets/buildings/towers/turret/missileShoot.mp3');
             this.load.audio('missileExplosion', '/assets/buildings/towers/turret/missileExplosion.mp3');

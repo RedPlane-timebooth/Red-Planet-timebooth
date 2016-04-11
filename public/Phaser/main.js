@@ -4,4 +4,7 @@ RedPlanetGame.game.state.add('Preload', RedPlanetGame.Preload);
 RedPlanetGame.game.state.add('Menu', RedPlanetGame.Menu);
 RedPlanetGame.game.state.add('Game', RedPlanetGame.Game);
 RedPlanetGame.game.state.add('Level1', RedPlanetGame.Level1);
+RedPlanetGame.game.state.add('Defeat', RedPlanetGame.Defeat);
+RedPlanetGame.game.state.add('Win', RedPlanetGame.Win);
+RedPlanetGame.game.state.add('Work', RedPlanetGame.Work);
 RedPlanetGame.game.state.start('Boot');

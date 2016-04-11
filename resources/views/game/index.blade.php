@@ -27,6 +27,9 @@
     <script src="/Phaser/Preload.js"></script>
     <script src="/Phaser/Menu.js"></script>
     <script src="/Phaser/Game.js"></script>
+    <script src="/Phaser/Defeat.js"></script>
+    <script src="/Phaser/Win.js"></script>
+    <script src="/Phaser/Work.js"></script>
     <script src="/Phaser/Level1.js"></script>
     <script src="/Phaser/main.js"></script>
 
