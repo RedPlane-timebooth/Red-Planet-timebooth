@@ -169,8 +169,7 @@ RedPlanetGame.Game = (function iife(parent) {
         this.game.currentBuilding.tint = 0xff0000;
     };
     RedPlanetGame.Game.prototype.shutdown = function shutdown() {
-        console.log(JSON.stringify({'user':{id: this.game.player.id, cash: this.game.rewards,
-            level: 0, items: this.game.player.bonusObjects}}));
+        this.game.player.level = this.game.level;
 
         $.post('/game', JSON.stringify({'user':{id: this.game.player.id, cash: this.game.rewards,
             level: this.game.level, items: this.game.player.bonusObjects}}));

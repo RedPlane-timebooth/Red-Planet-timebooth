@@ -87,8 +87,8 @@ var Tower = (function iife(parent) {
             this.bonuses.critical = Math.random() < this.bonuses.criticalChance;
             if(this.bonuses.critical){
                 var message = this.constructor == Sniper ?  'Headshot!!!  ' : 'Critical!!!  ';
-                this.game.ui.textNotification(this.x - 80, this.y - 80, message + this.bonuses.criticalStrike + 'x',
-                    'red', 2000, true);
+                this.game.ui.textNotification(this.x - 80, this.y - 90, message + this.bonuses.criticalStrike + 'x',
+                    'red', 2000, true, 24);
             }
         }
         this.game.bullets.factory(this.x, this.y - 30, this.nextTarget, this.bulletType,

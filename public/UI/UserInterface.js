@@ -37,7 +37,7 @@ var UserInterface = (function iife() {
 
         //hover message
         this.hover = this.game.add.text(0, 0, '',
-            {font: "14px Algerian", fill: '#FFD700'}
+            {font: "14px Algerian", fill: '#FFD700', align: 'center'}
         );
         this.hover.text = '';
         this.showHover = false;
@@ -243,10 +243,10 @@ var UserInterface = (function iife() {
         this.upgradeButtonFireSpeed.visible = false;
 
         //upgrade button for tower splash bonus
-        this.upgradeButtonSplashX = DIALOG_X + 30;
-        this.upgradeButtonSplashY = DIALOG_Y - 50;
+        this.upgradeButtonSplashX = 300;
+        this.upgradeButtonSplashY = DIALOG_Y - 40;
         this.upgradeButtonSplash = new WorldObject(_this.game, 0, 0, 'splash', 0);
-        //this.upgradeButtonSplash.scale.setTo(0.1);
+        this.upgradeButtonSplash.scale.setTo(0.75, 0.45);
         this.upgradeButtonSplash.inputEnabled = true;
         this.upgradeButtonSplash.events.onInputDown.add(function() {
             var index;
@@ -258,9 +258,10 @@ var UserInterface = (function iife() {
         }, this);
 
         this.upgradeButtonSplash.events.onInputOver.add(function () {
-            this.hover.text = "+70 /n splash";
+            this.hover.text = "+70 \n Splash";
+            this.hover.fill = 'red';
             this.hoverY = this.upgradeButtonRangeY - 15;
-            this.hoverX = this.upgradeButtonRangeX + 70;
+            this.hoverX = this.upgradeButtonRangeX + 55;
             this.showHover = true;
             if (!this.game.buildState) {
                 this.game.cursorType = CURSOR_TYPE.POINTER;
@@ -270,10 +271,10 @@ var UserInterface = (function iife() {
         this.upgradeButtonSplash.visible = false;
 
         //upgrade button for tower splash bonus
-        this.upgradeButtonCriticalX = DIALOG_X + 100;
-        this.upgradeButtonCriticalY = DIALOG_Y - 50;
+        this.upgradeButtonCriticalX = 450;
+        this.upgradeButtonCriticalY = DIALOG_Y - 40;
         this.upgradeButtonCritical = new WorldObject(_this.game, 0, 0, 'critical', 0);
-        //this.upgradeButtonSplash.scale.setTo(0.1);
+        this.upgradeButtonCritical.scale.setTo(0.75, 0.45);
         this.upgradeButtonCritical.inputEnabled = true;
         this.upgradeButtonCritical.events.onInputDown.add(function() {
             var index;
@@ -285,9 +286,10 @@ var UserInterface = (function iife() {
         }, this);
 
         this.upgradeButtonCritical.events.onInputOver.add(function () {
-            this.hover.text = "+2.5x /n critical";
+            this.hover.text = "+2.5x \n Critical";
+            this.hover.fill = 'red';
             this.hoverY = this.upgradeButtonRangeY - 15;
-            this.hoverX = this.upgradeButtonRangeX + 70;
+            this.hoverX = this.upgradeButtonRangeX + 52;
             this.showHover = true;
             if (!this.game.buildState) {
                 this.game.cursorType = CURSOR_TYPE.POINTER;
@@ -607,7 +609,7 @@ var UserInterface = (function iife() {
             this.dialog.unit.sprite = this.game.add.sprite(DIALOG_X, DIALOG_Y, dialog.spriteKey, 0);
             this.dialog.unit.sprite.anchor.setTo(0.5);
             this.dialog.unit.health = this.game.add.text(DIALOG_X + 160, DIALOG_Y + 25,
-                Math.round(dialog.health * 100) / 100 + " / " + dialog.maxHealth,
+                Math.round(dialog.health) + " / " + dialog.maxHealth,
                 {font: "18px Algerian", fill: 'darkgray'}
             );
             this.dialog.unit.speed = this.game.add.text(DIALOG_X + 160, DIALOG_Y + 65, '' + dialog.speed,
@@ -649,10 +651,11 @@ var UserInterface = (function iife() {
         }
     };
 
-    UserInterface.prototype.textNotification = function (x, y, text, color, time, blinky) {
+    UserInterface.prototype.textNotification = function (x, y, text, color, time, blinky, font) {
+        font = font || 32;
         if (!this.notification.exists) {
             this.notification = this.game.add.text(x, y, text,
-                {font: "32px Algerian", fill: color}
+                {font: font + "px Algerian", fill: color}
             );
             if (blinky) {
                 for (var i = 1; i < time / 250; i++) {
@@ -671,6 +674,7 @@ var UserInterface = (function iife() {
 
 function removeHover() {
     this.hover.text = '';
+    this.hover.fill = '#FFD700';
     this.showHover = false;
     if (!this.game.buildState) {
         this.game.cursorType = CURSOR_TYPE.NORMAL;

@@ -69,7 +69,7 @@ RedPlanetGame.Win = (function iife(parent) {
         this.noButton = new WorldObject(this.game, gameWidth / 2, gameHeight / 2 + 200, 'buttons', 26);
         this.noButton.inputEnabled = true;
         this.noButton.events.onInputDown.add(function exit() {
-            this.game.state.start('Menu');
+            this.game.state.start('Boot');
         }, this);
 
         this.noButton.events.onInputOver.add(function () {
