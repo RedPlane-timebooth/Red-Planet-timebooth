@@ -60,7 +60,20 @@ var Tower = (function iife(parent) {
             return this.rangeUpgradeCost[this.upgrades.range];
         };
         this.getSellPrice = function getSellPrice() {
-            return this.MONEY_COST * 0.8;
+            var range = 0,
+                fireDamage = 0,
+                fireSpeed = 0,
+                i;
+            for(i = 1; i <= this.upgrades.range; i++){
+                range += 0.8* this.rangeUpgradeCost[i - 1];
+            }
+            for(i = 1; i <= this.upgrades.fireDamage; i++){
+                fireDamage += 0.8* this.fireDamageUpgradeCost[i - 1];
+            }
+            for(i = 1; i <= this.upgrades.fireSpeed; i++){
+                fireSpeed += 0.8* this.fireSpeedUpgradeCost[i - 1];
+            }
+            return this.MONEY_COST * 0.8 + range + fireDamage + fireSpeed;
         }
     }
 

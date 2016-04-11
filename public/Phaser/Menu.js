@@ -16,14 +16,20 @@ RedPlanetGame.Menu = (function iife(parent) {
         this.load.image('marsMap', '/assets/images/marsMap.jpg');
         this.load.image('pylon', '/assets/images/Pylon.png');
         this.load.image('bunker', '/assets/images/Bunker.png');
+        this.load.image('barracks', '/assets/images/Barracks.png');
     };
 
     RedPlanetGame.Menu.prototype.create = function create() {
         this.background = this.game.add.sprite(0,0,'marsMap');
         this.game.world.setBounds(0, 0, 1920, 1080);
 
-        this.game.player = new Player(1, 'Daniel', 0);
-        var level1 = this.game.add.sprite(472, 322, 'pylon');
+        var playerData = {};
+        playerData = $.parseJSON(jsonData);
+        this.game.player = new Player(playerData.user.id, playerData.user.name, playerData.user.level,
+            playerData.user.bonusObjects);
+        var level1 = this.game.add.sprite(435, 240, 'pylon'),
+            level2 = this.game.add.sprite(690, 305, 'bunker'),
+            level3 = this.game.add.sprite(870, 400, 'barracks');
 
         level1.inputEnabled = true;
         level1.events.onInputDown.add( function() {
@@ -35,8 +41,6 @@ RedPlanetGame.Menu = (function iife(parent) {
         level1.events.onInputOut.add( function() {
                 this.game.cursorType = CURSOR_TYPE.NORMAL;
         }, this);
-
-        var level2 = this.game.add.sprite(600, 352, 'bunker');
 
         if(this.game.player.level > 1){
             level2.inputEnabled = true;
@@ -52,6 +56,23 @@ RedPlanetGame.Menu = (function iife(parent) {
             this.game.cursorType = CURSOR_TYPE.POINTER;
         }, this);
         level2.events.onInputOut.add( function() {
+            this.game.cursorType = CURSOR_TYPE.NORMAL;
+        }, this);
+
+        if(this.game.player.level > 2){
+            level3.inputEnabled = true;
+            level3.tint = 0xffffff;
+        } else {
+            level3.tint = 0x2a2a2a;
+        }
+        level3.events.onInputDown.add( function() {
+            //this.state.start('Level2');
+            alert('start level 3')
+        }, this);
+        level3.events.onInputOver.add( function() {
+            this.game.cursorType = CURSOR_TYPE.POINTER;
+        }, this);
+        level3.events.onInputOut.add( function() {
             this.game.cursorType = CURSOR_TYPE.NORMAL;
         }, this);
     };

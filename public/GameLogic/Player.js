@@ -10,21 +10,17 @@ var Player = (function iife() {
      * @param level
      * @constructor
      */
-    function Player(id, username, gold, level, bonusObject) {
-
-        id = id || 0;
-        gold = gold || 0;
+    function Player(id, username, level, bonusObject) {
         bonusObject = bonusObject || {};
 
         validator.validateIfNumber(id, 'Player id');
         validator.validateIfString(username, 'Player username');
-        validator.validateIfNumber(gold, 'Player gold');
+        validator.validateIfNumber(level, 'Player level');
         validator.validateIfObject(bonusObject, 'Player bonusObject');
-
+        
         this.id = id;
-        this.gold = gold;
+        this.gold = 0;
         this.killed = 0;
-        this.bonusPoints = 0;
         this.bonusObjects = bonusObject;
         this.level = level;
     }

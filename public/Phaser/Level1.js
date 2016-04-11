@@ -24,7 +24,7 @@ RedPlanetGame.Level1 = (function iife(parent) {
         parent.prototype.create.call(this);
         var _this = this;
         this.initMapLayersGroups('level1');
-        this.game.player.gold = 500;
+        this.game.player.gold = 100000;
 
         var xOffset = -50,
             creepsCounter = 0;
@@ -79,7 +79,6 @@ RedPlanetGame.Level1 = (function iife(parent) {
                 }
             }, 4000);
         }, 200000);
-
         this.game.bmd = this.game.make.bitmapData(960, 790);
         this.game.bmd.addToWorld();
     };

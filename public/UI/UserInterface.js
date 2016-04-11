@@ -12,7 +12,7 @@ var UserInterface = (function iife() {
         this.goldX = 65;
         this.goldY = 460;
         this.gold = this.game.add.text(this.goldX, this.goldY, this.game.player.gold,
-            {font: "24px Arial", fill: '#FFD700'}
+            {font: "24px Algerian", fill: '#FFD700'}
         );
         this.goldImage = new WorldObject(this.game, 0, 0, 'goldIcon');
         this.goldImage.scale.setTo(0.5, 0.5);
@@ -21,18 +21,17 @@ var UserInterface = (function iife() {
         this.killedX = 65;
         this.killedY = 520;
         this.killed = this.game.add.text(this.killedX, this.killedY, 'K: ' + this.game.player.gold,
-            {font: "24px Arial", fill: 'white'}
+            {font: "24px Algerian", fill: 'white'}
         );
         this.skeletonImage = new WorldObject(this.game, 0, 0, 'skeletonIcon');
         this.skeletonImage.scale.setTo(0.15, 0.15);
 
         //hover message
         this.hover = this.game.add.text(0, 0, '',
-            {font: "14px Arial", fill: '#FFD700'}
+            {font: "14px Algerian", fill: '#FFD700'}
         );
         this.hover.text = '';
         this.hover.width = 250;
-        this.hover.align = 'center';
         this.showHover = false;
         this.hoverX = 0;
         this.hoverY = 0;
@@ -264,12 +263,14 @@ var UserInterface = (function iife() {
         this.dialog.sellButton.events.onInputOut.add(removeHover, this);
         this.dialog.sellButton.visible = false;
 
-        this.exitButton = DIALOG_X + 190;
-        this.exitButton = DIALOG_Y + 60;
         this.exitButton = new WorldObject(this.game, 100, 30, 'buttons', 19);
         this.exitButton.inputEnabled = true;
         this.exitButton.events.onInputDown.add(function exit() {
-            this.game.state.start('Menu');
+            this.yesButton.visible = true;
+            this.noButton.visible = true;
+            this.onExitPromptText.visible = true;
+            this.game.bmd.cls();
+            this.game.bmd.rect(0, 0, 2000, 2000, 'rgba(0, 0, 0, 0.5)');
         }, this);
 
         this.exitButton.events.onInputOver.add(function () {
@@ -278,6 +279,46 @@ var UserInterface = (function iife() {
             }
         }, this);
         this.exitButton.events.onInputOut.add(removeHover, this);
+
+        this.onExitPromptText = this.game.add.text(this.goldX, this.goldY, 'Are you sure you want to exit?',
+            {font: "32px Algerian", fill: '#C0C0C0'}
+        );
+
+        this.yesButtonX = gameWidth / 2;
+        this.yesButtonY = gameHeight / 2;
+        this.yesButton = new WorldObject(this.game, gameWidth / 2, gameHeight / 2, 'buttons', 27);
+        this.yesButton.inputEnabled = true;
+        this.yesButton.events.onInputDown.add(function exit() {
+            this.game.state.start('Menu');
+        }, this);
+
+        this.yesButton.events.onInputOver.add(function () {
+            if (!this.game.buildState) {
+                this.game.cursorType = CURSOR_TYPE.POINTER;
+            }
+        }, this);
+        this.yesButton.events.onInputOut.add(removeHover, this);
+
+        this.noButtonX = gameWidth / 2;
+        this.noButtonY = gameHeight / 2 - 50;
+        this.noButton = new WorldObject(this.game, gameWidth / 2, gameHeight / 2, 'buttons', 7);
+        this.noButton.inputEnabled = true;
+        this.noButton.events.onInputDown.add(function exit() {
+            this.yesButton.visible = false;
+            this.noButton.visible = false;
+            this.onExitPromptText.visible = false;
+            this.game.bmd.cls();
+        }, this);
+
+        this.noButton.events.onInputOver.add(function () {
+            if (!this.game.buildState) {
+                this.game.cursorType = CURSOR_TYPE.POINTER;
+            }
+        }, this);
+        this.noButton.events.onInputOut.add(removeHover, this);
+        this.yesButton.visible = false;
+        this.noButton.visible = false;
+        this.onExitPromptText.visible = false;
 
         this.notification = this.game.add.text(0, 0, '');
         this.notification.exists = false;
@@ -290,6 +331,17 @@ var UserInterface = (function iife() {
         this.turret.x = this.turretX + xOffset;
         this.turret.y = this.turretY + yOffset;
         this.turret.bringToTop();
+        if(this.yesButton.visible){
+            this.yesButton.x = this.yesButtonX +  xOffset;
+            this.yesButton.y = this.yesButtonY + yOffset;
+            this.yesButton.bringToTop();
+            this.noButton.x = this.noButtonX + xOffset;
+            this.noButton.y = this.noButtonY + yOffset;
+            this.noButton.bringToTop();
+            this.onExitPromptText.x = this.noButtonX - 250 + xOffset;
+            this.onExitPromptText.y = this.noButtonY - 100 + yOffset;
+            this.onExitPromptText.bringToTop();
+        }
         this.exitButton.x = 100 + xOffset;
         this.exitButton.y = 30 + yOffset;
         this.exitButton.bringToTop();
@@ -389,13 +441,13 @@ var UserInterface = (function iife() {
             this.dialog.tower.show = true;
             this.dialog.tower.sprite = this.game.add.sprite(DIALOG_X, DIALOG_Y, dialog.spriteKey, 0);
             this.dialog.tower.damage = this.game.add.text(DIALOG_X + 160, DIALOG_Y + 25, '' + dialog.damage,
-                {font: "18px Arial", fill: 'darkgray'}
+                {font: "18px Algerian", fill: 'darkgray'}
             );
             this.dialog.tower.range = this.game.add.text(DIALOG_X + 160, DIALOG_Y + 65, '' + dialog.range,
-                {font: "18px Arial", fill: 'darkgray'}
+                {font: "18px Algerian", fill: 'darkgray'}
             );
             this.dialog.tower.speed = this.game.add.text(DIALOG_X + 160, DIALOG_Y + 105, '' + dialog.fireSpeed + '/s',
-                {font: "18px Arial", fill: 'darkgray'}
+                {font: "18px Algerian", fill: 'darkgray'}
             );
 
             if (this.dialog.tower.upgrades.range < 4) {
@@ -456,14 +508,14 @@ var UserInterface = (function iife() {
             this.dialog.unit.sprite = this.game.add.sprite(DIALOG_X, DIALOG_Y, dialog.spriteKey, 0);
             this.dialog.unit.sprite.anchor.setTo(0.5);
             this.dialog.unit.health = this.game.add.text(DIALOG_X + 160, DIALOG_Y + 25,
-                dialog.health + " / " + dialog.maxHealth,
-                {font: "18px Arial", fill: 'darkgray'}
+                Math.round(dialog.health * 100) / 100 + " / " + dialog.maxHealth,
+                {font: "18px Algerian", fill: 'darkgray'}
             );
             this.dialog.unit.speed = this.game.add.text(DIALOG_X + 160, DIALOG_Y + 65, '' + dialog.speed,
-                {font: "18px Arial", fill: 'darkgray'}
+                {font: "18px Algerian", fill: 'darkgray'}
             );
             this.dialog.unit.defence = this.game.add.text(DIALOG_X + 160, DIALOG_Y + 105, dialog.defence + "%",
-                {font: "18px Arial", fill: 'darkgray'}
+                {font: "18px Algerian", fill: 'darkgray'}
             );
             this.dialog.healthBar.visible = true;
             this.dialog.speedIcon.visible = true;
@@ -499,7 +551,7 @@ var UserInterface = (function iife() {
     UserInterface.prototype.textNotification = function (x, y, text, color, time, blinky) {
         if (!this.notification.exists) {
             this.notification = this.game.add.text(x, y, text,
-                {font: "32px Arial", fill: color}
+                {font: "32px Algerian", fill: color}
             );
             if (blinky) {
                 for (var i = 1; i < time / 250; i++) {
