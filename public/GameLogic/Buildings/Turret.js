@@ -76,5 +76,9 @@ var Turret = (function iife(parent) {
         parent.prototype.destroy.call(this);
         this.head.destroy();
     };
+    Turret.prototype.showDialog = function showDialog() {
+        parent.prototype.showDialog.call(this);
+        this.game.add.sound('Turret' + getRandomInt(1, 3)).play();
+    };
     return Turret;
 }(Tower));

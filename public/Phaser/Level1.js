@@ -16,9 +16,12 @@ RedPlanetGame.Level1 = (function iife(parent) {
         this.load.spritesheet('zealot', '/assets/creeps/zealot.png', 128, 128, 238);
         this.load.spritesheet('ultralisk', '/assets/creeps/ultralisk.png', 128, 128, 272);
         this.load.spritesheet('dragoon', '/assets/creeps/dragoon.png', 96, 96, 425);
+        this.load.audio('level1', '/assets/sounds/level1.mp3');
     };
     RedPlanetGame.Level1.prototype.create = function create() {
         parent.prototype.create.call(this);
+        this.game.levelSound = this.game.add.audio('level1').play();
+        this.game.levelSound.volume -= 0.6;
         this.initMapLayersGroups('level1');
         this.game.gold = 600;
         this.game.player.lastPlayed = 'Level1';
@@ -28,14 +31,37 @@ RedPlanetGame.Level1 = (function iife(parent) {
         this.game.bmd.addToWorld();
 
         for(var i = 0; i < 20; i++) {
-            this.game.time.events.add(i * 1000 + 2000, function () {
-                this.game.enemies.factory(this.spawnCreepsAt.x + this.xOffset, this.spawnCreepsAt.y,
+            this.game.time.events.add(i * 3000 + 2000, function () {
+                this.game.enemies.factory(this.spawnCreepsAt.x + 50 + this.xOffset, this.spawnCreepsAt.y,
+                    UNIT_TYPES.MARINE, this.checkPoints);
+                this.xOffset *= -1;
+            }, this);
+        }
+
+        for(i = 20; i < 40; i++) {
+            this.game.time.events.add(i * 3000 + 20000, function () {
+                this.game.enemies.factory(this.spawnCreepsAt.x +  50 + this.xOffset, this.spawnCreepsAt.y,
                     UNIT_TYPES.ZEALOT, this.checkPoints);
                 this.xOffset *= -1;
             }, this);
         }
 
-        this.game.creeps = 20;
+        for(i = 40; i < 60; i++) {
+            this.game.time.events.add(i * 3000 + 40000, function () {
+                this.game.enemies.factory(this.spawnCreepsAt.x +  50 + this.xOffset, this.spawnCreepsAt.y,
+                    UNIT_TYPES.DRAGOON, this.checkPoints);
+                this.xOffset *= -1;
+            }, this);
+        }
+        for(i = 60; i < 70; i++) {
+            this.game.time.events.add(i * 3500 + 20000, function () {
+                this.game.enemies.factory(this.spawnCreepsAt.x +  50 + this.xOffset, this.spawnCreepsAt.y,
+                    UNIT_TYPES.ULTRALISK, this.checkPoints);
+                this.xOffset *= -1;
+            }, this);
+        }
+        
+        this.game.creeps = 70;
     };
     return RedPlanetGame.Level1;
 }(RedPlanetGame.Game));

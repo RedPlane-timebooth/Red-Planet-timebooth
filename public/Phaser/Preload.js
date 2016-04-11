@@ -57,6 +57,36 @@ RedPlanetGame.Preload = (function iife() {
             this.load.audio('missileShoot', '/assets/buildings/towers/turret/missileShoot.mp3');
             this.load.audio('missileExplosion', '/assets/buildings/towers/turret/missileExplosion.mp3');
             this.load.audio('shoot', '/assets/buildings/towers/sniper/shoot.mp3');
+            this.load.audio('dragoon1', '/assets/sounds/dragoon1.mp3');
+            this.load.audio('dragoon2', '/assets/sounds/dragoon2.mp3');
+            this.load.audio('dragoonDeath', '/assets/sounds/dragoonDeath.mp3');
+            this.load.audio('marine1', '/assets/sounds/marine1.mp3');
+            this.load.audio('marine2', '/assets/sounds/marine2.mp3');
+            this.load.audio('marineDeath', '/assets/sounds/marineDeath1.mp3');
+            this.load.audio('Sniper1', '/assets/sounds/sniper1.mp3');
+            this.load.audio('Sniper2', '/assets/sounds/sniper2.mp3');
+            this.load.audio('Sniper3', '/assets/sounds/sniper3.mp3');
+            this.load.audio('Sniper4', '/assets/sounds/sniper4.mp3');
+            this.load.audio('Tank1', '/assets/sounds/sniper1.mp3');
+            this.load.audio('Tank2', '/assets/sounds/tank2.mp3');
+            this.load.audio('Tank3', '/assets/sounds/tank3.mp3');
+            this.load.audio('tankBuild', '/assets/sounds/tankBuild.mp3');
+            this.load.audio('tankShoot', '/assets/sounds/tankShoot.mp3');
+            this.load.audio('Turret1', '/assets/sounds/turret1.mp3');
+            this.load.audio('Turret2', '/assets/sounds/turret2.mp3');
+            this.load.audio('Turret3', '/assets/sounds/turret3.mp3');
+            this.load.audio('zealot1', '/assets/sounds/zealot1.mp3');
+            this.load.audio('zealot2', '/assets/sounds/zealot2.mp3');
+            this.load.audio('zealotDeath', '/assets/sounds/zealotDeath.mp3');
+            this.load.audio('zerg1', '/assets/sounds/zerg1.mp3');
+            this.load.audio('zerg2', '/assets/sounds/zerg2.mp3');
+            this.load.audio('zerg3', '/assets/sounds/zerg3.mp3');
+            this.load.audio('zerg4', '/assets/sounds/zerg4.mp3');
+            this.load.audio('zerg5', '/assets/sounds/zerg5.mp3');
+            this.load.audio('zerg6', '/assets/sounds/zerg6.mp3');
+            this.load.audio('zergDeath2', '/assets/sounds/zergDeath2.mp3');
+            this.load.audio('zergDeath', '/assets/sounds/zergDeath.mp3');
+            this.load.audio('level1', '/assets/sounds/level1.mp3');
         },
         create: function () {
             this.state.start('Menu');

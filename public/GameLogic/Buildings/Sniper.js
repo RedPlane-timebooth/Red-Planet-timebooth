@@ -88,5 +88,9 @@ var Sniper = (function iife(parent) {
             buffer(this.buffers.searchedForTarget, 250, this.game);
         }
     };
+    Sniper.prototype.showDialog = function showDialog() {
+        parent.prototype.showDialog.call(this);
+        this.game.add.sound('Sniper' + getRandomInt(1, 4)).play();
+    };
     return Sniper;
 }(Tower));

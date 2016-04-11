@@ -4,9 +4,9 @@
     <div class="row">
         <div class="container col-md-offset-2 col-md-8 opacity">
             <div align="center" class="embed-responsive embed-responsive-16by9 ">
-                <video autoplay class="embed-responsive-item">
-                    <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
-                </video>
+                <iframe class="embed-responsive-item"
+                        src="http://www.youtube.com/embed/O36FceRAUwE?autoplay=1&controls=0&loop=1">
+                </iframe>
             </div>
         </div>
     </div>

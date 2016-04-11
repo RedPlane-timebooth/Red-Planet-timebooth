@@ -23,10 +23,19 @@ RedPlanetGame.Menu = (function iife(parent) {
         this.background = this.game.add.sprite(0,0,'marsMap');
         this.game.world.setBounds(0, 0, 1920, 1080);
 
-        var playerData = {};
-        playerData = $.parseJSON(jsonData);
-        this.game.player = new Player(playerData.user.id, playerData.user.name, playerData.user.level,
-            playerData.user.bonusObjects);
+        this.game.player = this.game.player || {};
+        this.game.player.level = this.game.player.level || null;
+        this.game.player.bonusObjects = this.game.player.bonusObjects || null;
+
+        var playerData = {},
+            jsonDataDecoded = $.parseJSON(jsonData);
+         playerData.id = jsonDataDecoded.user.id;
+         playerData.name = jsonDataDecoded.user.name;
+         playerData.level = this.game.player.level || jsonDataDecoded.user.level;
+         playerData.levbonusObjects = this.game.player.bonusObjects || jsonDataDecoded.user.bonusObjects;
+
+        this.game.player = new Player(playerData.id, playerData.name, playerData.level,
+            playerData.bonusObjects);
         this.game.level = this.game.player.level;
         this.game.nextLevel = 2;
         

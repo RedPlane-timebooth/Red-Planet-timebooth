@@ -36,6 +36,7 @@ var Tank = (function iife(parent) {
 
         this.head = new WorldObject(this.game, this.x - 4, this.y - 16, 'tankUp', 18);
         this.head.animations.add('buildUp', [34, 51, 68, 85, 102], 2, false);
+        this.game.add.sound('tankBuild').play();
         this.head.animations.play('buildUp').onComplete.add(function () {
             this.fullyBuild = true;
         }, this);
@@ -74,6 +75,10 @@ var Tank = (function iife(parent) {
     Tank.prototype.destroy = function destroy() {
         parent.prototype.destroy.call(this);
         this.head.destroy();
+    };
+    Tank.prototype.showDialog = function showDialog() {
+        parent.prototype.showDialog.call(this);
+        this.game.add.sound('Tank' + getRandomInt(1, 3)).play();
     };
     return Tank;
 }(Tower));

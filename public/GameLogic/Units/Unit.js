@@ -54,6 +54,8 @@ var Unit = (function iife(parent) {
         this.checkPoints = checkPoints;
         this.animateMovement(checkPoints[0], unitType.animationsStartRow, unitType.animationsEndRow);
         this.deathSpriteArray = unitType.deathSpriteArray;
+        this.deathSound = this.game.add.audio(unitType.deathSound);
+        this.dialogSound = this.game.add.audio(unitType.dialogSound + getRandomInt(1, 2));
 
         var currentCheckPoint = 0,
             _this = this;
@@ -115,6 +117,7 @@ var Unit = (function iife(parent) {
         if(this.game.selected === this){
             if(this.health <= 0){
                 this.game.ui.hideDialog();
+                this.deathSound.play();
             } else {
                 this.showDialog();
             }
@@ -157,6 +160,7 @@ var Unit = (function iife(parent) {
             this.game.ui.hideDialog();
             this.game.dialogOn = false;
         }
+        this.dialogSound.play();
         this.game.ui.showDialog(this.getPersonalInfo());
         this.game.dialogOn = true;
     };

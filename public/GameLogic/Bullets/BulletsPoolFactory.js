@@ -15,7 +15,7 @@ var BulletsPoolFactory = (function iife(parent) {
         bulletSpeed: 0,
         tracking: false,
         explosionType: 'splashExplosion',
-        explosionSound: 'missileExplosion',
+        explosionSound: 'tankShoot',
         directHit: true
     };
     const sniperBullet = {

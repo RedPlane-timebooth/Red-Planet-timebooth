@@ -170,9 +170,12 @@ RedPlanetGame.Game = (function iife(parent) {
     };
     RedPlanetGame.Game.prototype.shutdown = function shutdown() {
         this.game.player.level = this.game.level;
-
+        this.game.levelSound.stop();
+        
         $.post('/game', JSON.stringify({'user':{id: this.game.player.id, cash: this.game.rewards,
             level: this.game.level, items: this.game.player.bonusObjects}}));
+    };
+    RedPlanetGame.Game.prototype.addSounds = function addSounds() {
     };
     return RedPlanetGame.Game;
 })(Phaser.State);
