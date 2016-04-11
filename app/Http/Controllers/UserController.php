@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+use App\Statistic;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -28,21 +29,28 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-//        return $user;
 
-        return view('profile.index', compact('user'));
+        $statistic= Statistic::where('user_id', '=', $id)->get();
+//        dd($statistic);
+
+        return view('profile.index', compact('user', 'statistic'));
     }
 
     /**
      * @param $id
      */
-    public function buyItem($id)
+    public function buyItem(Request $request,$id)
     {
         $user = Auth::user();
         $item = Item::find($id);
-        $user
-            ->items()
-            ->attach($item->id);
+        if ($user->cash > $item->price) {
+            $user
+                ->items()
+                ->attach($item->id);
+            $request->session()->flash('alert-success', 'Item was successful bought!');
+        } else {
+            $request->session()->flash('alert-danger', 'Not enough money!');
+}
 
         return redirect('/shop');
 
@@ -55,6 +63,19 @@ class UserController extends Controller
         return view('profile.items', compact('items'));
     }
 
+    protected function moveUploads($request)
+    {
+        $destinationPath = 'resource/img/';
+        $fileName = Input::file('img_address')->getClientOriginalName();
+        $file = Input::file('img_address');
+        $file->move($destinationPath, $fileName);
+        $path = $destinationPath . $fileName;
+        $data = $request->all();
+        $data['img_address'] = $path;
+
+        return $data;
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -64,7 +85,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $this -> moveUploads($request);
+        User::findOrFail($id)->update($data);
     }
 
     /**

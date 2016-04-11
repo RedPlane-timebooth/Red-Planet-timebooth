@@ -50,17 +50,16 @@ class GameController extends Controller
             foreach ($gameUserItems as $key => $gameUserItem) {
                 if($dbUserItem->name == $gameUserItem['type']){
                     $found = true;
-                    unset($gameUserItems[$key]);
                 }
             }
             if (!$found) {
                 $itemToRemove[]= $dbUserItem->id;
+            } else {
+                unset($gameUserItems[$key]);
             }
         $found = false;
         }
-//        dd($itemToRemove);
         $user->update($data->get('user'));
         $user->items()->detach($itemToRemove);
-//        return $json;
     }
 }
