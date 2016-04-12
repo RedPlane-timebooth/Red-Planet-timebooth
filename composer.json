@@ -13,8 +13,7 @@
         "barryvdh/laravel-debugbar": "v2.2.0",
         "barryvdh/laravel-ide-helper": "v2.1.4",
         "fzaninotto/faker": "1.6.x-dev",
-        "laravel/socialite": "v2.0.15",
-        "intervention/image": "2.3.6"
+        "laravel/socialite": "v2.0.15"
     },
     "require-dev": {
         "predis/predis": "~1.1@dev",
