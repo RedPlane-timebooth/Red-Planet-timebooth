@@ -113,11 +113,11 @@ var Unit = (function iife(parent) {
         if (this.health <= 0) {
             this.game.gold += this.goldReward;
             this.game.killed += 1;
+            this.deathSound.play();
         }
         if(this.game.selected === this){
             if(this.health <= 0){
                 this.game.ui.hideDialog();
-                this.deathSound.play();
             } else {
                 this.showDialog();
             }

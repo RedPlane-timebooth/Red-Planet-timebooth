@@ -8,7 +8,6 @@ function createInvisibleSpriteGroupFromMapObjects(type, map, layer, game, group)
     var result = [];
     map.objects[layer].forEach(function (element) {
         if (element.type === type) {
-
             var newSprite = game.add.sprite(element.x, element.y);
             newSprite.width = element.width;
             newSprite.height = element.height;
@@ -32,4 +31,8 @@ function createCheckPoints(type, map, layer) {
 }
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function setHalfVolume() {
+    var myAudio = document.getElementById("audio1");
+    myAudio.volume = 0.3;
 }

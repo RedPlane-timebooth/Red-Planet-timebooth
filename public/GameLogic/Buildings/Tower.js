@@ -160,7 +160,6 @@ var Tower = (function iife(parent) {
 
         } else if(type == 'critical'){
             if(this.bonuses.critical){
-                this.bonuses.criticalChance += 0.2;
                 this.bonuses.criticalStrike += 2.5;
                 return;
             }
