@@ -188,8 +188,10 @@ RedPlanetGame.Game = (function iife(parent) {
 
         $.post('/game', JSON.stringify({
             'user': {
-                id: this.game.player.id, cash: this.game.rewards,
-                level: this.game.level
+                id: this.game.player.id,
+                cash: this.game.rewards,
+                level: this.game.level,
+                gameStatus: this.game.rewards > 0 ? 1 : 0
             },
             'items': this.game.player.bonusObjects
         }));
