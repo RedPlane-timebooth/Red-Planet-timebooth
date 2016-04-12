@@ -25,7 +25,6 @@ RedPlanetGame.Level1 = (function iife(parent) {
         this.initMapLayersGroups('level1');
         this.game.gold = 600;
         this.game.player.lastPlayed = 'Level1';
-        this.game.player.bonusObjects = ['splash', 'critical', 'splash', 'critical'];
         this.xOffset = -32;
         this.game.bmd = this.game.make.bitmapData(960, 790);
         this.game.bmd.addToWorld();

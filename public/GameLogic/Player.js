@@ -16,6 +16,7 @@ var Player = (function iife() {
         validator.validateIfNumber(id, 'Player id');
         validator.validateIfString(username, 'Player username');
         validator.validateIfNumber(level, 'Player level');
+        validator.validateIfObject(bonusObject, 'Player bonus objects');
         
         this.id = id;
         this.gold = 0;

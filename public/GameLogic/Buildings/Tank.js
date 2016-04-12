@@ -47,7 +47,7 @@ var Tank = (function iife(parent) {
     }
 
     Tank.prototype = Object.create(parent.prototype);
-    Tank.prototype.constructor = Turret;
+    Tank.prototype.constructor = Tank;
 
     Tank.prototype.MONEY_COST = MONEY_COST;
 

@@ -249,12 +249,30 @@ var UserInterface = (function iife() {
         this.upgradeButtonSplash.scale.setTo(0.75, 0.45);
         this.upgradeButtonSplash.inputEnabled = true;
         this.upgradeButtonSplash.events.onInputDown.add(function() {
-            var index;
-            if (index = this.game.player.bonusObjects.indexOf('splash') > -1) {
-                this.game.player.bonusObjects.splice(index, 1);
-                this.game.selected.upgrade('splash');
-                this.game.selected.showDialog();
+            this.game.selected.upgrade('splash');
+            this.game.selected.showDialog();
+
+            this.upgradeButtonSplash.visible = false;
+            var counter = 0;
+            var indexOfSplash = -1;
+            this.game.player.bonusObjects.forEach(function(splash, index) {
+                if(splash.type == 'Splash'){
+                    counter++;
+                    indexOfSplash = index;
+                }
+            });
+            if(indexOfSplash > -1){
+                this.game.player.bonusObjects.splice(indexOfSplash, 1);
             }
+            if(counter > 1){
+                _this.upgradeButtonSplash.visible = true;
+            }
+            $.post('/game', JSON.stringify({
+                'user': {
+                    id: this.game.player.id
+                },
+                'items': this.game.player.bonusObjects
+            }));
         }, this);
 
         this.upgradeButtonSplash.events.onInputOver.add(function () {
@@ -277,12 +295,30 @@ var UserInterface = (function iife() {
         this.upgradeButtonCritical.scale.setTo(0.75, 0.45);
         this.upgradeButtonCritical.inputEnabled = true;
         this.upgradeButtonCritical.events.onInputDown.add(function() {
-            var index;
-            if (index = this.game.player.bonusObjects.indexOf('critical') > -1) {
-                this.game.player.bonusObjects.splice(index, 1);
-                this.game.selected.upgrade('critical');
-                this.game.selected.showDialog();
+            this.game.selected.upgrade('critical');
+            this.game.selected.showDialog();
+
+            this.upgradeButtonCritical.visible = false;
+            var counter = 0;
+            var indexOfCritical = -1;
+            this.game.player.bonusObjects.forEach(function(critical, index) {
+                if(critical.type == 'Critical Strike'){
+                    counter++;
+                    indexOfCritical = index;
+                }
+            });
+            if(indexOfCritical > -1){
+                this.game.player.bonusObjects.splice(indexOfCritical, 1);
             }
+            if(counter > 1){
+                _this.upgradeButtonCritical.visible = true;
+            }
+            $.post('/game', JSON.stringify({
+                'user': {
+                    id: this.game.player.id
+                },
+                'items': this.game.player.bonusObjects
+            }));
         }, this);
 
         this.upgradeButtonCritical.events.onInputOver.add(function () {
@@ -474,19 +510,15 @@ var UserInterface = (function iife() {
             this.dialog.timeIcon.y = DIALOG_Y + 96 + yOffset;
             this.dialog.timeIcon.bringToTop();
 
-            if(this.game.player.bonusObjects.indexOf('critical') > -1){
+            if(this.upgradeButtonCritical.visible){
                 this.upgradeButtonCritical.x = this.upgradeButtonCriticalX + xOffset;
                 this.upgradeButtonCritical.y = this.upgradeButtonCriticalY + yOffset;
                 this.upgradeButtonCritical.bringToTop();
-            } else {
-                this.upgradeButtonCritical.visible = false;
             }
-            if(this.game.player.bonusObjects.indexOf('splash') > -1){
+            if(this.upgradeButtonSplash.visible){
                 this.upgradeButtonSplash.x = this.upgradeButtonSplashX + xOffset;
                 this.upgradeButtonSplash.y = this.upgradeButtonSplashY + yOffset;
                 this.upgradeButtonSplash.bringToTop();
-            } else {
-                this.upgradeButtonSplash.visible = false;
             }
             if (this.dialog.tower.upgrades.range < 4) {
                 this.upgradeButtonRange.x = this.upgradeButtonRangeX + xOffset;
@@ -563,8 +595,17 @@ var UserInterface = (function iife() {
             this.dialog.rangeIcon.visible = true;
             this.dialog.timeIcon.visible = true;
             this.dialog.sellButton.visible = true;
-            this.upgradeButtonSplash.visible = true;
-            this.upgradeButtonCritical.visible = true;
+
+
+            var _this = this;
+            this.game.player.bonusObjects.forEach(function(critical) {
+                if(critical.type == 'Critical Strike'){
+                    _this.upgradeButtonCritical.visible = true;
+                }
+                if(critical.type == 'Splash'){
+                    _this.upgradeButtonSplash.visible = true;
+                }
+            });
         }
         if (dialog.infoType === 'unit') {
             var healthPercent = ((dialog.health / dialog.maxHealth) * 100);

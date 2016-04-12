@@ -19,7 +19,8 @@ RedPlanetGame.Menu = (function iife(parent) {
         this.load.image('barracks', '/assets/images/Barracks.png');
     };
 
-    RedPlanetGame.Menu.prototype.create = function create() {
+    RedPlanetGame.Menu.prototype.create = function create() 
+    {
         this.background = this.game.add.sprite(0,0,'marsMap');
         this.game.world.setBounds(0, 0, 1920, 1080);
 
@@ -32,7 +33,16 @@ RedPlanetGame.Menu = (function iife(parent) {
          playerData.id = jsonDataDecoded.user.id;
          playerData.name = jsonDataDecoded.user.name;
          playerData.level = this.game.player.level || jsonDataDecoded.user.level;
-         playerData.levbonusObjects = this.game.player.bonusObjects || jsonDataDecoded.user.bonusObjects;
+         //playerData.bonusObjects = this.game.player.bonusObjects || jsonDataDecoded.items;
+
+        playerData.bonusObjects  = [
+            {type:'Critical Strike', level: 0},
+            {type:'Critical Strike', level: 0},
+            {type:'Critical Strike', level: 0},
+            {type: 'Splash', level: 0},
+            {type: 'Splash', level: 0},
+            {type: 'Splash', level: 0}
+        ];
 
         this.game.player = new Player(playerData.id, playerData.name, playerData.level,
             playerData.bonusObjects);

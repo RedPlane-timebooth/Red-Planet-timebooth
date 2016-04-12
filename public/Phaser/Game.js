@@ -13,12 +13,12 @@ RedPlanetGame.Game = (function iife(parent) {
 
     RedPlanetGame.Game.prototype = Object.create(parent.prototype);
     RedPlanetGame.Game.prototype.constructor = RedPlanetGame.Game;
-    
+
     RedPlanetGame.Game.prototype.create = function create() {
         this.game.lastPressed = this.game.time.now;
         this.game.lastBuild = this.game.time.now;
         this.game.dialogOn = false;
-        
+
         this.game.ui = new UserInterface(this.game);
 
         this.game.canBuild = false;
@@ -35,10 +35,11 @@ RedPlanetGame.Game = (function iife(parent) {
                     this.game.ui.hideDialog();
                     this.game.canDestroyCircle = false;
                     this.game.dialogOn = false;
+                    this.game.selected = null;
                 }
             }
         }, this);
-        
+
         this.game.killed = 0;
         this.game.lives = 10;
         this.game.rewards = 0;
@@ -49,12 +50,12 @@ RedPlanetGame.Game = (function iife(parent) {
         this.game.canvas.style.cursor = this.game.cursorType;
 
         //check if win
-        if(this.game.killed + 10 - this.game.lives >= this.game.creeps){
+        if (this.game.killed + 10 - this.game.lives >= this.game.creeps) {
             this.game.rewards = this.game.killed * this.game.lives;
             this.game.level = this.game.nextLevel;
             this.state.start('Win');
         }
-        
+
         //on building state
         if (this.game.buildState) {
             this.onBuildState();
@@ -134,7 +135,13 @@ RedPlanetGame.Game = (function iife(parent) {
             this.game.camera.x -= 10
         }
         if (this.game.input.mousePointer.y > gameHeight - gameHeight / 15) {
-            this.game.camera.y += 10;
+            if(this.game.selected){
+                if (this.game.input.mousePointer.x < 200 || this.game.input.mousePointer.x > 500) {
+                    this.game.camera.y += 10;
+                }
+            } else {
+                this.game.camera.y += 10;
+            }
         } else if (this.game.input.mousePointer.y <= 100) {
             this.game.camera.y -= 10;
         }
@@ -178,9 +185,14 @@ RedPlanetGame.Game = (function iife(parent) {
     };
     RedPlanetGame.Game.prototype.shutdown = function shutdown() {
         this.game.player.level = this.game.level;
-        
-        $.post('/game', JSON.stringify({'user':{id: this.game.player.id, cash: this.game.rewards,
-            level: this.game.level, items: this.game.player.bonusObjects}}));
+
+        $.post('/game', JSON.stringify({
+            'user': {
+                id: this.game.player.id, cash: this.game.rewards,
+                level: this.game.level
+            },
+            'items': this.game.player.bonusObjects
+        }));
     };
     return RedPlanetGame.Game;
 })(Phaser.State);

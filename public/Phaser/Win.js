@@ -31,7 +31,7 @@ RedPlanetGame.Win = (function iife(parent) {
             {font: "32px Algerian", fill: '#ffd700'}
         );
         this.game.time.events.add(2000, function () {
-            skip.play();
+            //skip.play();
             this.killedText = this.game.add.text(gameWidth / 2 - 150, gameHeight / 2 - 60, 'Killed:   ',
                 {font: "32px Algerian", fill: '#ffd700'}
             );
@@ -42,25 +42,25 @@ RedPlanetGame.Win = (function iife(parent) {
             );
         }, this);
 
-        this.game.time.events.add(4000, function () {
-            skip.play();
+        this.game.time.events.add(4200, function () {
+            //skip.play();
             this.livesText = this.game.add.text(gameWidth / 2 - 150, gameHeight / 2 + 20, 'Lives:   ',
                 {font: "32px Algerian", fill: '#ffd700'}
             );
         }, this);
-        this.game.time.events.add(5900, function () {
+        this.game.time.events.add(6200, function () {
             this.game.add.text(this.livesText.x + 200, this.livesText.y,"" + this.game.lives,
                 {font: "32px Algerian", fill: '#ffd700'}
             );
         }, this);
 
-        this.game.time.events.add(6000, function () {
-            skip.play();
+        this.game.time.events.add(6600, function () {
+            //skip.play();
             this.rewardText = this.game.add.text(gameWidth / 2 - 150, gameHeight / 2 + 100, 'Points:   ',
                 {font: "32px Algerian", fill: '#ffd700'}
             );
         }, this);
-        this.game.time.events.add(7900, function () {
+        this.game.time.events.add(8500, function () {
             this.game.add.text(this.rewardText.x + 200, this.rewardText.y, "" + this.game.rewards,
                 {font: "32px Algerian", fill: '#ffd700'}
             );
