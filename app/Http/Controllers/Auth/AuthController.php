@@ -81,7 +81,7 @@ class AuthController extends Controller
 
         return $user;
     }
-    protected $redirectPath = '/home';
+    protected $redirectPath = '/';
 
     /**
      * Redirect the user to the Facebook authentication page.
@@ -110,7 +110,7 @@ class AuthController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect()->route('home');
+        return redirect()->route('/');
     }
 
     /**

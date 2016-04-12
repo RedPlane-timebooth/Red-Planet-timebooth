@@ -9,6 +9,8 @@ use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -66,12 +68,13 @@ class UserController extends Controller
     protected function moveUploads($request)
     {
         $destinationPath = 'resource/img/';
-        $fileName = Input::file('img_address')->getClientOriginalName();
-        $file = Input::file('img_address');
+        $fileName = Input::file('profilePicture')->getClientOriginalName();
+        $file = Input::file('profilePicture');
         $file->move($destinationPath, $fileName);
         $path = $destinationPath . $fileName;
+//        Image::make($path)->resize(200,200)->save($path);
         $data = $request->all();
-        $data['img_address'] = $path;
+        $data['profilePicture'] = $path;
 
         return $data;
     }
@@ -87,6 +90,7 @@ class UserController extends Controller
     {
         $data = $this -> moveUploads($request);
         User::findOrFail($id)->update($data);
+        return redirect('/profile/'. $id);
     }
 
     /**

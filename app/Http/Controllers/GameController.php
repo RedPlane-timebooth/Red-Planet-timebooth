@@ -32,7 +32,7 @@ class GameController extends Controller
             $data['items'][$key]['level'] = $item->level;
         }
         $data = \GuzzleHttp\json_encode($data);
-        //return $data;
+//        return $data;
         return view('game.index', compact('data'));
     }
 
@@ -41,7 +41,9 @@ class GameController extends Controller
         $data = Input::json();
         $userData = $data->get('user');
         $user = User::findOrFail($userData['id']);
+        $statisticData = $data;
         $gameUserItems = $data->get('items');
+        dd($gameUserItems);
         $dbUserItems = $user->items()->get();
         $itemToRemove = [];
         $found = false;
@@ -59,7 +61,8 @@ class GameController extends Controller
             }
         $found = false;
         }
-        $user->update($data->get('user'));
+        $user->update($userData);
+        $user->statistic()->update($statisticData);
         $user->items()->detach($itemToRemove);
     }
 }

@@ -70,6 +70,11 @@
                         </li>
                     @else
                         <li>
+                            <div class="navbar-form">
+                                <a href="auth/facebook" class="btn btn-primary">F login</a>
+                            </div>
+                        </li>
+                        <li>
                             <form class="navbar-form" name="loginForm" role="form" method="POST" action="{{ url('/login') }}">
                                     {!! csrf_field() !!}
 

@@ -41,7 +41,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/send', 'SocketController@sendMessage');
     Route::get('/write', 'SocketController@writeMessage');
     Route::get('/message', 'SocketController@index');
-
+    Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
 });
 
 Route::group(['middleware' => ['web']], function () {
@@ -51,5 +51,3 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('/admin/shop', 'ItemController');
 });
 
- Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
- Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');

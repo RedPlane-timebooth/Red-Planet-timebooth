@@ -15,7 +15,7 @@ class StatisticController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index']]);
     }
 
     /**
@@ -47,28 +47,5 @@ class StatisticController extends Controller
 
         // returns a view and passes the view the list of articles and the original query.
         return view('statistic.index', compact('all', 'sortDirection'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param $data []
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update($data, $id)
-    {
-        //
     }
 }

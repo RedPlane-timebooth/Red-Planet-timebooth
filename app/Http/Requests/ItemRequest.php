@@ -24,7 +24,10 @@ class ItemRequest extends Request
     public function rules()
     {
         return [
-            //
+            'name' => 'required|min:3',
+            'description' => 'required|min:10',
+            'img_address' => 'required',
+            'available' => 'required',
         ];
     }
 }

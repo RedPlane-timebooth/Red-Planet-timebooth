@@ -56,7 +56,7 @@
                     <a href="{{ url('/admin/shop') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ url('/admin/shop') }}">All</a></li>
-                        <li><a href="{{ url('/admin/shop/create') }}">Create Article</a></li>
+                        <li><a href="{{ url('/admin/shop/create') }}">Create Item</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ url('admin/about') }}">About Us</a></li>

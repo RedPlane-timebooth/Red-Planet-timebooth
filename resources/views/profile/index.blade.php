@@ -10,8 +10,8 @@
                         <h2 class="panel-title">My photo</h2>
                     </div>
                     <div class="panel-body">
-                        <img class="preview pull-left" src="{{ $user->profilePicture }}">
-                        {!! Form::model(['url' => 'profile', 'files'=>true]) !!}
+                        <img class="preview pull-left" src="{{ '/' . $user->profilePicture }}">
+                        {!! Form::model($user,['method' => 'PUT','action' => ['UserController@update', $user -> id], 'files' => true]) !!}
                         <div class="uploadProfilePic clearfix" >
                             {!! Form::label('profilePicture', 'Upload Image') !!}
                             {!! Form::file('profilePicture',['class' => 'form-control file pull-left']) !!}
