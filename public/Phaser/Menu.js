@@ -35,6 +35,7 @@ RedPlanetGame.Menu = (function iife(parent) {
          playerData.level = this.game.player.level || jsonDataDecoded.user.level;
          playerData.bonusObjects = this.game.player.bonusObjects || jsonDataDecoded.items;
 
+        console.log(playerData.bonusObjects)
         this.game.player = new Player(playerData.id, playerData.name, playerData.level,
             playerData.bonusObjects);
         this.game.level = this.game.player.level;
