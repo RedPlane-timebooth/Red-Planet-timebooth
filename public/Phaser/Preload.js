@@ -87,6 +87,9 @@ RedPlanetGame.Preload = (function iife() {
             this.load.audio('zergDeath2', '/assets/sounds/zergDeath2.mp3');
             this.load.audio('zergDeath', '/assets/sounds/zergDeath.mp3');
             this.load.audio('level1', '/assets/sounds/level1.mp3');
+            this.load.audio('backgroundMusic', '/assets/sounds/backgroundMusic.mp3');
+
+
         },
         create: function () {
             this.state.start('Menu');

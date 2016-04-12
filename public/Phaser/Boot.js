@@ -17,7 +17,6 @@ RedPlanetGame.Boot = (function iife() {
         create: function () {
             this.game.stage.backgroundColor = '#000';
 
-            
             //scaling options
             //this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
             //this.scale.setScreenSize = true;

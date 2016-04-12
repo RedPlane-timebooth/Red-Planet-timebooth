@@ -20,8 +20,8 @@ RedPlanetGame.Level1 = (function iife(parent) {
     };
     RedPlanetGame.Level1.prototype.create = function create() {
         parent.prototype.create.call(this);
-        this.game.levelSound = this.game.add.audio('level1').play();
-        this.game.levelSound.volume -= 0.6;
+        this.game.levelSound = $('audio');
+        this.game.levelSound.volume = 0.6;
         this.initMapLayersGroups('level1');
         this.game.gold = 600;
         this.game.player.lastPlayed = 'Level1';

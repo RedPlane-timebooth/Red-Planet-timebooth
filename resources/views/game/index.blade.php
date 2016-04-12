@@ -4,6 +4,7 @@
         <div id="gameCanvas"></div>
 
     </div>
+    <audio src="/assets/sounds/backgroundMusic.mp3" autoplay loop></audio>
     <script> jsonData = '{!! $data !!}'</script>
     <script src="/lib/phaser.js"></script>
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
