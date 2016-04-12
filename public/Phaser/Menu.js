@@ -78,8 +78,7 @@ RedPlanetGame.Menu = (function iife(parent) {
             level3.tint = 0x2a2a2a;
         }
         level3.events.onInputDown.add( function() {
-            //this.state.start('Level2');
-            alert('start level 3')
+            this.state.start('Work');
         }, this);
         level3.events.onInputOver.add( function() {
             this.game.cursorType = CURSOR_TYPE.POINTER;

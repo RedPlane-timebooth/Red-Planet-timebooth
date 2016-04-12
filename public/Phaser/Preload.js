@@ -16,7 +16,6 @@ RedPlanetGame.Preload = (function iife() {
             this.preloadBar.anchor.setTo(0.5);
             this.load.setPreloadSprite(this.preloadBar);
 
-            
             this.load.image('gameTiles', '/assets/images/badlands.png');
 
             this.load.spritesheet('turret', '/assets/buildings/towers/turret/turret.png', 64, 64, 3);
@@ -53,6 +52,8 @@ RedPlanetGame.Preload = (function iife() {
             this.load.image('sellIcon', '/assets/images/sellIcon.png');
             this.load.image('splash', '/assets/images/splash.png');
             this.load.image('critical', '/assets/images/critical.png');
+            this.load.image('start', '/assets/images/start.png');
+            this.load.image('starbase', '/assets/images/starbase.png');
             
             this.load.audio('missileShoot', '/assets/buildings/towers/turret/missileShoot.mp3');
             this.load.audio('missileExplosion', '/assets/buildings/towers/turret/missileExplosion.mp3');
@@ -67,7 +68,7 @@ RedPlanetGame.Preload = (function iife() {
             this.load.audio('Sniper2', '/assets/sounds/sniper2.mp3');
             this.load.audio('Sniper3', '/assets/sounds/sniper3.mp3');
             this.load.audio('Sniper4', '/assets/sounds/sniper4.mp3');
-            this.load.audio('Tank1', '/assets/sounds/sniper1.mp3');
+            this.load.audio('Tank1', '/assets/sounds/tank1.mp3');
             this.load.audio('Tank2', '/assets/sounds/tank2.mp3');
             this.load.audio('Tank3', '/assets/sounds/tank3.mp3');
             this.load.audio('tankBuild', '/assets/sounds/tankBuild.mp3');

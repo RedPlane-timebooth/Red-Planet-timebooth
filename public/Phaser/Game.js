@@ -101,6 +101,14 @@ RedPlanetGame.Game = (function iife(parent) {
         this.map.setCollisionBetween(1, 2000, true, 'backgroundLayer');
         //objects from tile map
         this.spawnCreepsAt = this.map.objects['objectsLayer'][0];
+        this.game.add.image(this.spawnCreepsAt.x - 70, this.spawnCreepsAt.y - 10, 'start');
+        this.map.objects['objectsLayer'].forEach(function (element) {
+            if (element.name === 'end') {
+                _this.creepsDestination = element;
+            }
+        });
+        this.game.add.image(this.creepsDestination.x, this.creepsDestination.y - 60, 'starbase');
+
         //resize world
         this.backgroundlayer.resizeWorld();
         this.game.world.setBounds(0, 0, 960, 760);
@@ -170,12 +178,9 @@ RedPlanetGame.Game = (function iife(parent) {
     };
     RedPlanetGame.Game.prototype.shutdown = function shutdown() {
         this.game.player.level = this.game.level;
-        this.game.levelSound.stopped= true;
         
         $.post('/game', JSON.stringify({'user':{id: this.game.player.id, cash: this.game.rewards,
             level: this.game.level, items: this.game.player.bonusObjects}}));
-    };
-    RedPlanetGame.Game.prototype.addSounds = function addSounds() {
     };
     return RedPlanetGame.Game;
 })(Phaser.State);
