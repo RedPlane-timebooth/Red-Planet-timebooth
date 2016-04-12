@@ -32,3 +32,7 @@ function createCheckPoints(type, map, layer) {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+function setVolume(audio, volume) {
+    var myAudio = $('#audio1');
+    myAudio.prop('volume', 0.5);
+}

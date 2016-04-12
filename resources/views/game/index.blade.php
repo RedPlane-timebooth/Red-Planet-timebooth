@@ -4,16 +4,10 @@
         <div id="gameCanvas"></div>
 
     </div>
-    <script>
-        function setVolume() {
-            var myAudio = document.getElementById("audio1");
-            myAudio.volume = 0.3;
-        }
-    </script>
-    <audio id="audio1" autoplay loop onloadeddata="setVolume">
+
+    <audio id="audio1" autoplay loop onloadeddata="setVolume()">
         <source src="/assets/sounds/backgroundMusic.mp3"  type="audio/mp3">
     </audio>
-
     <script> jsonData = '{!! $data !!}'</script>
     <script src="/lib/phaser.js"></script>
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
@@ -44,5 +38,4 @@
     <script src="/Phaser/main.js"></script>
 
     <script src="/main.js"></script>
-
 @endsection

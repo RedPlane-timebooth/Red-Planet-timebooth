@@ -185,7 +185,7 @@ RedPlanetGame.Game = (function iife(parent) {
     };
     RedPlanetGame.Game.prototype.shutdown = function shutdown() {
         this.game.player.level = this.game.level;
-
+        
         $.post('/game', JSON.stringify({
             'user': {
                 id: this.game.player.id,
