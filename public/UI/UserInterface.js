@@ -256,7 +256,7 @@ var UserInterface = (function iife() {
             var counter = 0;
             var indexOfSplash = -1;
             this.game.player.bonusObjects.forEach(function(splash, index) {
-                if(splash.type == 'Splash'){
+                if(splash.type == 'Splash Damage'){
                     counter++;
                     indexOfSplash = index;
                 }
@@ -602,7 +602,7 @@ var UserInterface = (function iife() {
                 if(critical.type == 'Critical Strike'){
                     _this.upgradeButtonCritical.visible = true;
                 }
-                if(critical.type == 'Splash'){
+                if(critical.type == 'Splash Damage'){
                     _this.upgradeButtonSplash.visible = true;
                 }
             });
