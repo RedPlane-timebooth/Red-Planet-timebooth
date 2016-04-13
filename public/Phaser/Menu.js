@@ -32,7 +32,7 @@ RedPlanetGame.Menu = (function iife(parent) {
             jsonDataDecoded = $.parseJSON(jsonData);
          playerData.id = jsonDataDecoded.user.id;
          playerData.name = jsonDataDecoded.user.name;
-         playerData.level = this.game.player.level || jsonDataDecoded.user.level;
+         playerData.level = this.game.level || jsonDataDecoded.user.level;
          playerData.bonusObjects = this.game.player.bonusObjects || jsonDataDecoded.items;
 
         this.game.player = new Player(playerData.id, playerData.name, playerData.level,

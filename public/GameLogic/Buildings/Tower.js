@@ -132,7 +132,7 @@ var Tower = (function iife(parent) {
         info.upgrades = this.upgrades;
         return info;
     };
-    Tower.prototype.showDialog = function showPersonalInfo() {
+    Tower.prototype.showDialog = function showDialog() {
         parent.prototype.showDialog.call(this);
         if (this.game.dialogOn) {
             this.game.bmd.cls();
@@ -169,6 +169,7 @@ var Tower = (function iife(parent) {
         } else if (this.upgrades[type] < 4) {
             this.upgrades[type]++;
         }
+        this.showDialog(false);
     };
     Tower.prototype.destroy = function destroy() {
         this.game.ui.hideDialog();

@@ -56,6 +56,8 @@ var Unit = (function iife(parent) {
         this.deathSpriteArray = unitType.deathSpriteArray;
         this.deathSound = this.game.add.audio(unitType.deathSound);
         this.dialogSound = this.game.add.audio(unitType.dialogSound + getRandomInt(1, 2));
+        this.livesCount = unitType.livesCount;
+        this.specialFunction = unitType.specialFunction || function() {};
 
         var currentCheckPoint = 0,
             _this = this;
@@ -78,7 +80,7 @@ var Unit = (function iife(parent) {
         }
         this.tweens[0].start();
         this.tweens[currentCheckPoint - 1].onComplete.add(function onEndReach() {
-            this.game.lives -= 1;
+            this.game.lives -= this.livesCount;
             this.kill();
             if(this.game.lives <= 0){
                 this.game.state.start('Defeat');
@@ -119,7 +121,7 @@ var Unit = (function iife(parent) {
             if(this.health <= 0){
                 this.game.ui.hideDialog();
             } else {
-                this.showDialog();
+                this.showDialog(false);
             }
         }
     };
@@ -130,6 +132,7 @@ var Unit = (function iife(parent) {
         );
         this.lastPoss = {x: this.x, y: this.y};
         this.walked += distance;
+        this.specialFunction();
     };
     Unit.prototype.kill = function kill() {
         this.tweens.forEach(function (tween) {
@@ -154,13 +157,15 @@ var Unit = (function iife(parent) {
         info.infoType = 'unit';
         return info;
     };
-    Unit.prototype.showDialog = function showPersonalInfo() {
+    Unit.prototype.showDialog = function showDialog(sound) {
         parent.prototype.showDialog.call(this);
         if (this.game.dialogOn) {
             this.game.ui.hideDialog();
             this.game.dialogOn = false;
         }
-        this.dialogSound.play();
+        if(sound){
+            this.dialogSound.play();
+        }
         this.game.ui.showDialog(this.getPersonalInfo());
         this.game.dialogOn = true;
     };
@@ -185,6 +190,17 @@ var Unit = (function iife(parent) {
 
         if (rotation.reverseX) {
             this.scale.x *= -1;
+        }
+    };
+    Unit.prototype.heal = function heal(points) {
+        var health = this.health;
+        parent.prototype.heal.call(this, points);
+        if(this.game.selected == this){
+            this.showDialog(false);
+        }
+        if(this.health - health > 0){
+            this.game.ui.textNotification(this.x - 20,this.y - 30, '+' + '' +
+                (this.health - health), 'darkgreen', 1000, false, 36);
         }
     };
 

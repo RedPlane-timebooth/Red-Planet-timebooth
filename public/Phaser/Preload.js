@@ -30,6 +30,7 @@ RedPlanetGame.Preload = (function iife() {
             this.load.spritesheet('missileExplosion', '/assets/buildings/towers/turret/explosion.png', 36, 59, 10);
             this.load.spritesheet('splashExplosion', '/assets/buildings/towers/tank/explosion2.png', 256, 256, 48);
             this.load.spritesheet('bloodExplosion', '/assets/buildings/towers/sniper/blood.png', 192, 192, 15);
+            this.load.spritesheet('heal', '/assets/images/heal.png', 192, 192, 20);
 
             this.load.spritesheet('healthBar', '/assets/images/health.png', 323, 50, 11);
             this.load.spritesheet('buttons', '/assets/images/buttons.png', 197, 54, 60);

@@ -34,5 +34,5 @@ function getRandomInt(min, max) {
 }
 function setVolume(audio, volume) {
     var myAudio = $('#audio1');
-    myAudio.prop('volume', 0.5);
+    myAudio.prop('volume', 0.4);
 }

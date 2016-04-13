@@ -691,7 +691,6 @@ var UserInterface = (function iife() {
             this.dialog.defenceIcon.visible = false;
         }
     };
-
     UserInterface.prototype.textNotification = function (x, y, text, color, time, blinky, font) {
         font = font || 32;
         if (!this.notification.exists) {
@@ -710,6 +709,7 @@ var UserInterface = (function iife() {
             }, this);
         }
     };
+
     return UserInterface;
 }());
 
@@ -721,3 +721,4 @@ function removeHover() {
         this.game.cursorType = CURSOR_TYPE.NORMAL;
     }
 }
+

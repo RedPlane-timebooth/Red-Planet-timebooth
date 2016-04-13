@@ -16,6 +16,7 @@ RedPlanetGame.Level1 = (function iife(parent) {
         this.load.spritesheet('zealot', '/assets/creeps/zealot.png', 128, 128, 238);
         this.load.spritesheet('ultralisk', '/assets/creeps/ultralisk.png', 128, 128, 272);
         this.load.spritesheet('dragoon', '/assets/creeps/dragoon.png', 96, 96, 425);
+        this.load.spritesheet('hydralisk', '/assets/creeps/hydralisk.png', 128, 128, 250);
         this.load.audio('level1', '/assets/sounds/level1.mp3');
     };
     RedPlanetGame.Level1.prototype.create = function create() {
@@ -27,6 +28,8 @@ RedPlanetGame.Level1 = (function iife(parent) {
         this.game.bmd = this.game.make.bitmapData(960, 790);
         this.game.bmd.addToWorld();
 
+        this.game.enemies.factory(this.spawnCreepsAt.x + this.xOffset, this.spawnCreepsAt.y + 40,
+            'medic', this.checkPoints2);
         for(var i = 0; i < 20; i++) {
             this.game.time.events.add(i * 3500 + 2000, function () {
                 this.game.enemies.factory(this.spawnCreepsAt.x + this.xOffset, this.spawnCreepsAt.y + 40,
