@@ -50,12 +50,12 @@ var Unit = (function iife(parent) {
         this.defence = unitType.defence;
         this.isAir = unitType.isAir;
         this.walked = 0;
-        this.body.setSize(32, 32);
+        this.body.setSize(16, 16);
         this.checkPoints = checkPoints;
         this.animateMovement(checkPoints[0], unitType.animationsStartRow, unitType.animationsEndRow);
         this.deathSpriteArray = unitType.deathSpriteArray;
         this.deathSound = this.game.add.audio(unitType.deathSound);
-        this.dialogSound = this.game.add.audio(unitType.dialogSound + getRandomInt(1, 2));
+        this.dialogSound = unitType.dialogSound;
         this.livesCount = unitType.livesCount;
         this.specialFunction = unitType.specialFunction || function() {};
 
@@ -164,7 +164,8 @@ var Unit = (function iife(parent) {
             this.game.dialogOn = false;
         }
         if(sound){
-            this.dialogSound.play();
+            var respondsound = this.game.add.audio(this.dialogSound + getRandomInt(1, 2));
+            respondsound.play();
         }
         this.game.ui.showDialog(this.getPersonalInfo());
         this.game.dialogOn = true;
@@ -200,7 +201,7 @@ var Unit = (function iife(parent) {
         }
         if(this.health - health > 0){
             this.game.ui.textNotification(this.x - 20,this.y - 30, '+' + '' +
-                (this.health - health), 'darkgreen', 1000, false, 36);
+                Math.round(this.health - health), 'darkgreen', 1000, false, 36);
         }
     };
 

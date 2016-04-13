@@ -22,7 +22,7 @@ var UnitsPoolFactory = (function iife(parent) {
         animationsStartRow: 6,
         animationsEndRow: 13,
         goldReward: 50,
-        speed: 5,
+        speed: 6,
         scale: 1,
         health: 120,
         defence: 14,
@@ -39,7 +39,7 @@ var UnitsPoolFactory = (function iife(parent) {
         goldReward: 70,
         speed: 4,
         scale: 1,
-        health: 200,
+        health: 500,
         defence: 10,
         isAir: false,
         deathSpriteArray: [409, 410, 411, 412, 413, 414, 415],
@@ -54,7 +54,7 @@ var UnitsPoolFactory = (function iife(parent) {
         goldReward: 220,
         speed: 4,
         scale: 1,
-        health: 2000,
+        health: 5000,
         defence: 20,
         isAir: false,
         deathSpriteArray: [256, 257, 258, 259, 260, 271, 272, 273, 274, 275],
@@ -87,9 +87,9 @@ var UnitsPoolFactory = (function iife(parent) {
         health: 250,
         defence: 2,
         isAir: false,
-        deathSpriteArray: [221, 222, 223, 224, 225, 226, 227],
-        dialogSound: 'marine',
-        deathSound: 'marineDeath',
+        deathSpriteArray: [238, 239, 240, 241, 242, 243, 244],
+        dialogSound: 'hydralisk',
+        deathSound: 'zergDeath',
         livesCount: 1,
         specialFunction: function() {
             if(!this.timeStamp){
@@ -106,7 +106,7 @@ var UnitsPoolFactory = (function iife(parent) {
 
                 if(!this.healAnimation){
                     this.healAnimation = new WorldObject(this.game, this.x - 10, this.y - 60, 'heal');
-                    this.healAnimation.animations.add('heal', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 50,
+                    this.healAnimation.animations.add('heal', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 70,
                         false);
                 } else {
                     this.healAnimation.reset(this.x - 10, this.y - 60);
@@ -149,11 +149,11 @@ var UnitsPoolFactory = (function iife(parent) {
             case UNIT_TYPES.ULTRALISK:
                 this.getFirstExists(false).init(x, y, checkPoints, ultralisk);
                 break;
-            case 'medic':
+            case UNIT_TYPES.MEDIC:
                 this.getFirstExists(false).init(x, y, checkPoints, medic);
                 break;
             default:
-                console.log('Unit not added to factory');
+                //console.log('Unit not added to factory');
         }
     };
 

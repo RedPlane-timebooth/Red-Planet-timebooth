@@ -6,7 +6,8 @@ const UNIT_TYPES = {
     MARINE : 'marine',
     ZEALOT : 'zealot',
     DRAGOON : 'dragoon',
-    ULTRALISK : 'ultralisk'
+    ULTRALISK : 'ultralisk',
+    MEDIC : 'medic'
 };
 const BUILDING_TYPES = {
     TURRET : 'turret',

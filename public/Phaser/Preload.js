@@ -83,8 +83,8 @@ RedPlanetGame.Preload = (function iife() {
             this.load.audio('zerg1', '/assets/sounds/zerg1.mp3');
             this.load.audio('zerg2', '/assets/sounds/zerg2.mp3');
             this.load.audio('zerg3', '/assets/sounds/zerg3.mp3');
-            this.load.audio('zerg4', '/assets/sounds/zerg4.mp3');
-            this.load.audio('zerg5', '/assets/sounds/zerg5.mp3');
+            this.load.audio('hydralisk1', '/assets/sounds/zerg4.mp3');
+            this.load.audio('hydralisk2', '/assets/sounds/zerg5.mp3');
             this.load.audio('zerg6', '/assets/sounds/zerg6.mp3');
             this.load.audio('zergDeath2', '/assets/sounds/zergDeath2.mp3');
             this.load.audio('zergDeath', '/assets/sounds/zergDeath.mp3');

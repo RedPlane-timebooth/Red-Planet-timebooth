@@ -65,6 +65,8 @@ RedPlanetGame.Game = (function iife(parent) {
 
         //check for collision between enemy and non-path layer
         this.game.physics.arcade.collide(this.game.enemies, this.backgroundlayer);
+        //check for collision between enemy and non-path layer
+        this.game.physics.arcade.collide(this.game.enemies, this.game.enemies);
         //checks for collision between bullets and enemies
         this.game.physics.arcade.overlap(this.game.bullets, this.game.enemies, function (bullet, enemy) {
             enemy.takeHit(bullet);
@@ -129,7 +131,7 @@ RedPlanetGame.Game = (function iife(parent) {
 
     RedPlanetGame.Game.prototype.followCamera = function followCamera() {
         //Camera follow cursor
-        if (this.game.input.mousePointer.x > gameWidth - gameWidth / 15) {
+        if (this.game.input.mousePointer.x > gameWidth - gameWidth / 15 && this.game.input.mousePointer.y < 400) {
             this.game.camera.x += 10;
         } else if (this.game.input.mousePointer.x <= 100) {
             this.game.camera.x -= 10

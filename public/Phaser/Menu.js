@@ -25,14 +25,13 @@ RedPlanetGame.Menu = (function iife(parent) {
         this.game.world.setBounds(0, 0, 1920, 1080);
 
         this.game.player = this.game.player || {};
-        this.game.player.level = this.game.player.level || null;
         this.game.player.bonusObjects = this.game.player.bonusObjects || null;
 
         var playerData = {},
             jsonDataDecoded = $.parseJSON(jsonData);
          playerData.id = jsonDataDecoded.user.id;
          playerData.name = jsonDataDecoded.user.name;
-         playerData.level = this.game.level || jsonDataDecoded.user.level;
+         playerData.level = jsonDataDecoded.user.level;
          playerData.bonusObjects = this.game.player.bonusObjects || jsonDataDecoded.items;
 
         this.game.player = new Player(playerData.id, playerData.name, playerData.level,
