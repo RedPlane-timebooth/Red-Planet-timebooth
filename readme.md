@@ -1,5 +1,6 @@
 # A cool web application for Star Craft TD game. You fans of old Star Craft II will like it.
 ## How to run localy:
+* composer install
 * composer update
 * cd public
 * npm install
