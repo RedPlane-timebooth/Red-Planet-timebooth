@@ -2,7 +2,7 @@
 
 @section('content')
         <section class="well container">
-                <h1 class="page-header">My Profile</h1>
+                <h1 class="page-header text-center">My Profile</h1>
             <div class="clearfix">
             <div class="col-md-4 pull-left">
                 <div class="panel panel-info ">
@@ -10,11 +10,11 @@
                         <h2 class="panel-title">My photo</h2>
                     </div>
                     <div class="panel-body">
-                        <img class="preview pull-left" src="{{ '/' . $user->profilePicture }}">
+                        <img class="preview" src="{{ '/' . $user->profilePicture }}">
                         {!! Form::model($user,['method' => 'PUT','action' => ['UserController@update', $user -> id], 'files' => true]) !!}
                         <div class="uploadProfilePic clearfix" >
                             {!! Form::label('profilePicture', 'Upload Image') !!}
-                            {!! Form::file('profilePicture',['class' => 'form-control file pull-left']) !!}
+                            {!! Form::file('profilePicture',['class' => 'form-control pull-left']) !!}
                             {!! Form::submit('Save',['class' => 'pull-left']) !!}
                         </div>
                         {!! Form::close() !!}

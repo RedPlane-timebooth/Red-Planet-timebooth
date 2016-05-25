@@ -45,7 +45,6 @@ class StatisticController extends Controller
                 ->paginate(10);
         }
 
-        // returns a view and passes the view the list of articles and the original query.
         return view('statistic.index', compact('all', 'sortDirection'));
     }
 }

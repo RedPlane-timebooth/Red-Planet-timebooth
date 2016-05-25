@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Statistic;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,6 @@ class GameController extends Controller
             $data['items'][$key]['level'] = $item->level;
         }
         $data = \GuzzleHttp\json_encode($data);
-//        return $data;
         return view('game.index', compact('data'));
     }
 
@@ -41,9 +41,20 @@ class GameController extends Controller
         $data = Input::json();
         $userData = $data->get('user');
         $user = User::findOrFail($userData['id']);
-        $statisticData = $data;
+        $statistic = $user->statistic()->first()->toArray();
+        dd($statistic, $userData['cash']);
+        $status = $data->get('gameStatus');
+        if ($status) {
+            $userData['cash'] += $user['cash'];
+            $statistic['win_games'] += 1;
+            $statistic['total_games'] += 1;
+            $statistic['total_score'] += $userData['cash'];
+
+        } else {
+            $statistic['lose_games'] += 1;
+            $statistic['total_games'] += 1;
+        }
         $gameUserItems = $data->get('items');
-        dd($gameUserItems);
         $dbUserItems = $user->items()->get();
         $itemToRemove = [];
         $found = false;
@@ -62,7 +73,7 @@ class GameController extends Controller
         $found = false;
         }
         $user->update($userData);
-        $user->statistic()->update($statisticData);
+        $user->statistic()->update($statistic);
         $user->items()->detach($itemToRemove);
     }
 }

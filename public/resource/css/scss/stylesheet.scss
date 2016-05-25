@@ -1,6 +1,9 @@
 body {
-  background: url("../../img/background4_dark.jpg");
+  background: url("/resource/img/background4_dark.jpg");
 
+  .font-size-24{
+    font-size: 24px
+  }
   nav{
     margin: 10px auto 50px;
     width: 90%;
@@ -51,8 +54,7 @@ body {
   .productsPreview img{
     max-width: 98%;
   }
-  /*
-
+/*
   input.file {
     width: 150px;
     height: 20px;
@@ -113,7 +115,7 @@ body {
     position: relative;
     height: 30px;
     width: 250px;
-    display: inline;
+    display: inline-block;
   }
-*/
+  */
 }

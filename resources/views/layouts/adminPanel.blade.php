@@ -27,7 +27,6 @@
 </head>
 <body id="app-layout">
 <header>
-    <img id="logo" src="{{url("/resource/img/logo.png")}}" alt="The Red Planet">
     <nav id="nav" class="navbar navbar-default">
         {{--<div class="container col-sm-12">--}}
         <div class="navbar-header">
@@ -76,15 +75,13 @@
             <!-- Right Side Of Navbar -->
 
         </div>
-        {{--</div>--}}
     </nav>
 </header>
 <main class="container-fluid">
     @yield('content')
 </main>
 <!-- JavaScripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+<script src="{{url('/resource/js/jquery.min.js')}}"></script>
+<script src="{{url('/resource/js/bootstrap.min.js')}}"></script>
 </body>
 </html>

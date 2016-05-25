@@ -14,7 +14,6 @@
         var socket = io.connect('http://127.0.0.1:3030');
         socket.on('message', function (data) {
             $( "#messages" ).append( "<p>"+data+"</p>" );
-            console.log(data);
         });
     </script>
 

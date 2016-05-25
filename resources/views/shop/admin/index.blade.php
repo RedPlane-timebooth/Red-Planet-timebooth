@@ -6,9 +6,7 @@
             <h1>All items</h1>
             @foreach($items as $item)
                 <div class="col-md-3 col-sm-6 col-xs-10 col-md-offset-1 pull-left well">
-                    <h2 class="text-center">
-                        <a href="{{ url('/shop', $item -> id) }}">{{ $item->name }}</a>
-                    </h2>
+                    <h2 class="text-center">{{ $item->name }}</h2>
                     <img class="preview center-block" src="{{url($item->img_address) }}">
                     <a class="btn btn-default btn-primary" href="{{ url('/admin/shop/'. $item -> id . '/edit') }}">Edit</a>
                     {!! Form::open(['action' => ['ItemController@destroy', $item->id], 'method' => 'delete', 'class' => 'delete']) !!}

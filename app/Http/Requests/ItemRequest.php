@@ -26,8 +26,8 @@ class ItemRequest extends Request
         return [
             'name' => 'required|min:3',
             'description' => 'required|min:10',
-            'img_address' => 'required',
-            'available' => 'required',
+            'available' => 'required|integer|min0',
+            'price' => 'required|integer|min0',
         ];
     }
 }

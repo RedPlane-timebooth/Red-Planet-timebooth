@@ -19,7 +19,7 @@
                         <a href="{{ url('/shop', $item -> id) }}">{{ $item->name }}</a>
                     </h2>
                     <img class="preview center-block" src="{{url($item->img_address) }}">
-                    <div href="{{url('/buyItem', $item->id)}}" class="btn btn-info center-block"><h6>Buy (${{ $item->price }})</h6></div>
+                    <a href="{{url('/buyItem', $item->id)}}" class="btn btn-info center-block"><h6>Buy (${{ $item->price }})</h6></a>
                 </div>
             @endif
         @endforeach

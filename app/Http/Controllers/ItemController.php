@@ -88,7 +88,12 @@ class ItemController extends Controller
     }
     public function update(Item $item,ItemRequest $request)
     {
-        $data = $this -> moveUploads($request);
+        if (Input::file('img_address')){
+            $data = $this -> moveUploads($request);
+        } else {
+            $data = $request->all();
+        }
+
         $item -> update($data);
         return redirect('admin/shop');
     }
